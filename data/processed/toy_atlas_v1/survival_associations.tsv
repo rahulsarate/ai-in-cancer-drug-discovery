@@ -1,0 +1,2 @@
+status	reason
+not_run	Install lifelines or use `pip install -e .[survival]`.

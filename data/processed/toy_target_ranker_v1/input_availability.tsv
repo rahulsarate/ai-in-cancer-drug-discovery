@@ -1,0 +1,10 @@
+source	path	available
+expression	data\raw\toy_expression.tsv	True
+emt_scores	data\processed\toy_atlas_v1\emt_scores.tsv	True
+metadata	data\raw\toy_metadata.tsv	True
+depmap_gene_effect		False
+open_targets		False
+chembl		False
+dgidb		False
+prism		False
+lincs		False

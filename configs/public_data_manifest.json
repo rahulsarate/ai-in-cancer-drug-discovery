@@ -1,0 +1,87 @@
+{
+  "tcga_xena": [
+    {
+      "id": "tcga_pancan_rnaseq_pancanatlas",
+      "dataset_name": "EBPlusPlusAdjustPANCAN_IlluminaHiSeq_RNASeqV2.geneExp.xena",
+      "source": "UCSC Xena Pan-Cancer Atlas Hub",
+      "source_page": "https://xenabrowser.net/datapages/?host=https%3A%2F%2Fpancanatlas.xenahubs.net",
+      "local_path": "data/raw/xena/EBPlusPlusAdjustPANCAN_IlluminaHiSeq_RNASeqV2.geneExp.xena",
+      "notes": "TCGA PanCanAtlas RNA-seq gene expression matrix. Use for EMT scoring when available locally."
+    },
+    {
+      "id": "tcga_pancan_clinical_cdr",
+      "dataset_name": "Survival_SupplementalTable_S1_20171025_xena_sp",
+      "source": "UCSC Xena Pan-Cancer Atlas Hub / TCGA clinical data resource",
+      "source_page": "https://xenabrowser.net/datapages/?host=https%3A%2F%2Fpancanatlas.xenahubs.net",
+      "local_path": "data/raw/xena/Survival_SupplementalTable_S1_20171025_xena_sp",
+      "notes": "Curated survival endpoint table recommended for TCGA PanCanAtlas survival analysis."
+    },
+    {
+      "id": "gdc_pancan_star_tpm",
+      "dataset_name": "TCGA Pan-Cancer STAR TPM",
+      "source": "UCSC Xena GDC Hub",
+      "source_page": "https://xenabrowser.net/datapages/?hub=https%3A%2F%2Fgdc.xenahubs.net%3A443",
+      "local_path": "data/raw/xena/gdc_pancan_star_tpm.tsv.gz",
+      "notes": "Alternative current GDC hub expression source. Prefer this if STAR TPM matrix is downloaded from the GDC Xena hub."
+    }
+  ],
+  "target_ranker": [
+    {
+      "id": "depmap_gene_effect",
+      "dataset_name": "DepMap CRISPR Gene Effect",
+      "source": "DepMap Public Downloads",
+      "source_page": "https://depmap.org/portal/download/all/",
+      "local_path": "data/raw/depmap/CRISPRGeneEffect.csv",
+      "notes": "Use the latest DepMap public release gene effect matrix. Lower values indicate stronger dependency."
+    },
+    {
+      "id": "depmap_model_metadata",
+      "dataset_name": "DepMap Model Metadata",
+      "source": "DepMap Public Downloads",
+      "source_page": "https://depmap.org/portal/download/all/",
+      "local_path": "data/raw/depmap/Model.csv",
+      "notes": "Use for lineage and disease metadata when stratifying dependencies."
+    },
+    {
+      "id": "prism_repurposing",
+      "dataset_name": "PRISM Repurposing Secondary Screen",
+      "source": "DepMap PRISM Repurposing",
+      "source_page": "https://depmap.org/repurposing/",
+      "local_path": "data/raw/prism/prism_target_hits.tsv",
+      "notes": "Prepare a target-level extract with a target column before feeding into evidence builder."
+    },
+    {
+      "id": "lincs_clue",
+      "dataset_name": "LINCS L1000 perturbation signatures",
+      "source": "CLUE/LINCS",
+      "source_page": "https://clue.io/lincs",
+      "local_path": "data/raw/lincs/lincs_target_hits.tsv",
+      "notes": "Prepare a target-level extract for perturbagens that reverse EMT/metastasis signatures."
+    },
+    {
+      "id": "open_targets",
+      "dataset_name": "Open Targets target evidence",
+      "source": "Open Targets Platform",
+      "source_page": "https://platform.opentargets.org/",
+      "local_path": "data/raw/open_targets/open_targets_emt_metastasis.tsv",
+      "notes": "Prepare a target-level extract for cancer/metastasis/druggability/tractability evidence."
+    },
+    {
+      "id": "chembl",
+      "dataset_name": "ChEMBL target-compound bioactivity extract",
+      "source": "ChEMBL",
+      "source_page": "https://www.ebi.ac.uk/chembl/",
+      "local_path": "data/raw/chembl/chembl_target_compounds.tsv",
+      "notes": "Prepare a target-level extract with one row per target-compound bioactivity record."
+    },
+    {
+      "id": "dgidb",
+      "dataset_name": "DGIdb drug-gene interaction extract",
+      "source": "DGIdb",
+      "source_page": "https://www.dgidb.org/",
+      "local_path": "data/raw/dgidb/dgidb_interactions.tsv",
+      "notes": "Prepare a target-level extract with one row per known drug-gene interaction."
+    }
+  ]
+}
+

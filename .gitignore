@@ -1,0 +1,18 @@
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+*.egg-info/
+
+# Large public datasets should stay local.
+data/raw/*
+!data/raw/.gitkeep
+!data/raw/toy_*.tsv
+data/interim/*
+data/processed/*
+!data/processed/.gitkeep
+!data/processed/toy_*.tsv
+!data/processed/toy_atlas_v1/
+!data/processed/toy_atlas_v1/**
+!data/processed/toy_target_ranker_v1/
+!data/processed/toy_target_ranker_v1/**

@@ -1,0 +1,74 @@
+tcga_xena:
+  portal: https://xena.ucsc.edu/
+  use_for:
+    - bulk RNA-seq expression
+    - phenotype and survival metadata
+    - TCGA/GTEx comparisons
+  notes: Prefer pan-cancer harmonized matrices for first-pass EMT scoring.
+
+gdc:
+  portal: https://portal.gdc.cancer.gov/
+  api: https://api.gdc.cancer.gov/
+  use_for:
+    - TCGA expression
+    - clinical data
+    - survival endpoints
+    - controlled or harmonized downloads
+
+cancersea:
+  portal: http://biocc.hrbmu.edu.cn/CancerSEA/
+  publication: https://pmc.ncbi.nlm.nih.gov/articles/PMC6324047/
+  use_for:
+    - single-cell EMT, invasion, metastasis state signatures
+    - benchmarking functional state scoring
+
+tisch2:
+  portal: https://tisch.compbio.cn/
+  publication: https://pmc.ncbi.nlm.nih.gov/articles/PMC9825603/
+  use_for:
+    - tumor microenvironment single-cell datasets
+    - immune, CAF, TAM context
+
+htan:
+  portal: https://humantumoratlas.org/
+  use_for:
+    - spatial and single-cell tumor atlases
+    - metastatic niche studies
+
+depmap:
+  portal: https://depmap.org/portal/
+  use_for:
+    - CRISPR dependency
+    - CCLE omics
+    - lineage-specific dependency analyses
+
+prism:
+  portal: https://depmap.org/repurposing/
+  use_for:
+    - drug repurposing viability screens
+    - compound sensitivity evidence
+
+lincs_clue:
+  portal: https://clue.io/lincs
+  use_for:
+    - drug and genetic perturbation signatures
+    - EMT signature reversal
+
+open_targets:
+  portal: https://platform.opentargets.org/
+  use_for:
+    - target-disease association
+    - tractability and safety evidence
+
+chembl:
+  portal: https://www.ebi.ac.uk/chembl/
+  use_for:
+    - target-compound bioactivity
+    - public compound availability
+
+dgidb:
+  portal: https://www.dgidb.org/
+  use_for:
+    - drug-gene interactions
+    - druggability annotations
+

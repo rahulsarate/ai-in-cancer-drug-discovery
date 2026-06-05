@@ -1,0 +1,78 @@
+# EMT Metastasis AI
+
+This repository is a public-data research starter kit for two linked projects:
+
+1. **emt-state-atlas**: score EMT, partial EMT, stromal contamination, immune context, hypoxia, CAF/TAM niches, and survival associations across TCGA-style bulk RNA-seq and single-cell summaries.
+2. **metastasis-target-ranker**: prioritize susceptible metastasis/EMT targets by integrating EMT-state specificity, metastatic association, druggability, CRISPR dependency, public compound availability, normal-tissue safety risk, and literature support.
+
+The project is designed for reproducible GitHub work. Large datasets are not committed. Place public data under `data/raw/`, run pipelines, and write outputs to `data/processed/`.
+
+## Quick Start
+
+```powershell
+python -m venv .venv
+.\\.venv\\Scripts\\Activate.ps1
+pip install -e ".[dev,survival]"
+pytest
+```
+
+Score an expression matrix:
+
+```powershell
+emt-score --expression data/raw/example_expression.tsv --metadata data/raw/example_metadata.tsv --out data/processed/emt_scores.tsv
+```
+
+Rank targets:
+
+```powershell
+rank-metastasis-targets --config configs/target_ranker.yml --out data/processed/target_ranking.tsv
+```
+
+## Input Format
+
+Expression matrices can be either genes x samples or samples x genes. The scorer detects orientation by matching known signature genes. Metadata should contain `sample_id`; survival analysis additionally expects `time` and `event` columns.
+
+## Recommended First Build
+
+1. Download TCGA pan-cancer expression and phenotype data from UCSC Xena or GDC.
+2. Score epithelial, mesenchymal, partial EMT, stromal, immune, CAF, TAM, and hypoxia programs.
+3. Benchmark EMT scores against survival and metastatic labels where available.
+4. Add single-cell/scRNA references from CancerSEA, TISCH2, HTAN, and GEO.
+5. Feed EMT-high and partial-EMT target evidence into the target ranker.
+
+See `docs/literature/` and `docs/methods/` for the scientific rationale and implementation notes.
+
+## Real-Data v1 Workflow
+
+List public data sources and exact expected local paths:
+
+```powershell
+python scripts/download_manifest.py
+```
+
+Run the TCGA/Xena atlas after placing expression and phenotype files locally:
+
+```powershell
+$env:PYTHONPATH="src"
+python scripts/run_tcga_xena_atlas.py `
+  --expression data/raw/xena/EBPlusPlusAdjustPANCAN_IlluminaHiSeq_RNASeqV2.geneExp.xena `
+  --metadata data/raw/xena/Survival_SupplementalTable_S1_20171025_xena_sp `
+  --out-dir data/processed/tcga_xena_v1
+```
+
+Build target-ranker evidence and reports:
+
+```powershell
+$env:PYTHONPATH="src"
+python scripts/build_target_evidence.py `
+  --expression data/raw/toy_expression.tsv `
+  --emt-scores data/processed/toy_emt_scores.tsv `
+  --metadata data/raw/toy_metadata.tsv `
+  --out-dir data/processed/target_ranker_v1
+```
+
+The same command accepts optional DepMap, PRISM, LINCS, Open Targets, ChEMBL, and DGIdb target-level extracts. See `configs/public_data_manifest.json`.
+
+## Environment Notes
+
+If your system Python is too new for scientific wheels, use a Python 3.10-3.12 environment or the bundled Codex runtime. Minimum required runtime packages are `numpy` and `pandas`; plots need `matplotlib` and `seaborn`; Cox survival analysis needs `lifelines`.

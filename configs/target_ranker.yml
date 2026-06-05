@@ -1,0 +1,20 @@
+base_targets:
+
+evidence_tables:
+  emt_state_specificity:
+  metastatic_association:
+  druggability:
+  crispr_dependency:
+  compound_availability:
+  normal_tissue_safety:
+  literature_support:
+
+weights:
+  emt_state_specificity: 0.20
+  metastatic_association: 0.18
+  druggability: 0.16
+  crispr_dependency: 0.16
+  compound_availability: 0.12
+  normal_tissue_safety: 0.10
+  literature_support: 0.08
+

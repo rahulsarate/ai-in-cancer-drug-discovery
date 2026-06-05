@@ -1,0 +1,26 @@
+[project]
+name = "emt-metastasis-ai"
+version = "0.1.0"
+description = "Public-data pipelines for EMT state mapping and metastasis target prioritization."
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+  "numpy>=1.24",
+  "pandas>=2.0",
+  "pyyaml>=6.0",
+  "requests>=2.31",
+  "matplotlib>=3.7",
+  "seaborn>=0.12",
+]
+
+[project.optional-dependencies]
+survival = ["lifelines>=0.28"]
+singlecell = ["scanpy>=1.10", "anndata>=0.10"]
+dev = ["pytest>=8.0"]
+
+[project.scripts]
+emt-score = "emt_state_atlas.cli:main"
+rank-metastasis-targets = "metastasis_target_ranker.cli:main"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
