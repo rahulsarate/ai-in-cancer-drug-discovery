@@ -27,7 +27,7 @@ TASKS = [
     ("validation", "Additional GEO Visium cancer cohorts", 10, "partial"),
     ("validation", "SpatialTME/SCAR public atlas feasibility", 8, "partial"),
     ("advanced", "Matched scRNA-seq references", 12, "pending"),
-    ("advanced", "Metastasis/progression cohorts", 10, "partial"),
+    ("advanced", "Metastasis/progression cohorts", 10, "implemented_first_cohort"),
     ("advanced", "Pathology foundation embeddings", 10, "pending"),
 ]
 
@@ -35,6 +35,7 @@ STATUS_MULTIPLIER = {
     "done": 1.0,
     "partial": 0.5,
     "blocked_external_reference": 0.25,
+    "implemented_first_cohort": 0.7,
     "pending": 0.0,
 }
 
@@ -108,7 +109,7 @@ def write_markdown(detail: pd.DataFrame, summary: pd.DataFrame, out: Path) -> No
         "Additional GEO Visium cancer cohorts": "1-2 weeks",
         "SpatialTME/SCAR public atlas feasibility": "3-5 days",
         "Matched scRNA-seq references": "3-6 weeks",
-        "Metastasis/progression cohorts": "2-6 weeks",
+        "Metastasis/progression cohorts": "first cohort implemented; 1-3 weeks for matched primary/metastatic PDAC scale-up",
         "Pathology foundation embeddings": "3-6 weeks",
     }
     for _, row in remaining.iterrows():

@@ -1,3 +1,3 @@
-accession	title	organism	platform	disease	samples	source_url	priority
-GSE274557	Spatial mapping of transcriptomic and lineage plasticity in metastatic pancreatic cancer	Homo sapiens	10x Visium	metastatic pancreatic cancer	55 samples; primary, liver, lung, peritoneal metastases	https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE274557	high
-GSE179572	Spatial transcriptomics of six surgically-resected human brain metastasis samples	Homo sapiens	10x Visium	brain metastasis	six brain metastasis samples	https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE179572	medium
+accession	title	organism	platform	disease	samples	source_url	priority	pipeline_status	pipeline_output
+GSE274557	Spatial mapping of transcriptomic and lineage plasticity in metastatic pancreatic cancer	Homo sapiens	10x Visium	metastatic pancreatic cancer	55 samples; primary, liver, lung, peritoneal metastases	https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE274557	high	candidate_scale_up_not_downloaded	
+GSE179572	Spatial transcriptomics of six surgically-resected human brain metastasis samples	Homo sapiens	10x Visium	brain metastasis	six brain metastasis samples	https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE179572	medium	downloaded_standardized_scored_graph_trained	data/processed/spatial_emt_niche_gnn_geo_brain_met

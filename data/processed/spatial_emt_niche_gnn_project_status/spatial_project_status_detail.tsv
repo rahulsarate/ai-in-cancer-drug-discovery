@@ -20,5 +20,5 @@ validation	HTAN spatial datasets	10	partial	5.0
 validation	Additional GEO Visium cancer cohorts	10	partial	5.0
 validation	SpatialTME/SCAR public atlas feasibility	8	partial	4.0
 advanced	Matched scRNA-seq references	12	pending	0.0
-advanced	Metastasis/progression cohorts	10	partial	5.0
+advanced	Metastasis/progression cohorts	10	implemented_first_cohort	7.0
 advanced	Pathology foundation embeddings	10	pending	0.0

@@ -49,5 +49,20 @@ The first candidate manifest prioritizes:
 - GSE274557: metastatic pancreatic cancer with primary and metastatic sites;
 - GSE179572: human brain metastasis Visium samples.
 
-The next implementation step is to download one candidate, add primary vs
-metastasis/progression labels, and rerun the spatial EMT niche workflow.
+GSE179572 is now downloaded, standardized, scored, graphed, trained, and
+summarized under `data/processed/spatial_emt_niche_gnn_geo_brain_met`.
+This provides the first real metastasis benchmark for the niche graph model.
+
+Initial GSE179572 run signal:
+
+- six brain-metastasis samples standardized from GEO H5/spatial archives;
+- 12,566 in-tissue spots after metadata matching;
+- 358,273 graph edges;
+- sample EMT-niche fractions range from 0.052 to 0.569;
+- strongest ligand-receptor edge families include CSF1-CSF1R, GAS6-AXL,
+  TGFB1-TGFBR1/2, CXCL12-CXCR4, VEGFA-KDR, and SPP1-CD44/ITGAV.
+
+The next implementation step is GSE274557. That cohort is larger and more
+valuable for metastasis biology because it includes matched primary tumour,
+liver, lung, and peritoneal metastatic samples from metastatic pancreatic
+cancer. It should be ingested after sample-level site labels are parsed.

@@ -1,0 +1,7 @@
+field	value
+dataset_id	GSE179572
+dataset_name	GEO GSE179572 human brain metastasis Visium
+raw_url	https://www.ncbi.nlm.nih.gov/geo/download/?acc=GSE179572&format=file
+source_page	https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE179572
+cancer_type	brain_metastasis
+disease	Brain Metastasis

@@ -36,10 +36,10 @@ BLOCKERS = [
     },
     {
         "blocker": "Metastasis/progression cohorts",
-        "solution": "Prioritize public GEO Visium metastatic/progression cohorts before broad scraping.",
-        "status": "candidate_manifest_ready",
+        "solution": "Run a smaller public GEO brain-metastasis cohort first; keep matched metastatic PDAC as scale-up.",
+        "status": "first_real_cohort_implemented",
         "source": "GEO GSE274557, GSE179572",
-        "next_action": "Download small candidate first; add metadata flags for primary/metastasis/progression.",
+        "next_action": "Use GSE179572 as the real metastasis benchmark; next add GSE274557 primary/metastasis site labels.",
     },
 ]
 
@@ -53,6 +53,8 @@ METASTASIS_COHORTS = [
         "samples": "55 samples; primary, liver, lung, peritoneal metastases",
         "source_url": "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE274557",
         "priority": "high",
+        "pipeline_status": "candidate_scale_up_not_downloaded",
+        "pipeline_output": "",
     },
     {
         "accession": "GSE179572",
@@ -63,6 +65,8 @@ METASTASIS_COHORTS = [
         "samples": "six brain metastasis samples",
         "source_url": "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE179572",
         "priority": "medium",
+        "pipeline_status": "downloaded_standardized_scored_graph_trained",
+        "pipeline_output": "data/processed/spatial_emt_niche_gnn_geo_brain_met",
     },
 ]
 
@@ -96,13 +100,13 @@ def write_report(out: Path) -> None:
         "- H&E/pathology: basic tile features are implemented now; foundation embeddings come later.",
         "- Deconvolution: marker-proxy and NNLS reference fallback are implemented; cell2location/RCTD/Tangram need matched scRNA references.",
         "- HTAN: use portal manifests first, then select a single cancer atlas for validation.",
-        "- Metastasis/progression: start with GSE274557 metastatic PDAC and GSE179572 brain metastasis.",
+        "- Metastasis/progression: GSE179572 brain metastasis now runs end-to-end; GSE274557 metastatic PDAC is the next larger matched-site cohort.",
         "",
         "## Immediate Next Runs",
         "",
         "1. Run H&E tile features across all local 10x cohorts.",
         "2. Build a cancer-specific scRNA reference matrix for one cohort and run NNLS.",
-        "3. Select one metastatic GEO cohort and add a primary/metastasis metadata flag.",
+        "3. Add GSE274557 primary/liver/lung/peritoneal labels and run the same workflow.",
     ]
     (out / "blocker_solution_report.md").write_text("\n".join(lines) + "\n", encoding="utf-8")
 

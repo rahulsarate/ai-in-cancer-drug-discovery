@@ -4,13 +4,13 @@
 
 | Phase | Completion % |
 | --- | ---: |
-| advanced | 15.6 |
+| advanced | 21.9 |
 | starter | 87.5 |
 | validation | 50.0 |
 | workflow_graph | 81.0 |
 | workflow_ingestion | 100.0 |
 | workflow_scoring | 61.9 |
-| overall | 67.1 |
+| overall | 68.1 |
 
 ## Remaining Work and Estimated Time
 
@@ -26,5 +26,5 @@
 | Additional GEO Visium cancer cohorts | partial | 1-2 weeks |
 | SpatialTME/SCAR public atlas feasibility | partial | 3-5 days |
 | Matched scRNA-seq references | pending | 3-6 weeks |
-| Metastasis/progression cohorts | partial | 2-6 weeks |
+| Metastasis/progression cohorts | implemented_first_cohort | first cohort implemented; 1-3 weeks for matched primary/metastatic PDAC scale-up |
 | Pathology foundation embeddings | pending | 3-6 weeks |

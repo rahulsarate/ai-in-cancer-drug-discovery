@@ -56,6 +56,14 @@ data/processed/spatial_emt_niche_gnn_geo_pdac/*
 !data/processed/spatial_emt_niche_gnn_geo_pdac/edge_type_summary.tsv
 !data/processed/spatial_emt_niche_gnn_geo_pdac/feature_perturbation.tsv
 !data/processed/spatial_emt_niche_gnn_geo_pdac/model_metrics.json
+!data/processed/spatial_emt_niche_gnn_geo_brain_met/
+data/processed/spatial_emt_niche_gnn_geo_brain_met/*
+!data/processed/spatial_emt_niche_gnn_geo_brain_met/dataset_source.tsv
+!data/processed/spatial_emt_niche_gnn_geo_brain_met/spatial_niche_summary.tsv
+!data/processed/spatial_emt_niche_gnn_geo_brain_met/spatial_graph_summary.tsv
+!data/processed/spatial_emt_niche_gnn_geo_brain_met/edge_type_summary.tsv
+!data/processed/spatial_emt_niche_gnn_geo_brain_met/feature_perturbation.tsv
+!data/processed/spatial_emt_niche_gnn_geo_brain_met/model_metrics.json
 !data/processed/spatial_emt_niche_gnn_10x_prostate/
 data/processed/spatial_emt_niche_gnn_10x_prostate/*
 !data/processed/spatial_emt_niche_gnn_10x_prostate/dataset_source.tsv

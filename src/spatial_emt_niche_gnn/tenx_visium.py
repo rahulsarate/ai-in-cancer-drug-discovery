@@ -72,6 +72,15 @@ GEO_PDAC_GSE274103 = {
     "disease": "Pancreatic Ductal Adenocarcinoma",
 }
 
+GEO_BRAIN_MET_GSE179572 = {
+    "dataset_id": "GSE179572",
+    "dataset_name": "GEO GSE179572 human brain metastasis Visium",
+    "raw_url": "https://www.ncbi.nlm.nih.gov/geo/download/?acc=GSE179572&format=file",
+    "source_page": "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE179572",
+    "cancer_type": "brain_metastasis",
+    "disease": "Brain Metastasis",
+}
+
 
 def required_genes() -> set[str]:
     return {gene.upper() for genes in SIGNATURES.values() for gene in genes} | DEMO_DRIVER_GENES
@@ -267,15 +276,44 @@ def prepare_10x_colorectal(raw_dir: str | Path, out_dir: str | Path) -> tuple[Pa
 
 
 def prepare_geo_pdac_gse274103(raw_dir: str | Path, out_dir: str | Path, max_samples: int | None = None) -> tuple[Path, Path]:
+    return prepare_geo_h5_visium(
+        GEO_PDAC_GSE274103,
+        raw_dir,
+        out_dir,
+        "geo_pdac_gse274103",
+        "pancreatic_cancer",
+        max_samples=max_samples,
+    )
+
+
+def prepare_geo_brain_met_gse179572(raw_dir: str | Path, out_dir: str | Path, max_samples: int | None = None) -> tuple[Path, Path]:
+    return prepare_geo_h5_visium(
+        GEO_BRAIN_MET_GSE179572,
+        raw_dir,
+        out_dir,
+        "geo_brain_met_gse179572",
+        "brain_metastasis",
+        max_samples=max_samples,
+    )
+
+
+def prepare_geo_h5_visium(
+    config: dict,
+    raw_dir: str | Path,
+    out_dir: str | Path,
+    output_prefix: str,
+    cancer_type: str,
+    max_samples: int | None = None,
+) -> tuple[Path, Path]:
     raw = Path(raw_dir)
     out = Path(out_dir)
-    dataset_id = GEO_PDAC_GSE274103["dataset_id"]
+    dataset_id = config["dataset_id"]
     dataset_raw = raw / dataset_id
     dataset_raw.mkdir(parents=True, exist_ok=True)
-    raw_tar = dataset_raw / "GSE274103_RAW.tar"
-    download(GEO_PDAC_GSE274103["raw_url"], raw_tar)
+    raw_tar = dataset_raw / f"{dataset_id}_RAW.tar"
+    download(config["raw_url"], raw_tar)
     extract_dir = dataset_raw / "extract"
-    marker = extract_dir / ".extracted_GSE274103_RAW"
+    marker = extract_dir / f".extracted_{dataset_id}_RAW"
     if not marker.exists():
         extract_dir.mkdir(parents=True, exist_ok=True)
         with tarfile.open(raw_tar, "r") as archive:
@@ -294,7 +332,8 @@ def prepare_geo_pdac_gse274103(raw_dir: str | Path, out_dir: str | Path, max_sam
     metadata_tables = []
     for h5_path in h5_files:
         sample_id = h5_path.name.replace("_filtered_feature_bc_matrix.h5", "")
-        spatial_tar = extract_dir / f"{sample_id}_spatial.tar.gz"
+        spatial_matches = sorted(extract_dir.glob(f"{sample_id}*spatial.tar.gz"))
+        spatial_tar = spatial_matches[0] if spatial_matches else extract_dir / f"{sample_id}_spatial.tar.gz"
         sample_spatial = extract_dir / f"{sample_id}_spatial"
         extract_tarball(spatial_tar, sample_spatial)
         expression = load_filtered_signature_h5(h5_path)
@@ -302,18 +341,18 @@ def prepare_geo_pdac_gse274103(raw_dir: str | Path, out_dir: str | Path, max_sam
         metadata["raw_barcode"] = metadata["spot_id"]
         metadata["spot_id"] = sample_id + "|" + metadata["raw_barcode"].astype(str)
         metadata["sample_id"] = sample_id
-        metadata["cohort"] = "geo_pdac_gse274103"
-        metadata["cancer_type"] = "pancreatic_cancer"
-        metadata["disease"] = GEO_PDAC_GSE274103["disease"]
-        metadata["source_page"] = GEO_PDAC_GSE274103["source_page"]
+        metadata["cohort"] = output_prefix
+        metadata["cancer_type"] = cancer_type
+        metadata["disease"] = config["disease"]
+        metadata["source_page"] = config["source_page"]
         expression["spot_id"] = sample_id + "|" + expression["spot_id"].astype(str)
         expression = expression[expression["spot_id"].isin(set(metadata["spot_id"]))].copy()
         expression_tables.append(expression)
         metadata_tables.append(metadata)
 
     out.mkdir(parents=True, exist_ok=True)
-    expression_path = out / "geo_pdac_gse274103_signature_expression.tsv"
-    metadata_path = out / "geo_pdac_gse274103_spatial_metadata.tsv"
+    expression_path = out / f"{output_prefix}_signature_expression.tsv"
+    metadata_path = out / f"{output_prefix}_spatial_metadata.tsv"
     pd.concat(expression_tables, ignore_index=True).to_csv(expression_path, sep="\t", index=False)
     pd.concat(metadata_tables, ignore_index=True).to_csv(metadata_path, sep="\t", index=False)
     return expression_path, metadata_path
