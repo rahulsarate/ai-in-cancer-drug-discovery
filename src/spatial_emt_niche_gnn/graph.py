@@ -1,7 +1,5 @@
 from __future__ import annotations
 
-from itertools import combinations
-
 import numpy as np
 import pandas as pd
 
@@ -31,61 +29,68 @@ def build_spatial_graph(
     """
     lr_pairs = lr_pairs or DEFAULT_LR_PAIRS
     scored = scored.reset_index(drop=True)
-    xy = scored[["x", "y"]].astype(float).to_numpy()
-    spot_ids = scored["spot_id"].astype(str).tolist()
     rows = []
+    group_cols = [col for col in ["sample_id", "section_id"] if col in scored.columns]
+    groups = scored.groupby(group_cols, dropna=False) if group_cols else [(None, scored)]
 
-    for i in range(len(scored)):
-        dist = np.linalg.norm(xy - xy[i], axis=1)
-        order = np.argsort(dist)
-        for j in order[1 : k + 1]:
-            if radius is not None and dist[j] > radius:
-                continue
-            rows.append(
-                {
+    for _, group in groups:
+        group = group.reset_index(drop=True)
+        xy = group[["x", "y"]].astype(float).to_numpy()
+        spot_ids = group["spot_id"].astype(str).tolist()
+        local_edges = []
+        for i in range(len(group)):
+            dist = np.linalg.norm(xy - xy[i], axis=1)
+            order = np.argsort(dist)
+            for j in order[1 : k + 1]:
+                if radius is not None and dist[j] > radius:
+                    continue
+                edge = {
                     "source": spot_ids[i],
                     "target": spot_ids[j],
+                    "source_idx": i,
+                    "target_idx": j,
                     "edge_type": "spatial_knn",
                     "distance": float(dist[j]),
                     "weight": float(1.0 / (1.0 + dist[j])),
                 }
-            )
+                local_edges.append(edge)
+                rows.append({key: value for key, value in edge.items() if not key.endswith("_idx")})
 
-    for i, j in combinations(range(len(scored)), 2):
-        dist = float(np.linalg.norm(xy[i] - xy[j]))
-        if radius is not None and dist > radius:
-            continue
-        niche_delta = abs(float(scored.loc[i, "hypoxia"]) - float(scored.loc[j, "hypoxia"]))
-        if niche_delta >= scored["hypoxia"].std(ddof=0):
-            rows.append(
-                {
-                    "source": spot_ids[i],
-                    "target": spot_ids[j],
-                    "edge_type": "hypoxia_gradient",
-                    "distance": dist,
-                    "weight": float(niche_delta / (1.0 + dist)),
-                }
-            )
-
-    for ligand, receptor in lr_pairs:
-        ligand_col = ligand.upper()
-        receptor_col = receptor.upper()
-        if ligand_col not in scored.columns or receptor_col not in scored.columns:
-            continue
-        ligand_high = scored[ligand_col] >= scored[ligand_col].quantile(0.8)
-        receptor_high = scored[receptor_col] >= scored[receptor_col].quantile(0.8)
-        for i in scored.index[ligand_high]:
-            dist = np.linalg.norm(xy - xy[i], axis=1)
-            nearby = np.where((dist > 0) & (dist <= (radius or np.quantile(dist[dist > 0], 0.1))))[0]
-            for j in nearby:
-                if receptor_high.iloc[j]:
+        hypoxia_sd = float(group["hypoxia"].std(ddof=0)) if "hypoxia" in group.columns else 0.0
+        if hypoxia_sd > 0:
+            for edge in local_edges:
+                i = edge["source_idx"]
+                j = edge["target_idx"]
+                niche_delta = abs(float(group.loc[i, "hypoxia"]) - float(group.loc[j, "hypoxia"]))
+                if niche_delta >= hypoxia_sd:
                     rows.append(
                         {
-                            "source": spot_ids[i],
-                            "target": spot_ids[j],
+                            "source": edge["source"],
+                            "target": edge["target"],
+                            "edge_type": "hypoxia_gradient",
+                            "distance": edge["distance"],
+                            "weight": float(niche_delta / (1.0 + edge["distance"])),
+                        }
+                    )
+
+        for ligand, receptor in lr_pairs:
+            ligand_col = ligand.upper()
+            receptor_col = receptor.upper()
+            if ligand_col not in group.columns or receptor_col not in group.columns:
+                continue
+            ligand_high = group[ligand_col] >= group[ligand_col].quantile(0.8)
+            receptor_high = group[receptor_col] >= group[receptor_col].quantile(0.8)
+            for edge in local_edges:
+                i = edge["source_idx"]
+                j = edge["target_idx"]
+                if ligand_high.iloc[i] and receptor_high.iloc[j]:
+                    rows.append(
+                        {
+                            "source": edge["source"],
+                            "target": edge["target"],
                             "edge_type": f"ligand_receptor:{ligand_col}-{receptor_col}",
-                            "distance": float(dist[j]),
-                            "weight": float(1.0 / (1.0 + dist[j])),
+                            "distance": edge["distance"],
+                            "weight": edge["weight"],
                         }
                     )
 

@@ -8,6 +8,7 @@ from urllib.request import Request, urlopen
 
 import pandas as pd
 from scipy.io import mmread
+from scipy.sparse import csc_matrix
 
 from emt_state_atlas.signatures import SIGNATURES
 from .data import DEMO_DRIVER_GENES
@@ -19,7 +20,26 @@ TENX_BREAST_CANCER = {
     "matrix_url": "https://cf.10xgenomics.com/samples/spatial-exp/1.3.0/Visium_FFPE_Human_Breast_Cancer/Visium_FFPE_Human_Breast_Cancer_filtered_feature_bc_matrix.tar.gz",
     "spatial_url": "https://cf.10xgenomics.com/samples/spatial-exp/1.3.0/Visium_FFPE_Human_Breast_Cancer/Visium_FFPE_Human_Breast_Cancer_spatial.tar.gz",
     "source_page": "https://www.10xgenomics.com/datasets/human-breast-cancer-ductal-carcinoma-in-situ-invasive-carcinoma-ffpe-1-standard-1-3-0",
+    "cancer_type": "breast_cancer",
     "disease": "Invasive Ductal Carcinoma",
+}
+
+TENX_LUNG_LUSC = {
+    "dataset_id": "CytAssist_FFPE_Human_Lung_Squamous_Cell_Carcinoma",
+    "dataset_name": "10x CytAssist FFPE Human Lung Squamous Cell Carcinoma",
+    "matrix_url": "https://cf.10xgenomics.com/samples/spatial-exp/2.0.0/CytAssist_FFPE_Human_Lung_Squamous_Cell_Carcinoma/CytAssist_FFPE_Human_Lung_Squamous_Cell_Carcinoma_filtered_feature_bc_matrix.tar.gz",
+    "spatial_url": "https://cf.10xgenomics.com/samples/spatial-exp/2.0.0/CytAssist_FFPE_Human_Lung_Squamous_Cell_Carcinoma/CytAssist_FFPE_Human_Lung_Squamous_Cell_Carcinoma_spatial.tar.gz",
+    "source_page": "https://cf.10xgenomics.com/samples/spatial-exp/2.0.0/CytAssist_FFPE_Human_Lung_Squamous_Cell_Carcinoma/CytAssist_FFPE_Human_Lung_Squamous_Cell_Carcinoma_web_summary.html",
+    "cancer_type": "lung_cancer",
+    "disease": "Lung Squamous Cell Carcinoma",
+}
+
+GEO_PDAC_GSE274103 = {
+    "dataset_id": "GSE274103",
+    "dataset_name": "GEO GSE274103 treatment-naive PDAC Visium FFPE",
+    "raw_url": "https://www.ncbi.nlm.nih.gov/geo/download/?acc=GSE274103&format=file",
+    "source_page": "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE274103",
+    "disease": "Pancreatic Ductal Adenocarcinoma",
 }
 
 
@@ -86,6 +106,45 @@ def load_filtered_signature_matrix(root: Path, dataset_id: str) -> pd.DataFrame:
     return expression
 
 
+def _decode_array(values) -> list[str]:
+    out = []
+    for value in values:
+        if isinstance(value, bytes):
+            out.append(value.decode("utf-8"))
+        else:
+            out.append(str(value))
+    return out
+
+
+def load_filtered_signature_h5(path: Path) -> pd.DataFrame:
+    import h5py
+
+    wanted = required_genes()
+    with h5py.File(path, "r") as handle:
+        matrix_group = handle["matrix"]
+        features = matrix_group["features"]
+        names = [name.upper() for name in _decode_array(features["name"][:])]
+        barcodes = _decode_array(matrix_group["barcodes"][:])
+        gene_rows = {}
+        for idx, symbol in enumerate(names):
+            if symbol in wanted and symbol not in gene_rows:
+                gene_rows[symbol] = idx
+        if not gene_rows:
+            raise RuntimeError(f"No EMT/signature genes found in {path}")
+        matrix = csc_matrix(
+            (
+                matrix_group["data"][:],
+                matrix_group["indices"][:],
+                matrix_group["indptr"][:],
+            ),
+            shape=tuple(matrix_group["shape"][:]),
+        )
+        subset = matrix[list(gene_rows.values()), :].toarray().T
+    expression = pd.DataFrame(subset, columns=list(gene_rows.keys()))
+    expression.insert(0, "spot_id", barcodes)
+    return expression
+
+
 def load_spatial_metadata(root: Path, dataset_id: str) -> pd.DataFrame:
     candidates = list(root.rglob("tissue_positions*.csv"))
     if not candidates:
@@ -131,24 +190,88 @@ def load_spatial_metadata(root: Path, dataset_id: str) -> pd.DataFrame:
     ]
 
 
-def prepare_10x_breast_cancer(raw_dir: str | Path, out_dir: str | Path) -> tuple[Path, Path]:
+def prepare_10x_public_dataset(config: dict, raw_dir: str | Path, out_dir: str | Path, output_prefix: str) -> tuple[Path, Path]:
     raw = Path(raw_dir)
     out = Path(out_dir)
-    dataset_id = TENX_BREAST_CANCER["dataset_id"]
+    dataset_id = config["dataset_id"]
     dataset_raw = raw / dataset_id
     matrix_tar = dataset_raw / "filtered_feature_bc_matrix.tar.gz"
     spatial_tar = dataset_raw / "spatial.tar.gz"
-    download(TENX_BREAST_CANCER["matrix_url"], matrix_tar)
-    download(TENX_BREAST_CANCER["spatial_url"], spatial_tar)
+    download(config["matrix_url"], matrix_tar)
+    download(config["spatial_url"], spatial_tar)
     extract_tarball(matrix_tar, dataset_raw)
     extract_tarball(spatial_tar, dataset_raw)
 
     expression = load_filtered_signature_matrix(dataset_raw, dataset_id)
     metadata = load_spatial_metadata(dataset_raw, dataset_id)
+    metadata["disease"] = config.get("disease", metadata.get("disease", ""))
+    metadata["cancer_type"] = config.get("cancer_type", metadata.get("cancer_type", ""))
+    metadata["source_page"] = config.get("source_page", "")
     expression = expression[expression["spot_id"].isin(set(metadata["spot_id"]))].copy()
     out.mkdir(parents=True, exist_ok=True)
-    expression_path = out / "10x_breast_cancer_signature_expression.tsv"
-    metadata_path = out / "10x_breast_cancer_spatial_metadata.tsv"
+    expression_path = out / f"{output_prefix}_signature_expression.tsv"
+    metadata_path = out / f"{output_prefix}_spatial_metadata.tsv"
     expression.to_csv(expression_path, sep="\t", index=False)
     metadata.to_csv(metadata_path, sep="\t", index=False)
+    return expression_path, metadata_path
+
+
+def prepare_10x_breast_cancer(raw_dir: str | Path, out_dir: str | Path) -> tuple[Path, Path]:
+    return prepare_10x_public_dataset(TENX_BREAST_CANCER, raw_dir, out_dir, "10x_breast_cancer")
+
+
+def prepare_10x_lung_lusc(raw_dir: str | Path, out_dir: str | Path) -> tuple[Path, Path]:
+    return prepare_10x_public_dataset(TENX_LUNG_LUSC, raw_dir, out_dir, "10x_lung_lusc")
+
+
+def prepare_geo_pdac_gse274103(raw_dir: str | Path, out_dir: str | Path, max_samples: int | None = None) -> tuple[Path, Path]:
+    raw = Path(raw_dir)
+    out = Path(out_dir)
+    dataset_id = GEO_PDAC_GSE274103["dataset_id"]
+    dataset_raw = raw / dataset_id
+    dataset_raw.mkdir(parents=True, exist_ok=True)
+    raw_tar = dataset_raw / "GSE274103_RAW.tar"
+    download(GEO_PDAC_GSE274103["raw_url"], raw_tar)
+    extract_dir = dataset_raw / "extract"
+    marker = extract_dir / ".extracted_GSE274103_RAW"
+    if not marker.exists():
+        extract_dir.mkdir(parents=True, exist_ok=True)
+        with tarfile.open(raw_tar, "r") as archive:
+            base = extract_dir.resolve()
+            for member in archive.getmembers():
+                target = (extract_dir / member.name).resolve()
+                if base not in target.parents and target != base:
+                    raise RuntimeError(f"Unsafe path in tar archive: {member.name}")
+            archive.extractall(extract_dir)
+        marker.write_text("ok\n", encoding="utf-8")
+
+    h5_files = sorted(extract_dir.glob("*_filtered_feature_bc_matrix.h5"))
+    if max_samples:
+        h5_files = h5_files[:max_samples]
+    expression_tables = []
+    metadata_tables = []
+    for h5_path in h5_files:
+        sample_id = h5_path.name.replace("_filtered_feature_bc_matrix.h5", "")
+        spatial_tar = extract_dir / f"{sample_id}_spatial.tar.gz"
+        sample_spatial = extract_dir / f"{sample_id}_spatial"
+        extract_tarball(spatial_tar, sample_spatial)
+        expression = load_filtered_signature_h5(h5_path)
+        metadata = load_spatial_metadata(sample_spatial, sample_id)
+        metadata["raw_barcode"] = metadata["spot_id"]
+        metadata["spot_id"] = sample_id + "|" + metadata["raw_barcode"].astype(str)
+        metadata["sample_id"] = sample_id
+        metadata["cohort"] = "geo_pdac_gse274103"
+        metadata["cancer_type"] = "pancreatic_cancer"
+        metadata["disease"] = GEO_PDAC_GSE274103["disease"]
+        metadata["source_page"] = GEO_PDAC_GSE274103["source_page"]
+        expression["spot_id"] = sample_id + "|" + expression["spot_id"].astype(str)
+        expression = expression[expression["spot_id"].isin(set(metadata["spot_id"]))].copy()
+        expression_tables.append(expression)
+        metadata_tables.append(metadata)
+
+    out.mkdir(parents=True, exist_ok=True)
+    expression_path = out / "geo_pdac_gse274103_signature_expression.tsv"
+    metadata_path = out / "geo_pdac_gse274103_spatial_metadata.tsv"
+    pd.concat(expression_tables, ignore_index=True).to_csv(expression_path, sep="\t", index=False)
+    pd.concat(metadata_tables, ignore_index=True).to_csv(metadata_path, sep="\t", index=False)
     return expression_path, metadata_path

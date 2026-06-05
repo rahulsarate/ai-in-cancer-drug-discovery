@@ -1,0 +1,8 @@
+field	value
+dataset_id	CytAssist_FFPE_Human_Lung_Squamous_Cell_Carcinoma
+dataset_name	10x CytAssist FFPE Human Lung Squamous Cell Carcinoma
+matrix_url	https://cf.10xgenomics.com/samples/spatial-exp/2.0.0/CytAssist_FFPE_Human_Lung_Squamous_Cell_Carcinoma/CytAssist_FFPE_Human_Lung_Squamous_Cell_Carcinoma_filtered_feature_bc_matrix.tar.gz
+spatial_url	https://cf.10xgenomics.com/samples/spatial-exp/2.0.0/CytAssist_FFPE_Human_Lung_Squamous_Cell_Carcinoma/CytAssist_FFPE_Human_Lung_Squamous_Cell_Carcinoma_spatial.tar.gz
+source_page	https://cf.10xgenomics.com/samples/spatial-exp/2.0.0/CytAssist_FFPE_Human_Lung_Squamous_Cell_Carcinoma/CytAssist_FFPE_Human_Lung_Squamous_Cell_Carcinoma_web_summary.html
+cancer_type	lung_cancer
+disease	Lung Squamous Cell Carcinoma

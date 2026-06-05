@@ -14,6 +14,8 @@ def parser() -> argparse.ArgumentParser:
     p.add_argument("--edges", required=True)
     p.add_argument("--predictions", required=True)
     p.add_argument("--out-dir", default="data/processed/spatial_emt_niche_gnn_demo")
+    p.add_argument("--ablation-epochs", type=int, default=250)
+    p.add_argument("--skip-edge-ablation", action="store_true")
     return p
 
 
@@ -24,7 +26,13 @@ def main() -> None:
     scored = pd.read_csv(args.scores, sep="\t")
     edges = pd.read_csv(args.edges, sep="\t")
     predictions = pd.read_csv(args.predictions, sep="\t")
-    reports = niche_driver_summary(scored, edges, predictions)
+    reports = niche_driver_summary(
+        scored,
+        edges,
+        predictions,
+        ablation_epochs=args.ablation_epochs,
+        skip_edge_ablation=args.skip_edge_ablation,
+    )
     for name, table in reports.items():
         table.to_csv(out / f"{name}.tsv", sep="\t", index=False)
     print(f"Wrote interpretation tables to {out}")

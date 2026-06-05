@@ -58,7 +58,11 @@ def summarize_run(label: str, folder: Path) -> dict:
     return row
 
 
-def write_interpretation(summary: pd.DataFrame, out_md: Path) -> None:
+def write_interpretation(
+    summary: pd.DataFrame,
+    out_md: Path,
+    title: str = "Demo vs Real 10x Breast Spatial EMT Niche Comparison",
+) -> None:
     markdown_table = summary.fillna("").astype(str)
     header = "| " + " | ".join(markdown_table.columns) + " |"
     separator = "| " + " | ".join(["---"] * len(markdown_table.columns)) + " |"
@@ -67,7 +71,7 @@ def write_interpretation(summary: pd.DataFrame, out_md: Path) -> None:
         for _, row in markdown_table.iterrows()
     ]
     lines = [
-        "# Demo vs Real 10x Breast Spatial EMT Niche Comparison",
+        f"# {title}",
         "",
         "This report compares the synthetic pipeline demo against a public 10x Visium FFPE human breast cancer dataset.",
         "",

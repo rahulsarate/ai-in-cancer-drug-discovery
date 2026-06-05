@@ -1,0 +1,6 @@
+field	value
+dataset_id	GSE274103
+dataset_name	GEO GSE274103 treatment-naive PDAC Visium FFPE
+raw_url	https://www.ncbi.nlm.nih.gov/geo/download/?acc=GSE274103&format=file
+source_page	https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE274103
+disease	Pancreatic Ductal Adenocarcinoma

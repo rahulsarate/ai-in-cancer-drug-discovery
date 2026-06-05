@@ -7,14 +7,19 @@ from .graph import edge_type_summary
 from .model import train_graph_logistic
 
 
-def edge_ablation_report(scored: pd.DataFrame, edges: pd.DataFrame, label_col: str = "emt_niche_label") -> pd.DataFrame:
+def edge_ablation_report(
+    scored: pd.DataFrame,
+    edges: pd.DataFrame,
+    label_col: str = "emt_niche_label",
+    epochs: int = 250,
+) -> pd.DataFrame:
     rows = []
-    _, full_metrics = train_graph_logistic(scored, edges, label_col=label_col)
+    _, full_metrics = train_graph_logistic(scored, edges, label_col=label_col, epochs=epochs)
     full_acc = full_metrics.get("test_accuracy") or 0.0
     rows.append({"ablation": "none", "test_accuracy": full_acc, "delta_from_full": 0.0})
     for edge_type in sorted(edges["edge_type"].dropna().unique()) if not edges.empty else []:
         reduced = edges[edges["edge_type"].ne(edge_type)]
-        _, metrics = train_graph_logistic(scored, reduced, label_col=label_col)
+        _, metrics = train_graph_logistic(scored, reduced, label_col=label_col, epochs=epochs)
         acc = metrics.get("test_accuracy") or 0.0
         rows.append({"ablation": f"remove:{edge_type}", "test_accuracy": acc, "delta_from_full": acc - full_acc})
     return pd.DataFrame(rows)
@@ -40,7 +45,13 @@ def feature_perturbation_report(
     return pd.DataFrame(rows).sort_values("abs_association", ascending=False)
 
 
-def niche_driver_summary(scored: pd.DataFrame, edges: pd.DataFrame, predictions: pd.DataFrame) -> dict[str, pd.DataFrame]:
+def niche_driver_summary(
+    scored: pd.DataFrame,
+    edges: pd.DataFrame,
+    predictions: pd.DataFrame,
+    ablation_epochs: int = 250,
+    skip_edge_ablation: bool = False,
+) -> dict[str, pd.DataFrame]:
     features = [
         "emt_score",
         "partial_emt_score",
@@ -50,8 +61,10 @@ def niche_driver_summary(scored: pd.DataFrame, edges: pd.DataFrame, predictions:
         "immune_context",
         "ferroptosis_window",
     ]
-    return {
+    reports = {
         "edge_type_summary": edge_type_summary(edges),
-        "edge_ablation": edge_ablation_report(scored, edges),
         "feature_perturbation": feature_perturbation_report(scored, predictions, features),
     }
+    if not skip_edge_ablation:
+        reports["edge_ablation"] = edge_ablation_report(scored, edges, epochs=ablation_epochs)
+    return reports

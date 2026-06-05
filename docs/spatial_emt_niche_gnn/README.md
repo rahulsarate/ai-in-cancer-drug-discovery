@@ -101,3 +101,42 @@ Current real-run headline:
 Interpretation boundary: this is not a validated biological discovery yet. It is
 a first real-data comparison showing that the pipeline runs on public Visium
 cancer data and produces auditable EMT/stromal/niche outputs.
+
+## Lung and Pancreatic Cancer Extensions
+
+The workflow now also supports:
+
+- 10x CytAssist FFPE Human Lung Squamous Cell Carcinoma.
+- GEO GSE274103 treatment-naive PDAC Visium FFPE cohort with five samples.
+
+```powershell
+$env:PYTHONPATH="src"
+python scripts/fetch_10x_visium_lung_lusc.py
+python scripts/fetch_geo_pdac_gse274103.py
+```
+
+Then run the same score/graph/train/interpret/figure scripts with the cohort
+output folders:
+
+- `data/processed/spatial_emt_niche_gnn_10x_lung_lusc`
+- `data/processed/spatial_emt_niche_gnn_geo_pdac`
+
+Generate the multi-cancer comparison:
+
+```powershell
+$env:PYTHONPATH="src"
+python scripts/compare_spatial_cancer_cohorts.py
+```
+
+Current multi-cancer summary:
+
+- Breast IDC: 2,518 spots; EMT-niche proxy fraction about 25%; stromal-inflated
+  warning about 15%.
+- Lung LUSC: 3,858 spots; EMT-niche proxy fraction about 25%; leading prediction
+  correlates are partial EMT, hypoxia, stromal risk, and CAF/TAM niche.
+- PDAC GSE274103: 23,436 spots across five samples; EMT-niche proxy fraction
+  about 25%; leading prediction correlates are CAF/TAM niche, partial EMT,
+  stromal risk, immune context, and hypoxia.
+
+Pathology/literature interpretation notes live in
+`docs/spatial_emt_niche_gnn/pathology_literature_grounding.md`.

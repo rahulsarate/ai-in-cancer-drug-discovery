@@ -1,0 +1,26 @@
+# Spatial EMT Niche Multi-Cancer Cohort Comparison
+
+This report compares the synthetic pipeline demo against a public 10x Visium FFPE human breast cancer dataset.
+
+Interpretation rules:
+
+- The synthetic demo validates workflow mechanics only.
+- The real 10x run is still weak-label based because no spot-level pathologist labels are integrated yet.
+- High stromal-inflated EMT fractions should be treated as a contamination warning, not tumor-cell EMT.
+- Edge counts show graph construction behavior, not causal biology.
+
+## Summary Table
+
+| run | folder | spots | mean_emt_score | mean_partial_emt | emt_niche_fraction | tumor_cell_emt_fraction | stromal_inflated_fraction | mean_caf_tam | mean_hypoxia | mean_predicted_emt_niche_probability | high_probability_fraction | edges | spatial_knn_edges | ligand_receptor_edges | hypoxia_gradient_edges | source_page |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| synthetic_demo | data\processed\spatial_emt_niche_gnn_demo | 144 | -1.4802973661668753e-16 | -0.5577219532085251 | 0.25 | 0.16666666666666666 | 0.08333333333333333 | 0.0 | -1.0485439677015367e-16 | 0.2545148780446095 | 0.2708333333333333 | 3265 | 864 | 2168 | 233 |  |
+| 10x_breast_ffpe_idc | data\processed\spatial_emt_niche_gnn_10x_breast | 2518 | 5.643707194281971e-18 | -0.35892573189474997 | 0.25019857029388404 | 0.10127084988085783 | 0.1489277204130262 | -1.6931121582845915e-17 | 7.407365692495087e-18 | 0.2468378564656902 | 0.1675933280381255 | 25366 | 14724 | 8046 | 2596 | https://www.10xgenomics.com/datasets/human-breast-cancer-ductal-carcinoma-in-situ-invasive-carcinoma-ffpe-1-standard-1-3-0 |
+| 10x_lung_lusc_cytassist | data\processed\spatial_emt_niche_gnn_10x_lung_lusc | 3858 | 5.525215674650857e-18 | -0.21287469612896245 | 0.2501296008294453 | 0.116381544841887 | 0.13374805598755832 | 7.366954232867809e-18 | 1.8417385582169523e-18 | 0.2498760147293238 | 0.11871435977190253 | 46999 | 22892 | 21018 | 3089 | https://cf.10xgenomics.com/samples/spatial-exp/2.0.0/CytAssist_FFPE_Human_Lung_Squamous_Cell_Carcinoma/CytAssist_FFPE_Human_Lung_Squamous_Cell_Carcinoma_web_summary.html |
+| geo_pdac_gse274103 | data\processed\spatial_emt_niche_gnn_geo_pdac | 23436 | 1.4552846610549927e-17 | -0.1815755717899139 | 0.25 | 0.1354326676907322 | 0.1145673323092678 | -4.850948870183309e-18 | 1.9403795480733237e-17 | 0.25071256052468444 | 0.11290322580645161 | 414811 | 139518 | 251484 | 23809 | https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE274103 |
+
+## Next Validation Moves
+
+1. Add pathologist region labels from a cohort with spot-level annotations.
+2. Add cell-type deconvolution to split malignant, CAF, TAM, and immune signal inside each spot.
+3. Run leave-dataset-out validation after adding HEST-1k/HTAN/GEO cohorts.
+4. Compare edge ablation on real data against randomized spatial coordinates and shuffled ligand-receptor edges.

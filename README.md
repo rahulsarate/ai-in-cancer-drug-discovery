@@ -90,6 +90,17 @@ python scripts/04_train_gnn.py `
 python scripts/compare_spatial_demo_vs_real.py
 ```
 
+Additional lung and pancreatic spatial cohorts:
+
+```powershell
+$env:PYTHONPATH="src"
+python scripts/fetch_10x_visium_lung_lusc.py
+python scripts/fetch_geo_pdac_gse274103.py
+python scripts/compare_spatial_cancer_cohorts.py
+```
+
+See `docs/spatial_emt_niche_gnn/pathology_literature_grounding.md` for pathology and literature interpretation rules before treating EMT-niche outputs as biological hypotheses.
+
 ## Real-Data v1 Workflow
 
 List public data sources and exact expected local paths:
