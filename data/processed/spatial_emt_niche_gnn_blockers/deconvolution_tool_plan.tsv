@@ -1,0 +1,7 @@
+tool	implemented	needs_reference	best_use
+marker_proxy	True	False	first-pass risk control
+NNLS reference	True	True	fast matched scRNA baseline
+cell2location	False	True	publication-grade probabilistic deconvolution
+RCTD	False	True	robust spot mixture estimates
+Tangram	False	True	cell mapping and spatial gene projection
+stereoscope	False	True	probabilistic reference mapping

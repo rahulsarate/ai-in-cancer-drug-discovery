@@ -1,0 +1,6 @@
+blocker	solution	status	source	next_action
+HEST-1k scale ingestion	Use authenticated HuggingFace/Hest library manifest; select cancer subsets first.	access_required	https://huggingface.co/datasets/MahmoodLab/hest	Request/confirm HF access, then cache HEST_v1_1_0.csv and subset cancer samples.
+H&E/pathology features	Use 10x tissue_hires_image + spot coordinates for basic tile features; later add foundation embeddings.	basic_solution_implemented	local 10x spatial directories	Run extract_he_tile_features.py for each cohort; add QuPath/pathologist regions when available.
+Real deconvolution	Use marker-proxy now; add NNLS reference deconvolution; later run cell2location/Tangram/RCTD.	fallback_implemented	OpenProblems spatial decomposition benchmark; Spotless benchmark	Build matched scRNA reference matrices per cancer type.
+HTAN validation	Use HTAN portal manifests and level-2 spatial transcriptomics auxiliary/RNA-seq files.	manifest_ready	https://humantumoratlas.org/standard/spatial_transcriptomics/slide-seqlevel2	Select one HTAN cancer atlas and download exported matrix + metadata.
+Metastasis/progression cohorts	Prioritize public GEO Visium metastatic/progression cohorts before broad scraping.	candidate_manifest_ready	GEO GSE274557, GSE179572	Download small candidate first; add metadata flags for primary/metastasis/progression.

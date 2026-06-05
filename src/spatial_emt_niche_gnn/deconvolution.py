@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import numpy as np
 import pandas as pd
+from scipy.optimize import nnls
 
 
 COMPARTMENT_COLUMNS = {
@@ -41,3 +42,31 @@ def estimate_marker_proxy_compartments(scored: pd.DataFrame) -> pd.DataFrame:
     values["dominant_compartment"] = values[raw].idxmax(axis=1)
     values["deconvolution_method"] = "marker_proxy_reference_free"
     return values
+
+
+def nnls_reference_deconvolution(expression: pd.DataFrame, reference: pd.DataFrame) -> pd.DataFrame:
+    """Estimate spot proportions against a cell-type x gene reference matrix."""
+    expr = expression.copy()
+    ref = reference.copy()
+    if "cell_type" not in ref.columns:
+        raise ValueError("Reference table must contain a cell_type column.")
+    genes = [col for col in ref.columns if col != "cell_type" and col in expr.columns]
+    if not genes:
+        raise ValueError("No shared genes between expression and reference.")
+    ref_matrix = ref[genes].apply(pd.to_numeric, errors="coerce").fillna(0.0).to_numpy(dtype=float).T
+    cell_types = ref["cell_type"].astype(str).tolist()
+    rows = []
+    for _, spot in expr.iterrows():
+        y = spot[genes].apply(pd.to_numeric, errors="coerce").fillna(0.0).to_numpy(dtype=float)
+        weights, residual = nnls(ref_matrix, y)
+        total = weights.sum()
+        proportions = weights / total if total > 0 else weights
+        rows.append(
+            {
+                "spot_id": spot["spot_id"],
+                **{cell_type: float(value) for cell_type, value in zip(cell_types, proportions)},
+                "nnls_residual": float(residual),
+                "deconvolution_method": "nnls_reference",
+            }
+        )
+    return pd.DataFrame(rows)

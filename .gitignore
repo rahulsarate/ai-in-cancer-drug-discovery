@@ -87,3 +87,9 @@ data/processed/spatial_emt_niche_gnn_10x_colorectal/*
 !data/processed/spatial_emt_niche_gnn_comparison/**
 !data/processed/spatial_emt_niche_gnn_project_status/
 !data/processed/spatial_emt_niche_gnn_project_status/**
+!data/processed/spatial_emt_niche_gnn_blockers/
+!data/processed/spatial_emt_niche_gnn_blockers/**
+!data/processed/spatial_emt_niche_gnn_histology/
+!data/processed/spatial_emt_niche_gnn_histology/
+data/processed/spatial_emt_niche_gnn_histology/*
+!data/processed/spatial_emt_niche_gnn_histology/he_tile_feature_summary.tsv

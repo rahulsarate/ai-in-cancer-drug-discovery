@@ -4,21 +4,21 @@ starter	HEST-1k manifest/reproducibility plan	8	partial	4.0
 starter	TCGA EMT signatures reused as bulk reference	8	done	8.0
 workflow_ingestion	Standardize Visium tables and coordinates	10	done	10.0
 workflow_ingestion	AnnData-style processed_h5ad export	8	done	8.0
-workflow_ingestion	Image tile storage/extraction	8	partial	4.0
+workflow_ingestion	Image tile storage/extraction	8	done	8.0
 workflow_ingestion	QC: detected genes, counts, tissue spots, batch/platform labels	8	done	8.0
 workflow_scoring	EMT, partial EMT, hypoxia, CAF/TAM, ferroptosis scoring	10	done	10.0
 workflow_scoring	ECM and angiogenesis scoring	6	partial	3.0
 workflow_scoring	cell2location/Tangram/RCTD/stereoscope deconvolution	12	blocked_external_reference	3.0
-workflow_scoring	Marker-proxy deconvolution fallback	6	done	6.0
+workflow_scoring	Marker-proxy and NNLS deconvolution fallback	6	done	6.0
 workflow_scoring	Candidate niche labels	8	partial	4.0
 workflow_graph	Spot spatial kNN/radius graph	8	done	8.0
 workflow_graph	Ligand-receptor edges	8	done	8.0
 workflow_graph	ECM/hypoxia gradient edges	8	partial	4.0
 workflow_graph	Histology-similarity edges	8	partial	4.0
 workflow_graph	Heterogeneous compartment graph	10	done	10.0
-validation	HTAN spatial datasets	10	pending	0.0
+validation	HTAN spatial datasets	10	partial	5.0
 validation	Additional GEO Visium cancer cohorts	10	partial	5.0
 validation	SpatialTME/SCAR public atlas feasibility	8	partial	4.0
 advanced	Matched scRNA-seq references	12	pending	0.0
-advanced	Metastasis/progression cohorts	10	pending	0.0
+advanced	Metastasis/progression cohorts	10	partial	5.0
 advanced	Pathology foundation embeddings	10	pending	0.0
