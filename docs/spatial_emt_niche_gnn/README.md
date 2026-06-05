@@ -51,3 +51,53 @@ Start with 10x Visium public cancer examples and selected HEST-1k cancer cohorts
 Then add HTAN and GEO exports through dataset-specific adapters. Raw datasets
 remain local under `data/raw/spatial/`; only small derived tables should be
 committed.
+
+## Real 10x Breast Cancer Comparison
+
+The first public-data run uses the 10x Genomics **Visium FFPE Human Breast
+Cancer** dataset, a breast invasive ductal carcinoma sample analyzed with Space
+Ranger 1.3.0. The raw matrix and spatial archives stay under ignored
+`data/raw/spatial/10x/`; the workflow writes a signature-gene expression matrix,
+metadata, graph outputs, interpretation tables, and comparison report under
+`data/processed/`.
+
+```powershell
+$env:PYTHONPATH="src"
+python scripts/fetch_10x_visium_breast_cancer.py
+python scripts/02_score_spatial_emt_niches.py `
+  --expression data/processed/spatial_emt_niche_gnn_10x_breast/10x_breast_cancer_signature_expression.tsv `
+  --metadata data/processed/spatial_emt_niche_gnn_10x_breast/10x_breast_cancer_spatial_metadata.tsv `
+  --out-dir data/processed/spatial_emt_niche_gnn_10x_breast
+python scripts/03_build_spatial_graphs.py `
+  --scores data/processed/spatial_emt_niche_gnn_10x_breast/spatial_emt_niche_scores.tsv `
+  --out-dir data/processed/spatial_emt_niche_gnn_10x_breast
+python scripts/04_train_gnn.py `
+  --scores data/processed/spatial_emt_niche_gnn_10x_breast/spatial_emt_niche_scores.tsv `
+  --edges data/processed/spatial_emt_niche_gnn_10x_breast/spatial_graph_edges.tsv `
+  --out-dir data/processed/spatial_emt_niche_gnn_10x_breast
+python scripts/05_interpret_niche_drivers.py `
+  --scores data/processed/spatial_emt_niche_gnn_10x_breast/spatial_emt_niche_scores.tsv `
+  --edges data/processed/spatial_emt_niche_gnn_10x_breast/spatial_graph_edges.tsv `
+  --predictions data/processed/spatial_emt_niche_gnn_10x_breast/emt_niche_predictions.tsv `
+  --out-dir data/processed/spatial_emt_niche_gnn_10x_breast
+python scripts/06_generate_paper_figures.py `
+  --scores data/processed/spatial_emt_niche_gnn_10x_breast/spatial_emt_niche_scores.tsv `
+  --edges data/processed/spatial_emt_niche_gnn_10x_breast/spatial_graph_edges.tsv `
+  --predictions data/processed/spatial_emt_niche_gnn_10x_breast/emt_niche_predictions.tsv `
+  --interpret-dir data/processed/spatial_emt_niche_gnn_10x_breast `
+  --out-dir data/processed/spatial_emt_niche_gnn_10x_breast/paper
+python scripts/compare_spatial_demo_vs_real.py
+```
+
+Current real-run headline:
+
+- 2,518 real tissue spots.
+- EMT-niche weak-label fraction: about 25%.
+- Tumor-cell EMT candidate fraction: about 10%.
+- Stromal-inflated EMT warning fraction: about 15%.
+- Real-data graph: 26,811 typed edges, including spatial, hypoxia-gradient, and ligand-receptor-like circuit edges.
+- Baseline graph-aware test accuracy: about 0.85 against weak proxy labels.
+
+Interpretation boundary: this is not a validated biological discovery yet. It is
+a first real-data comparison showing that the pipeline runs on public Visium
+cancer data and produces auditable EMT/stromal/niche outputs.

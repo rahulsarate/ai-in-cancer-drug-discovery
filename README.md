@@ -71,6 +71,25 @@ python scripts/06_generate_paper_figures.py `
 
 See `docs/spatial_emt_niche_gnn/README.md`.
 
+Real 10x breast cancer comparison:
+
+```powershell
+$env:PYTHONPATH="src"
+python scripts/fetch_10x_visium_breast_cancer.py
+python scripts/02_score_spatial_emt_niches.py `
+  --expression data/processed/spatial_emt_niche_gnn_10x_breast/10x_breast_cancer_signature_expression.tsv `
+  --metadata data/processed/spatial_emt_niche_gnn_10x_breast/10x_breast_cancer_spatial_metadata.tsv `
+  --out-dir data/processed/spatial_emt_niche_gnn_10x_breast
+python scripts/03_build_spatial_graphs.py `
+  --scores data/processed/spatial_emt_niche_gnn_10x_breast/spatial_emt_niche_scores.tsv `
+  --out-dir data/processed/spatial_emt_niche_gnn_10x_breast
+python scripts/04_train_gnn.py `
+  --scores data/processed/spatial_emt_niche_gnn_10x_breast/spatial_emt_niche_scores.tsv `
+  --edges data/processed/spatial_emt_niche_gnn_10x_breast/spatial_graph_edges.tsv `
+  --out-dir data/processed/spatial_emt_niche_gnn_10x_breast
+python scripts/compare_spatial_demo_vs_real.py
+```
+
 ## Real-Data v1 Workflow
 
 List public data sources and exact expected local paths:

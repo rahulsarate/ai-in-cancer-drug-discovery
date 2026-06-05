@@ -16,6 +16,7 @@ dependencies = [
 [project.optional-dependencies]
 survival = ["lifelines>=0.28"]
 singlecell = ["scanpy>=1.10", "anndata>=0.10"]
+spatial = ["scipy>=1.10"]
 dev = ["pytest>=8.0"]
 
 [project.scripts]

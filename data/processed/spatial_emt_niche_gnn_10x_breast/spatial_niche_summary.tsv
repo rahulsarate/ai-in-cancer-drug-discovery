@@ -1,0 +1,2 @@
+cohort	cancer_type	sample_id	section_id	spots	emt_niche_fraction	stromal_inflated_fraction	tumor_cell_emt_fraction	mean_partial_emt	mean_caf_tam	mean_hypoxia
+10x_public	breast_cancer	Visium_FFPE_Human_Breast_Cancer	section_B1	2518	0.25019857029388404	0.1489277204130262	0.10127084988085783	-0.35892573189474997	-1.8253865456505752e-17	-1.5432011859364764e-18

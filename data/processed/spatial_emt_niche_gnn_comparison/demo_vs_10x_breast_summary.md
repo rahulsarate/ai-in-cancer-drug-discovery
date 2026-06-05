@@ -1,0 +1,24 @@
+# Demo vs Real 10x Breast Spatial EMT Niche Comparison
+
+This report compares the synthetic pipeline demo against a public 10x Visium FFPE human breast cancer dataset.
+
+Interpretation rules:
+
+- The synthetic demo validates workflow mechanics only.
+- The real 10x run is still weak-label based because no spot-level pathologist labels are integrated yet.
+- High stromal-inflated EMT fractions should be treated as a contamination warning, not tumor-cell EMT.
+- Edge counts show graph construction behavior, not causal biology.
+
+## Summary Table
+
+| run | folder | spots | mean_emt_score | mean_partial_emt | emt_niche_fraction | tumor_cell_emt_fraction | stromal_inflated_fraction | mean_caf_tam | mean_hypoxia | mean_predicted_emt_niche_probability | high_probability_fraction | edges | spatial_knn_edges | ligand_receptor_edges | hypoxia_gradient_edges | source_page |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| synthetic_demo | data\processed\spatial_emt_niche_gnn_demo | 144 | -1.4802973661668753e-16 | -0.5577219532085251 | 0.25 | 0.16666666666666666 | 0.08333333333333333 | 0.0 | -1.0485439677015367e-16 | 0.2545148780446095 | 0.2708333333333333 | 3265 | 864 | 2168 | 233 |  |
+| 10x_visium_ffpe_human_breast_cancer | data\processed\spatial_emt_niche_gnn_10x_breast | 2518 | 5.643707194281971e-18 | -0.35892573189474997 | 0.25019857029388404 | 0.10127084988085783 | 0.1489277204130262 | -1.6931121582845915e-17 | 7.407365692495087e-18 | 0.2467265208299406 | 0.1687847498014297 | 26811 | 14724 | 10402 | 1685 | https://www.10xgenomics.com/datasets/human-breast-cancer-ductal-carcinoma-in-situ-invasive-carcinoma-ffpe-1-standard-1-3-0 |
+
+## Next Validation Moves
+
+1. Add pathologist region labels from a cohort with spot-level annotations.
+2. Add cell-type deconvolution to split malignant, CAF, TAM, and immune signal inside each spot.
+3. Run leave-dataset-out validation after adding HEST-1k/HTAN/GEO cohorts.
+4. Compare edge ablation on real data against randomized spatial coordinates and shuffled ligand-receptor edges.

@@ -37,3 +37,7 @@ data/processed/tcga_xena_v1/*
 !data/processed/target_review/**
 !data/processed/spatial_emt_niche_gnn_demo/
 !data/processed/spatial_emt_niche_gnn_demo/**
+!data/processed/spatial_emt_niche_gnn_10x_breast/
+!data/processed/spatial_emt_niche_gnn_10x_breast/**
+!data/processed/spatial_emt_niche_gnn_comparison/
+!data/processed/spatial_emt_niche_gnn_comparison/**
