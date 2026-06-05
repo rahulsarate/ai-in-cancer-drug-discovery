@@ -49,20 +49,57 @@ python scripts/build_target_evidence.py `
 
 ## DepMap, PRISM, and LINCS
 
-Still requires prepared public extracts:
+Resolved:
 
-- DepMap gene-effect matrices are large and release-specific.
-- PRISM drug-response data require compound-to-target mapping.
-- LINCS requires constructing EMT reversal signatures and mapping perturbagens to targets.
+- `scripts/fetch_depmap_dependency.py` queries the DepMap download API, downloads the current public CRISPR gene-effect matrix plus model metadata, and writes a target-family-only extract.
+- `scripts/fetch_prism_targets.py` downloads the DepMap/PRISM compound table and creates target-family compound evidence.
+- `scripts/fetch_lincs_emt_reversal.py` submits an EMT reversal query to L1000FWD and maps perturbagens back to target families when public compound evidence supports the mapping.
 
-Use templates under `templates/target_evidence/` to create target-level extracts before feeding them into the ranker.
+Recommended commands:
+
+```powershell
+$env:PYTHONPATH="src"
+python scripts/fetch_depmap_dependency.py
+python scripts/fetch_prism_targets.py
+python scripts/fetch_lincs_emt_reversal.py
+python scripts/build_target_evidence.py `
+  --expression data/processed/tcga_xena_v1/signature_expression.tsv `
+  --emt-scores data/processed/tcga_xena_v1/emt_scores.tsv `
+  --metadata data/raw/xena/Survival_SupplementalTable_S1_20171025_xena_sp `
+  --depmap-gene-effect data/raw/depmap/target_family_CRISPRGeneEffect.csv `
+  --open-targets data/raw/api_evidence/open_targets_emt_metastasis.tsv `
+  --chembl data/raw/api_evidence/chembl_target_compounds.tsv `
+  --dgidb data/raw/api_evidence/dgidb_interactions.tsv `
+  --prism data/raw/prism/prism_target_hits.tsv `
+  --lincs data/raw/lincs/lincs_target_hits.tsv `
+  --out-dir data/processed/target_ranker_real_evidence_v1
+```
 
 ## CancerSEA/TISCH2/HTAN
 
-Resolved at workflow level:
+Resolved:
 
 - `scripts/run_single_cell_validation.py` can score cell x gene or gene x cell matrices.
+- `scripts/fetch_cancersea_validation.py` downloads selected real CancerSEA CTC expression datasets, applies alias mapping for Ensembl-style gene identifiers, scores EMT/TME programs, and writes validation summaries.
 
-Still requires downloaded datasets:
+Recommended commands:
 
-- CancerSEA/TISCH2/HTAN expression matrices and metadata must be downloaded or exported locally.
+```powershell
+$env:PYTHONPATH="src"
+python scripts/fetch_cancersea_validation.py --out-dir data/processed/cancersea_validation
+```
+
+Still external:
+
+- TISCH2 and HTAN are supported through the same single-cell scoring interface after export/download, but their portals do not expose one universal no-login bulk matrix endpoint. Add exported matrices under `data/raw/single_cell/` and run `scripts/run_single_cell_validation.py`.
+
+## Human Expert Review
+
+Resolved as a handoff package:
+
+- `scripts/generate_target_review_pack.py` creates a top-target review table from any ranking output.
+- The repository now includes `data/processed/target_review/top_target_review_real_evidence.tsv` for the real-evidence run.
+
+Important boundary:
+
+- This is computational triage. A clinician, cancer biologist, or pharmacology expert still needs to review disease context, assay feasibility, safety liabilities, and therapeutic strategy before any wet-lab or translational decision.

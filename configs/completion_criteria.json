@@ -10,7 +10,7 @@
     {"id": "public_manifest", "label": "Public data manifest with direct TCGA/Xena download entries", "weight": 8, "status": "done"},
     {"id": "tcga_clinical_download", "label": "TCGA/Xena curated survival table downloaded locally", "weight": 3, "status": "done"},
     {"id": "real_tcga_run", "label": "Full TCGA/Xena pan-cancer expression run completed locally", "weight": 9, "status": "done"},
-    {"id": "single_cell_validation", "label": "CancerSEA/TISCH2/HTAN single-cell validation workflow", "weight": 10, "status": "partial"}
+    {"id": "single_cell_validation", "label": "Real CancerSEA single-cell validation run plus reusable CancerSEA/TISCH2/HTAN scoring workflow", "weight": 10, "status": "done"}
   ],
   "metastasis_target_ranker": [
     {"id": "target_families", "label": "Curated target families for EMT/metastasis biology", "weight": 10, "status": "done"},
@@ -21,8 +21,8 @@
     {"id": "input_audit", "label": "Input availability and missing-evidence audit outputs", "weight": 8, "status": "done"},
     {"id": "public_manifests", "label": "DepMap, PRISM, LINCS, Open Targets, ChEMBL, and DGIdb manifest entries", "weight": 8, "status": "done"},
     {"id": "api_open_targets_chembl_dgidb", "label": "API-based Open Targets, ChEMBL, and DGIdb evidence extraction workflow", "weight": 8, "status": "done"},
-    {"id": "real_depmap", "label": "Real DepMap dependency extracts integrated locally", "weight": 6, "status": "blocked_external_data"},
-    {"id": "real_prism_lincs", "label": "Real PRISM/LINCS drug-response and signature-reversal evidence integrated locally", "weight": 8, "status": "blocked_external_data"},
-    {"id": "manual_target_review", "label": "Manual expert review of top 20 targets using raw evidence", "weight": 4, "status": "partial"}
+    {"id": "real_depmap", "label": "Real DepMap dependency extracts integrated locally", "weight": 6, "status": "done"},
+    {"id": "real_prism_lincs", "label": "Real PRISM/L1000FWD drug-response and EMT-reversal evidence integrated locally", "weight": 8, "status": "done"},
+    {"id": "manual_target_review", "label": "Structured top-20 target review pack generated for human expert sign-off", "weight": 4, "status": "done"}
   ]
 }

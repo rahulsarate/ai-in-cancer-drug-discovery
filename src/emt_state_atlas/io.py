@@ -24,7 +24,7 @@ def read_expression(path: str | Path, gene_filter: set[str] | None = None) -> pd
     else:
         frame = read_table(path)
     first_col = frame.columns[0]
-    if first_col.lower() in {"gene", "genes", "symbol", "hugo_symbol", "gene_symbol", "sample", "sample_id"}:
+    if first_col.lower() in {"gene", "genes", "symbol", "hugo_symbol", "gene_symbol", "cellname", "sample", "sample_id"}:
         frame = frame.set_index(first_col)
     return frame
 

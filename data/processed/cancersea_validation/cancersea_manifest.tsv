@@ -1,0 +1,3 @@
+dataset	label	url	table_path
+EXP0054	Breast cancer CTC Jordan 2016	https://biocc.hrbmu.edu.cn/CancerSEA/download/Expression/EXP0054_PCG.zip	C:\Users\HP\OneDrive\Documents\AI in Cancer Drug Discovery\data\raw\cancersea\EXP0054\EXP0054_PCG_beforeQC.txt
+EXP0055	Breast cancer CTC Aceto 2018	https://biocc.hrbmu.edu.cn/CancerSEA/download/Expression/EXP0055_PCG.zip	C:\Users\HP\OneDrive\Documents\AI in Cancer Drug Discovery\data\raw\cancersea\EXP0055\EXP0055_PCG_beforeQC.txt

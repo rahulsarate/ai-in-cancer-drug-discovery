@@ -68,11 +68,20 @@ Build target-ranker evidence and reports:
 
 ```powershell
 $env:PYTHONPATH="src"
+python scripts/fetch_depmap_dependency.py
+python scripts/fetch_prism_targets.py
+python scripts/fetch_lincs_emt_reversal.py
 python scripts/build_target_evidence.py `
-  --expression data/raw/toy_expression.tsv `
-  --emt-scores data/processed/toy_emt_scores.tsv `
-  --metadata data/raw/toy_metadata.tsv `
-  --out-dir data/processed/target_ranker_v1
+  --expression data/processed/tcga_xena_v1/signature_expression.tsv `
+  --emt-scores data/processed/tcga_xena_v1/emt_scores.tsv `
+  --metadata data/raw/xena/Survival_SupplementalTable_S1_20171025_xena_sp `
+  --depmap-gene-effect data/raw/depmap/target_family_CRISPRGeneEffect.csv `
+  --open-targets data/raw/api_evidence/open_targets_emt_metastasis.tsv `
+  --chembl data/raw/api_evidence/chembl_target_compounds.tsv `
+  --dgidb data/raw/api_evidence/dgidb_interactions.tsv `
+  --prism data/raw/prism/prism_target_hits.tsv `
+  --lincs data/raw/lincs/lincs_target_hits.tsv `
+  --out-dir data/processed/target_ranker_real_evidence_v1
 ```
 
 The same command accepts optional DepMap, PRISM, LINCS, Open Targets, ChEMBL, and DGIdb target-level extracts. See `configs/public_data_manifest.json`.
@@ -120,6 +129,13 @@ python scripts/run_single_cell_validation.py `
   --out-dir data/processed/single_cell_validation
 ```
 
+Fetch and score real CancerSEA CTC datasets:
+
+```powershell
+$env:PYTHONPATH="src"
+python scripts/fetch_cancersea_validation.py --out-dir data/processed/cancersea_validation
+```
+
 Manual target-review templates live in `templates/target_review/`.
 
 Generate a computational review pack from a target ranking:
@@ -127,9 +143,11 @@ Generate a computational review pack from a target ranking:
 ```powershell
 $env:PYTHONPATH="src"
 python scripts/generate_target_review_pack.py `
-  --ranking data/processed/toy_target_ranker_api_evidence_v1/target_ranking.tsv `
-  --out data/processed/target_review/top_target_review.tsv
+  --ranking data/processed/target_ranker_real_evidence_v1/target_ranking.tsv `
+  --out data/processed/target_review/top_target_review_real_evidence.tsv
 ```
+
+The review pack is a structured human-review handoff, not a replacement for clinician or disease-area expert sign-off.
 
 ## Environment Notes
 

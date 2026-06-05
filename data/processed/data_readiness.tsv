@@ -2,10 +2,10 @@ group	id	dataset_name	local_path	exists	size_mb	has_direct_url	source_page
 tcga_xena	tcga_pancan_rnaseq_pancanatlas	EBPlusPlusAdjustPANCAN_IlluminaHiSeq_RNASeqV2.geneExp.xena	data/raw/xena/EB++AdjustPANCAN_IlluminaHiSeq_RNASeqV2.geneExp.xena.gz	True	315.67	True	https://xenabrowser.net/datapages/?host=https%3A%2F%2Fpancanatlas.xenahubs.net
 tcga_xena	tcga_pancan_clinical_cdr	Survival_SupplementalTable_S1_20171025_xena_sp	data/raw/xena/Survival_SupplementalTable_S1_20171025_xena_sp	True	2.31	True	https://xenabrowser.net/datapages/?host=https%3A%2F%2Fpancanatlas.xenahubs.net
 tcga_xena	gdc_pancan_star_tpm	TCGA Pan-Cancer STAR TPM	data/raw/xena/gdc_pancan_star_tpm.tsv.gz	False	0.0	False	https://xenabrowser.net/datapages/?hub=https%3A%2F%2Fgdc.xenahubs.net%3A443
-target_ranker	depmap_gene_effect	DepMap CRISPR Gene Effect	data/raw/depmap/CRISPRGeneEffect.csv	False	0.0	False	https://depmap.org/portal/download/all/
-target_ranker	depmap_model_metadata	DepMap Model Metadata	data/raw/depmap/Model.csv	False	0.0	False	https://depmap.org/portal/download/all/
-target_ranker	prism_repurposing	PRISM Repurposing Secondary Screen	data/raw/prism/prism_target_hits.tsv	False	0.0	False	https://depmap.org/repurposing/
-target_ranker	lincs_clue	LINCS L1000 perturbation signatures	data/raw/lincs/lincs_target_hits.tsv	False	0.0	False	https://clue.io/lincs
-target_ranker	open_targets	Open Targets target evidence	data/raw/open_targets/open_targets_emt_metastasis.tsv	False	0.0	False	https://platform.opentargets.org/
-target_ranker	chembl	ChEMBL target-compound bioactivity extract	data/raw/chembl/chembl_target_compounds.tsv	False	0.0	False	https://www.ebi.ac.uk/chembl/
-target_ranker	dgidb	DGIdb drug-gene interaction extract	data/raw/dgidb/dgidb_interactions.tsv	False	0.0	False	https://www.dgidb.org/
+target_ranker	depmap_gene_effect	DepMap CRISPR Gene Effect	data/raw/depmap/CRISPRGeneEffect.csv	True	420.23	False	https://depmap.org/portal/download/all/
+target_ranker	depmap_model_metadata	DepMap Model Metadata	data/raw/depmap/Model.csv	True	0.67	False	https://depmap.org/portal/download/all/
+target_ranker	prism_repurposing	PRISM Repurposing Secondary Screen	data/raw/prism/prism_target_hits.tsv	True	0.03	False	https://depmap.org/repurposing/
+target_ranker	lincs_clue	LINCS L1000 perturbation signatures	data/raw/lincs/lincs_target_hits.tsv	True	0.0	False	https://clue.io/lincs
+target_ranker	open_targets	Open Targets target evidence	data/raw/api_evidence/open_targets_emt_metastasis.tsv	True	0.0	False	https://platform.opentargets.org/
+target_ranker	chembl	ChEMBL target-compound bioactivity extract	data/raw/api_evidence/chembl_target_compounds.tsv	True	0.01	False	https://www.ebi.ac.uk/chembl/
+target_ranker	dgidb	DGIdb drug-gene interaction extract	data/raw/api_evidence/dgidb_interactions.tsv	True	0.01	False	https://www.dgidb.org/

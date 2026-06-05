@@ -20,6 +20,8 @@ data/processed/*
 !data/processed/toy_target_ranker_api_evidence_v1/**
 !data/processed/toy_single_cell_validation/
 !data/processed/toy_single_cell_validation/**
+!data/processed/cancersea_validation/
+!data/processed/cancersea_validation/**
 !data/processed/data_readiness.tsv
 !data/processed/project_status/
 !data/processed/project_status/**
@@ -29,5 +31,7 @@ data/processed/tcga_xena_v1/*
 !data/processed/tcga_xena_v1/emt_state_atlas_report.md
 !data/processed/tcga_xena_v1/output_validation.tsv
 !data/processed/tcga_xena_v1/survival_associations.tsv
+!data/processed/target_ranker_real_evidence_v1/
+!data/processed/target_ranker_real_evidence_v1/**
 !data/processed/target_review/
 !data/processed/target_review/**

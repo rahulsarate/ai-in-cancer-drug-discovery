@@ -8,10 +8,18 @@ from .signatures import SIGNATURES
 from .summaries import add_state_flags
 
 
-def score_single_cell_expression(expression: pd.DataFrame, metadata: pd.DataFrame | None = None) -> pd.DataFrame:
+def score_single_cell_expression(
+    expression: pd.DataFrame,
+    metadata: pd.DataFrame | None = None,
+    aliases: dict[str, list[str]] | None = None,
+) -> pd.DataFrame:
     known_genes = {gene.upper() for genes in SIGNATURES.values() for gene in genes}
-    expr = orient_expression(expression, known_genes)
-    scores = add_state_flags(score_expression(expr))
+    aliases = aliases or {}
+    expanded = set(known_genes)
+    for gene in list(known_genes):
+        expanded.update(alias.upper() for alias in aliases.get(gene, []))
+    expr = orient_expression(expression, expanded)
+    scores = add_state_flags(score_expression(expr, aliases=aliases))
     if metadata is None:
         return scores
     meta = metadata.copy()
@@ -49,4 +57,3 @@ def summarize_single_cell_states(
         for col in summary.columns
     ]
     return summary
-
