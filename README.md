@@ -73,6 +73,30 @@ python scripts/build_target_evidence.py `
 
 The same command accepts optional DepMap, PRISM, LINCS, Open Targets, ChEMBL, and DGIdb target-level extracts. See `configs/public_data_manifest.json`.
 
+## Completion and Readiness
+
+Calculate project completion and local public-data readiness:
+
+```powershell
+$env:PYTHONPATH="src"
+python scripts/project_completion.py
+python scripts/audit_data_readiness.py
+```
+
+Target evidence extract templates live in `templates/target_evidence/`.
+
+Run single-cell validation once a CancerSEA/TISCH2/HTAN-style cell matrix is available:
+
+```powershell
+$env:PYTHONPATH="src"
+python scripts/run_single_cell_validation.py `
+  --expression data/raw/single_cell/example_expression.tsv `
+  --metadata data/raw/single_cell/example_metadata.tsv `
+  --out-dir data/processed/single_cell_validation
+```
+
+Manual target-review templates live in `templates/target_review/`.
+
 ## Environment Notes
 
 If your system Python is too new for scientific wheels, use a Python 3.10-3.12 environment or the bundled Codex runtime. Minimum required runtime packages are `numpy` and `pandas`; plots need `matplotlib` and `seaborn`; Cox survival analysis needs `lifelines`.

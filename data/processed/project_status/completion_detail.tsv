@@ -1,0 +1,21 @@
+project	id	label	weight	status
+emt_state_atlas	repo_scaffold	Repository scaffold, package metadata, and CLI entrypoint	8	done
+emt_state_atlas	signature_scoring	EMT, partial EMT, stromal, immune, CAF/TAM, hypoxia, and ferroptosis scoring	16	done
+emt_state_atlas	metadata_harmonization	TCGA/Xena metadata harmonization and patient/sample matching	12	done
+emt_state_atlas	state_flags	Stromal-inflated and tumor-cell EMT candidate flags	8	done
+emt_state_atlas	summaries_reports	Cancer-type summaries, output validation, and Markdown report	10	done
+emt_state_atlas	plots	Core plotting hooks for EMT/stromal, partial EMT, niche heatmap, and ferroptosis-window views	8	done
+emt_state_atlas	toy_demo	Toy demo inputs, outputs, and smoke workflow	8	done
+emt_state_atlas	public_manifest	Public data manifest with direct TCGA/Xena download entries	8	done
+emt_state_atlas	real_tcga_run	Full TCGA/Xena pan-cancer run completed locally	12	blocked_external_data
+emt_state_atlas	single_cell_validation	CancerSEA/TISCH2/HTAN single-cell validation workflow	10	partial
+metastasis_target_ranker	target_families	Curated target families for EMT/metastasis biology	10	done
+metastasis_target_ranker	weighted_ranker	Weighted ranker with missing-evidence accounting	14	done
+metastasis_target_ranker	evidence_builder	Evidence builder for EMT specificity, metastasis, dependency, druggability, compounds, safety, and literature	16	done
+metastasis_target_ranker	evidence_cards	Top-target Markdown reports and evidence cards	10	done
+metastasis_target_ranker	toy_demo	Toy evidence tables, ranking report, and smoke workflow	8	done
+metastasis_target_ranker	input_audit	Input availability and missing-evidence audit outputs	8	done
+metastasis_target_ranker	public_manifests	DepMap, PRISM, LINCS, Open Targets, ChEMBL, and DGIdb manifest entries	8	done
+metastasis_target_ranker	real_depmap_open_targets	Real DepMap/Open Targets/ChEMBL/DGIdb evidence extracts integrated locally	14	blocked_external_data
+metastasis_target_ranker	real_prism_lincs	Real PRISM/LINCS drug-response and signature-reversal evidence integrated locally	8	blocked_external_data
+metastasis_target_ranker	manual_target_review	Manual expert review of top 20 targets using raw evidence	4	partial

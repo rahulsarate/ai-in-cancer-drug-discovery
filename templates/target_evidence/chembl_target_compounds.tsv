@@ -1,0 +1,3 @@
+target	compound_name	chembl_id	activity_type	activity_value	activity_units	source_url	notes
+AXL	bemcentinib		IC50			https://www.ebi.ac.uk/chembl/	Example row; replace with ChEMBL bioactivity extract.
+

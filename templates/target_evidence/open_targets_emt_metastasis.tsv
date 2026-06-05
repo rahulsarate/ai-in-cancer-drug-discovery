@@ -1,0 +1,3 @@
+target	disease_or_trait	evidence_type	score	source_url	notes
+AXL	cancer metastasis	known_drug_or_literature	0.9	https://platform.opentargets.org/	Example row; replace with Open Targets extract.
+
