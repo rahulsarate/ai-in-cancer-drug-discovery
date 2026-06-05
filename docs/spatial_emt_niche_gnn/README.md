@@ -102,17 +102,23 @@ Interpretation boundary: this is not a validated biological discovery yet. It is
 a first real-data comparison showing that the pipeline runs on public Visium
 cancer data and produces auditable EMT/stromal/niche outputs.
 
-## Lung and Pancreatic Cancer Extensions
+## Lung, Pancreatic, Prostate, Ovarian, and Colorectal Extensions
 
 The workflow now also supports:
 
 - 10x CytAssist FFPE Human Lung Squamous Cell Carcinoma.
 - GEO GSE274103 treatment-naive PDAC Visium FFPE cohort with five samples.
+- 10x Visium FFPE Human Prostate Cancer.
+- 10x Visium FFPE Human Ovarian Cancer.
+- 10x Visium FFPE Human Intestinal/Colorectal Cancer.
 
 ```powershell
 $env:PYTHONPATH="src"
 python scripts/fetch_10x_visium_lung_lusc.py
 python scripts/fetch_geo_pdac_gse274103.py
+python scripts/fetch_10x_visium_prostate.py
+python scripts/fetch_10x_visium_ovarian.py
+python scripts/fetch_10x_visium_colorectal.py
 ```
 
 Then run the same score/graph/train/interpret/figure scripts with the cohort
@@ -120,6 +126,9 @@ output folders:
 
 - `data/processed/spatial_emt_niche_gnn_10x_lung_lusc`
 - `data/processed/spatial_emt_niche_gnn_geo_pdac`
+- `data/processed/spatial_emt_niche_gnn_10x_prostate`
+- `data/processed/spatial_emt_niche_gnn_10x_ovarian`
+- `data/processed/spatial_emt_niche_gnn_10x_colorectal`
 
 Generate the multi-cancer comparison:
 
@@ -137,6 +146,17 @@ Current multi-cancer summary:
 - PDAC GSE274103: 23,436 spots across five samples; EMT-niche proxy fraction
   about 25%; leading prediction correlates are CAF/TAM niche, partial EMT,
   stromal risk, immune context, and hypoxia.
+- Prostate: 4,371 spots; leading prediction correlates are EMT score,
+  CAF/TAM niche, stromal risk, immune context, and partial EMT.
+- Ovarian: 3,455 spots; leading prediction correlates are partial EMT,
+  immune context, CAF/TAM niche, hypoxia, and ferroptosis-window signal.
+- Colorectal: 2,660 spots; leading prediction correlates are partial EMT,
+  CAF/TAM niche, stromal risk, hypoxia, and immune context.
+
+Colorectal blocker note: the public 10x Visium HD colorectal binned output is
+very large, so this first reproducible pass uses the standard 10x Human
+Intestinal/Colorectal Cancer Visium FFPE dataset. The Visium HD data and its
+pathologist annotation remain an excellent later validation upgrade.
 
 Pathology/literature interpretation notes live in
 `docs/spatial_emt_niche_gnn/pathology_literature_grounding.md`.

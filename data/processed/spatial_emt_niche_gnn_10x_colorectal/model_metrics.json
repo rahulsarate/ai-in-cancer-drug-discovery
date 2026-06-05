@@ -1,0 +1,79 @@
+{
+  "model": "graph_logistic_message_passing_baseline",
+  "feature_names": [
+    "intercept",
+    "emt_score",
+    "partial_emt_score",
+    "stromal_contamination_risk",
+    "immune_context",
+    "caf_tam_niche",
+    "hypoxia",
+    "ferroptosis_window",
+    "neighbor_emt_score",
+    "neighbor_partial_emt_score",
+    "neighbor_stromal_contamination_risk",
+    "neighbor_immune_context",
+    "neighbor_caf_tam_niche",
+    "neighbor_hypoxia",
+    "neighbor_ferroptosis_window"
+  ],
+  "weights": [
+    -1.3969470430959423,
+    0.5755939028958923,
+    0.8918922950183282,
+    0.3035865238402818,
+    0.10726093395564983,
+    0.1257985966230156,
+    0.3604810291054418,
+    -0.09100280960071487,
+    0.0443464614732748,
+    0.12725611884590732,
+    -0.13333692212559314,
+    0.17214747272950512,
+    -0.16775087442866163,
+    -0.10827366930379234,
+    -0.1088569355558205
+  ],
+  "scaler": {
+    "mean": [
+      -0.003268089857807205,
+      -0.3070436203758862,
+      0.49705672518467875,
+      0.0017537295062571556,
+      -9.969687028866234e-08,
+      0.0018990242478353807,
+      -0.0006591234512384355,
+      -0.007019178894171979,
+      -0.2827694564386557,
+      0.511661416660488,
+      0.015339732830954033,
+      0.03866019339114617,
+      0.03858918392935976,
+      -0.011301540885301421
+    ],
+    "scale": [
+      0.8628348744417591,
+      0.39305388978096634,
+      0.288424845989787,
+      0.4616527989699239,
+      0.6148142214988933,
+      0.528743096505704,
+      0.4965156314651351,
+      0.6884691480417803,
+      0.3213015480490016,
+      0.2380591345182388,
+      0.34893091923249564,
+      0.5193483273496194,
+      0.42726933441233567,
+      0.31353449056536153
+    ]
+  },
+  "train_accuracy": 0.8498387839705205,
+  "test_accuracy": 0.8732106339468303,
+  "holdout_cohort": "",
+  "risk_controls": [
+    "neighbor message passing uses typed spatial graph",
+    "weak labels remain explicit in scored table",
+    "leave-cohort-out validation supported through --holdout-cohort"
+  ]
+}

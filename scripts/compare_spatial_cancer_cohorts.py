@@ -12,6 +12,9 @@ RUNS = [
     ("10x_breast_ffpe_idc", "data/processed/spatial_emt_niche_gnn_10x_breast"),
     ("10x_lung_lusc_cytassist", "data/processed/spatial_emt_niche_gnn_10x_lung_lusc"),
     ("geo_pdac_gse274103", "data/processed/spatial_emt_niche_gnn_geo_pdac"),
+    ("10x_prostate_ffpe", "data/processed/spatial_emt_niche_gnn_10x_prostate"),
+    ("10x_ovarian_ffpe", "data/processed/spatial_emt_niche_gnn_10x_ovarian"),
+    ("10x_colorectal_intestinal_ffpe", "data/processed/spatial_emt_niche_gnn_10x_colorectal"),
 ]
 
 

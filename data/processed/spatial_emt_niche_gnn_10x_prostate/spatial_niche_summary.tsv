@@ -1,0 +1,2 @@
+cohort	cancer_type	sample_id	section_id	spots	emt_niche_fraction	stromal_inflated_fraction	tumor_cell_emt_fraction	mean_partial_emt	mean_caf_tam	mean_hypoxia
+10x_public	prostate_cancer	Visium_FFPE_Human_Prostate_Cancer	section_B1	4371	0.2500571951498513	0.09746053534660261	0.15259665980324869	-0.2719623881419191	-4.330657188254157e-18	7.25797824952273e-18

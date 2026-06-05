@@ -34,6 +34,36 @@ TENX_LUNG_LUSC = {
     "disease": "Lung Squamous Cell Carcinoma",
 }
 
+TENX_PROSTATE = {
+    "dataset_id": "Visium_FFPE_Human_Prostate_Cancer",
+    "dataset_name": "10x Visium FFPE Human Prostate Cancer",
+    "matrix_url": "https://cf.10xgenomics.com/samples/spatial-exp/1.3.0/Visium_FFPE_Human_Prostate_Cancer/Visium_FFPE_Human_Prostate_Cancer_filtered_feature_bc_matrix.tar.gz",
+    "spatial_url": "https://cf.10xgenomics.com/samples/spatial-exp/1.3.0/Visium_FFPE_Human_Prostate_Cancer/Visium_FFPE_Human_Prostate_Cancer_spatial.tar.gz",
+    "source_page": "https://www.10xgenomics.com/datasets/human-prostate-cancer-1-standard",
+    "cancer_type": "prostate_cancer",
+    "disease": "Prostate Cancer",
+}
+
+TENX_OVARIAN = {
+    "dataset_id": "Visium_FFPE_Human_Ovarian_Cancer",
+    "dataset_name": "10x Visium FFPE Human Ovarian Cancer",
+    "matrix_url": "https://cf.10xgenomics.com/samples/spatial-exp/1.3.0/Visium_FFPE_Human_Ovarian_Cancer/Visium_FFPE_Human_Ovarian_Cancer_filtered_feature_bc_matrix.tar.gz",
+    "spatial_url": "https://cf.10xgenomics.com/samples/spatial-exp/1.3.0/Visium_FFPE_Human_Ovarian_Cancer/Visium_FFPE_Human_Ovarian_Cancer_spatial.tar.gz",
+    "source_page": "https://www.10xgenomics.com/datasets/human-ovarian-cancer-1-standard",
+    "cancer_type": "ovarian_cancer",
+    "disease": "Ovarian Cancer",
+}
+
+TENX_COLORECTAL = {
+    "dataset_id": "Visium_FFPE_Human_Intestinal_Cancer",
+    "dataset_name": "10x Visium FFPE Human Intestinal/Colorectal Cancer",
+    "matrix_url": "https://cf.10xgenomics.com/samples/spatial-exp/1.3.0/Visium_FFPE_Human_Intestinal_Cancer/Visium_FFPE_Human_Intestinal_Cancer_filtered_feature_bc_matrix.tar.gz",
+    "spatial_url": "https://cf.10xgenomics.com/samples/spatial-exp/1.3.0/Visium_FFPE_Human_Intestinal_Cancer/Visium_FFPE_Human_Intestinal_Cancer_spatial.tar.gz",
+    "source_page": "https://www.10xgenomics.com/datasets/human-intestine-cancer-1-standard",
+    "cancer_type": "colorectal_cancer",
+    "disease": "Large Intestine Colorectal Cancer",
+}
+
 GEO_PDAC_GSE274103 = {
     "dataset_id": "GSE274103",
     "dataset_name": "GEO GSE274103 treatment-naive PDAC Visium FFPE",
@@ -222,6 +252,18 @@ def prepare_10x_breast_cancer(raw_dir: str | Path, out_dir: str | Path) -> tuple
 
 def prepare_10x_lung_lusc(raw_dir: str | Path, out_dir: str | Path) -> tuple[Path, Path]:
     return prepare_10x_public_dataset(TENX_LUNG_LUSC, raw_dir, out_dir, "10x_lung_lusc")
+
+
+def prepare_10x_prostate(raw_dir: str | Path, out_dir: str | Path) -> tuple[Path, Path]:
+    return prepare_10x_public_dataset(TENX_PROSTATE, raw_dir, out_dir, "10x_prostate")
+
+
+def prepare_10x_ovarian(raw_dir: str | Path, out_dir: str | Path) -> tuple[Path, Path]:
+    return prepare_10x_public_dataset(TENX_OVARIAN, raw_dir, out_dir, "10x_ovarian")
+
+
+def prepare_10x_colorectal(raw_dir: str | Path, out_dir: str | Path) -> tuple[Path, Path]:
+    return prepare_10x_public_dataset(TENX_COLORECTAL, raw_dir, out_dir, "10x_colorectal")
 
 
 def prepare_geo_pdac_gse274103(raw_dir: str | Path, out_dir: str | Path, max_samples: int | None = None) -> tuple[Path, Path]:

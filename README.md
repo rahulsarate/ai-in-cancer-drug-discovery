@@ -96,6 +96,9 @@ Additional lung and pancreatic spatial cohorts:
 $env:PYTHONPATH="src"
 python scripts/fetch_10x_visium_lung_lusc.py
 python scripts/fetch_geo_pdac_gse274103.py
+python scripts/fetch_10x_visium_prostate.py
+python scripts/fetch_10x_visium_ovarian.py
+python scripts/fetch_10x_visium_colorectal.py
 python scripts/compare_spatial_cancer_cohorts.py
 ```
 

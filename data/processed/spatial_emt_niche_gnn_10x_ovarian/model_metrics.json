@@ -1,0 +1,79 @@
+{
+  "model": "graph_logistic_message_passing_baseline",
+  "feature_names": [
+    "intercept",
+    "emt_score",
+    "partial_emt_score",
+    "stromal_contamination_risk",
+    "immune_context",
+    "caf_tam_niche",
+    "hypoxia",
+    "ferroptosis_window",
+    "neighbor_emt_score",
+    "neighbor_partial_emt_score",
+    "neighbor_stromal_contamination_risk",
+    "neighbor_immune_context",
+    "neighbor_caf_tam_niche",
+    "neighbor_hypoxia",
+    "neighbor_ferroptosis_window"
+  ],
+  "weights": [
+    -1.5778925429309625,
+    0.44207803896440406,
+    1.3535685092848289,
+    0.11997401284477832,
+    0.36110783677827457,
+    0.18417049938164584,
+    0.4404051794302921,
+    -0.15492920526716225,
+    0.3074753552355518,
+    0.10384727858040815,
+    0.23793739739941536,
+    -0.1272269514481396,
+    -0.08765893520721296,
+    0.0016643567333328307,
+    -0.044943878739471026
+  ],
+  "scaler": {
+    "mean": [
+      -0.007897562290976072,
+      -0.3466154715517367,
+      0.498360053968862,
+      -0.007103968113236588,
+      -0.005854193919315126,
+      -0.0007260853893508606,
+      0.0012211787206148018,
+      -0.005608663652020335,
+      -0.3247949383055976,
+      0.5048876543477999,
+      0.026067187721991514,
+      0.022382913294776548,
+      0.029036200522658553,
+      -0.013028859260381994
+    ],
+    "scale": [
+      0.856216773808241,
+      0.42418512416516574,
+      0.2892185264169078,
+      0.6504470195950458,
+      0.45569888641953743,
+      0.6402786357392981,
+      0.407726944308663,
+      0.7087082469899637,
+      0.37831017959674657,
+      0.2638989105217354,
+      0.5636617878070376,
+      0.34621371817180774,
+      0.5666202654274843,
+      0.26710081636971095
+    ]
+  },
+  "train_accuracy": 0.8970431065194158,
+  "test_accuracy": 0.8966049382716049,
+  "holdout_cohort": "",
+  "risk_controls": [
+    "neighbor message passing uses typed spatial graph",
+    "weak labels remain explicit in scored table",
+    "leave-cohort-out validation supported through --holdout-cohort"
+  ]
+}

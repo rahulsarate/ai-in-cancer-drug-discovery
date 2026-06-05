@@ -1,0 +1,8 @@
+field	value
+dataset_id	Visium_FFPE_Human_Intestinal_Cancer
+dataset_name	10x Visium FFPE Human Intestinal/Colorectal Cancer
+matrix_url	https://cf.10xgenomics.com/samples/spatial-exp/1.3.0/Visium_FFPE_Human_Intestinal_Cancer/Visium_FFPE_Human_Intestinal_Cancer_filtered_feature_bc_matrix.tar.gz
+spatial_url	https://cf.10xgenomics.com/samples/spatial-exp/1.3.0/Visium_FFPE_Human_Intestinal_Cancer/Visium_FFPE_Human_Intestinal_Cancer_spatial.tar.gz
+source_page	https://www.10xgenomics.com/datasets/human-intestine-cancer-1-standard
+cancer_type	colorectal_cancer
+disease	Large Intestine Colorectal Cancer

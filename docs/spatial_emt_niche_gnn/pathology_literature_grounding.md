@@ -69,6 +69,36 @@ sections require special caution because airway/normal epithelial regions,
 tertiary lymphoid structures, necrosis, and tumor/stroma boundaries can all
 change EMT and immune scores.
 
+### Prostate Cancer
+
+Recent integrated single-cell and spatial transcriptomics studies of prostate
+cancer emphasize lineage plasticity, treatment resistance, stromal remodeling,
+and immune microenvironment changes. For this model, prostate EMT-like signal
+should be interpreted alongside luminal/basal lineage markers, tumor-associated
+stroma, neuroendocrine/double-negative plasticity markers when available, and
+region labels that separate tumor glands, benign glands, fibromuscular stroma,
+inflammation, and artifact.
+
+### Ovarian Cancer
+
+High-grade serous ovarian cancer spatial studies show that tumor subclones can
+occupy distinct microenvironment contexts with variable immune and stromal
+infiltration. Partial EMT in ovarian cancer is especially plausible under
+TGF-beta, hypoxia, mechanical, and immune-pressure contexts, but Visium spots
+can mix epithelial tumor, fibroblasts, mesothelium, macrophages, and necrotic
+regions. Ovarian EMT-niche calls should therefore be checked against immune-rich
+and CAF-rich regions before being treated as tumor-cell plasticity.
+
+### Colorectal Cancer
+
+Colorectal cancer spatial studies commonly annotate tumor, stroma, immune
+infiltration, colon epithelium/mucosa, submucosa, muscularis, and low-quality or
+artifact regions. CRC CAF studies and Visium HD CRC data emphasize spatially
+structured tumor-immune-stromal neighborhoods. For this project, the leading
+CRC pattern `partial EMT + CAF/TAM + stromal risk + hypoxia` is biologically
+reasonable but also contamination-prone; pathologist region labels and
+deconvolution should be added before making target claims.
+
 ## Model Rules Added From Literature
 
 - Treat `partial_emt_score` as a plasticity signal, not a malignancy label.
@@ -79,6 +109,12 @@ change EMT and immune scores.
   as cancer-cell intrinsic.
 - In lung cancer, inspect immune/TLS and airway/background context before
   interpreting immune or epithelial programs.
+- In prostate cancer, separate malignant glands from benign glands and
+  fibromuscular stroma before interpreting EMT score.
+- In ovarian cancer, treat immune/CAF/hypoxia-associated partial EMT as a
+  tumor-microenvironment hypothesis until epithelial tumor content is confirmed.
+- In colorectal cancer, compare EMT-niche calls against tumor, stroma, immune
+  infiltration, and colon epithelial annotations.
 - Never use edge attention or graph weights alone as biological proof; require
   edge ablation, shuffled-coordinate controls, and pathology/deconvolution.
 
@@ -94,3 +130,15 @@ change EMT and immune scores.
   cell lung cancer. Nature Communications, 2024.
 - AI-powered spatial cell phenomics enhances risk stratification in non-small
   cell lung cancer. Nature Communications, 2025.
+- Integrated single-cell and spatial transcriptomic profiling decodes lineage
+  plasticity and immune microenvironment remodeling in prostate cancer
+  progression, 2026.
+- Spatial transcriptomics reveals discrete tumour microenvironments and
+  autocrine loops within ovarian cancer subclones, 2024.
+- Spatial transcriptomics atlas reveals the crosstalk between
+  cancer-associated fibroblasts and tumor microenvironment components in
+  colorectal cancer, 2022.
+- Integrating spatial and single-cell transcriptomics reveals tumor
+  heterogeneity and intercellular networks in colorectal cancer, 2024.
+- Visium HD Human Colorectal Cancer FFPE pathologist annotation release,
+  Zenodo, 2024.
