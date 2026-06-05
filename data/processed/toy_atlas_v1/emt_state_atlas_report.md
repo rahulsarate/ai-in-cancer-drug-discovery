@@ -19,9 +19,13 @@ Interpret all results as research hypotheses. Bulk EMT scores can be inflated by
 
 ## Survival Associations
 
-| status | reason |
-| --- | --- |
-| not_run | Install lifelines or use `pip install -e .[survival]`. |
+| score | method | n | events | high_group_median_time | low_group_median_time | logrank_chi2 | p |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| emt_score | median_split_logrank_fallback | 30 | 15 | 1.2e+03 | 972 | 0.897 | 0.343 |
+| partial_emt_score | median_split_logrank_fallback | 30 | 15 | 1.2e+03 | 972 | 0.84 | 0.359 |
+| stromal_fibroblast | median_split_logrank_fallback | 30 | 15 | 1.13e+03 | 1.14e+03 | 0.0525 | 0.819 |
+| immune_total | median_split_logrank_fallback | 30 | 15 | 935 | 1.21e+03 | 0.44 | 0.507 |
+| caf_tam_niche | median_split_logrank_fallback | 30 | 15 | 876 | 1.2e+03 | 1.62 | 0.204 |
 
 ## Plots
 

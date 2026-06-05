@@ -14,14 +14,23 @@ def _zscore_by_gene(expr: pd.DataFrame) -> pd.DataFrame:
     return centered.divide(scale, axis=1).fillna(0.0)
 
 
-def score_signature(zexpr: pd.DataFrame, genes: list[str]) -> pd.Series:
-    present = [gene for gene in genes if gene in zexpr.columns]
+def score_signature(zexpr: pd.DataFrame, genes: list[str], aliases: dict[str, list[str]] | None = None) -> pd.Series:
+    aliases = aliases or {}
+    expanded = []
+    for gene in genes:
+        expanded.append(gene)
+        expanded.extend(aliases.get(gene, []))
+    present = [gene for gene in expanded if gene in zexpr.columns]
     if not present:
         return pd.Series(np.nan, index=zexpr.index)
     return zexpr[present].mean(axis=1)
 
 
-def score_expression(expr: pd.DataFrame, signatures: dict[str, list[str]] | None = None) -> pd.DataFrame:
+def score_expression(
+    expr: pd.DataFrame,
+    signatures: dict[str, list[str]] | None = None,
+    aliases: dict[str, list[str]] | None = None,
+) -> pd.DataFrame:
     """Score samples for EMT, TME, and vulnerability programs.
 
     Parameters
@@ -36,7 +45,7 @@ def score_expression(expr: pd.DataFrame, signatures: dict[str, list[str]] | None
 
     scores = pd.DataFrame(index=expr.index)
     for name, genes in signatures.items():
-        scores[name] = score_signature(zexpr, [gene.upper() for gene in genes])
+        scores[name] = score_signature(zexpr, [gene.upper() for gene in genes], aliases=aliases)
 
     scores["emt_score"] = scores["mesenchymal"] - scores["epithelial"]
     scores["partial_emt_score"] = np.minimum(scores["epithelial"], scores["mesenchymal"])

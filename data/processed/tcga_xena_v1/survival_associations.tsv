@@ -1,0 +1,6 @@
+score	method	n	events	high_group_median_time	low_group_median_time	logrank_chi2	p
+emt_score	median_split_logrank_fallback	10961	3284	722.0	763.0	145.07090431734872	2.072332957158586e-33
+partial_emt_score	median_split_logrank_fallback	10961	3284	719.0	767.0	3.98891334760589	0.0458005929396441
+stromal_fibroblast	median_split_logrank_fallback	10961	3284	718.0	764.5	45.13072507090842	1.843108698489067e-11
+immune_total	median_split_logrank_fallback	10961	3284	753.0	734.0	2.1626833906429974	0.14139757310976522
+caf_tam_niche	median_split_logrank_fallback	10961	3284	714.0	771.0	84.02745361460043	4.8795154759134693e-20

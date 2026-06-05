@@ -54,8 +54,12 @@ Run the TCGA/Xena atlas after placing expression and phenotype files locally:
 
 ```powershell
 $env:PYTHONPATH="src"
+python scripts/fetch_signature_gene_aliases.py
+python scripts/extract_xena_signature_matrix.py `
+  --expression data/raw/xena/EB++AdjustPANCAN_IlluminaHiSeq_RNASeqV2.geneExp.xena.gz `
+  --out data/processed/tcga_xena_v1/signature_expression.tsv
 python scripts/run_tcga_xena_atlas.py `
-  --expression data/raw/xena/EBPlusPlusAdjustPANCAN_IlluminaHiSeq_RNASeqV2.geneExp.xena `
+  --expression data/processed/tcga_xena_v1/signature_expression.tsv `
   --metadata data/raw/xena/Survival_SupplementalTable_S1_20171025_xena_sp `
   --out-dir data/processed/tcga_xena_v1
 ```
@@ -85,6 +89,27 @@ python scripts/audit_data_readiness.py
 
 Target evidence extract templates live in `templates/target_evidence/`.
 
+Fetch small API-based evidence extracts for Open Targets, ChEMBL, and DGIdb:
+
+```powershell
+$env:PYTHONPATH="src"
+python scripts/fetch_public_target_evidence.py --out-dir data/raw/api_evidence
+```
+
+Then pass those extracts into the target evidence builder:
+
+```powershell
+$env:PYTHONPATH="src"
+python scripts/build_target_evidence.py `
+  --expression data/raw/toy_expression.tsv `
+  --emt-scores data/processed/toy_atlas_v1/emt_scores.tsv `
+  --metadata data/raw/toy_metadata.tsv `
+  --open-targets data/raw/api_evidence/open_targets_emt_metastasis.tsv `
+  --chembl data/raw/api_evidence/chembl_target_compounds.tsv `
+  --dgidb data/raw/api_evidence/dgidb_interactions.tsv `
+  --out-dir data/processed/target_ranker_api_evidence_v1
+```
+
 Run single-cell validation once a CancerSEA/TISCH2/HTAN-style cell matrix is available:
 
 ```powershell
@@ -96,6 +121,15 @@ python scripts/run_single_cell_validation.py `
 ```
 
 Manual target-review templates live in `templates/target_review/`.
+
+Generate a computational review pack from a target ranking:
+
+```powershell
+$env:PYTHONPATH="src"
+python scripts/generate_target_review_pack.py `
+  --ranking data/processed/toy_target_ranker_api_evidence_v1/target_ranking.tsv `
+  --out data/processed/target_review/top_target_review.tsv
+```
 
 ## Environment Notes
 

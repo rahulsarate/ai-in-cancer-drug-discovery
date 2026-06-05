@@ -5,7 +5,7 @@
       "dataset_name": "EBPlusPlusAdjustPANCAN_IlluminaHiSeq_RNASeqV2.geneExp.xena",
       "source": "UCSC Xena Pan-Cancer Atlas Hub",
       "source_page": "https://xenabrowser.net/datapages/?host=https%3A%2F%2Fpancanatlas.xenahubs.net",
-      "url": "https://pancanatlas.xenahubs.net/download/EB++AdjustPANCAN_IlluminaHiSeq_RNASeqV2.geneExp.xena.gz",
+      "url": "https://tcga-pancan-atlas-hub.s3.us-east-1.amazonaws.com/download/EB%2B%2BAdjustPANCAN_IlluminaHiSeq_RNASeqV2.geneExp.xena.gz",
       "local_path": "data/raw/xena/EB++AdjustPANCAN_IlluminaHiSeq_RNASeqV2.geneExp.xena.gz",
       "notes": "TCGA PanCanAtlas RNA-seq gene expression matrix. Use for EMT scoring when available locally."
     },
@@ -14,8 +14,8 @@
       "dataset_name": "Survival_SupplementalTable_S1_20171025_xena_sp",
       "source": "UCSC Xena Pan-Cancer Atlas Hub / TCGA clinical data resource",
       "source_page": "https://xenabrowser.net/datapages/?host=https%3A%2F%2Fpancanatlas.xenahubs.net",
-      "url": "https://pancanatlas.xenahubs.net/download/Survival_SupplementalTable_S1_20171025_xena_sp.gz",
-      "local_path": "data/raw/xena/Survival_SupplementalTable_S1_20171025_xena_sp.gz",
+      "url": "https://tcga-pancan-atlas-hub.s3.us-east-1.amazonaws.com/download/Survival_SupplementalTable_S1_20171025_xena_sp",
+      "local_path": "data/raw/xena/Survival_SupplementalTable_S1_20171025_xena_sp",
       "notes": "Curated survival endpoint table recommended for TCGA PanCanAtlas survival analysis."
     },
     {

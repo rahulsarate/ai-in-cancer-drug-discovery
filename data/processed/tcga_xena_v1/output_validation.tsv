@@ -1,0 +1,8 @@
+column	present	missing_values
+sample_id	True	0
+emt_score	True	0
+partial_emt_score	True	0
+stromal_contamination_risk	True	0
+cancer_type	True	46
+time	True	108
+event	True	53

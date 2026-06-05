@@ -11,6 +11,7 @@ def parser() -> argparse.ArgumentParser:
     p.add_argument("--expression", required=True)
     p.add_argument("--metadata", required=True)
     p.add_argument("--out-dir", default="data/processed/tcga_xena_v1")
+    p.add_argument("--gene-aliases", default="data/raw/gene_aliases/signature_gene_aliases.tsv")
     return p
 
 
@@ -40,9 +41,10 @@ def main() -> None:
         "--report-out",
         str(out / "emt_state_atlas_report.md"),
     ]
+    if Path(args.gene_aliases).exists():
+        sys.argv.extend(["--gene-aliases", args.gene_aliases])
     emt_cli_main()
 
 
 if __name__ == "__main__":
     main()
-

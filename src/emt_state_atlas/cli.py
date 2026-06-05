@@ -3,6 +3,7 @@ from __future__ import annotations
 import argparse
 from pathlib import Path
 
+from .aliases import expand_gene_filter, read_aliases
 from .io import orient_expression, read_expression, read_metadata
 from .metadata import attach_patient_metadata
 from .plots import write_atlas_plots
@@ -23,6 +24,7 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--validation-out", help="Optional output-column validation TSV.")
     parser.add_argument("--plots-dir", help="Optional directory for atlas plots.")
     parser.add_argument("--report-out", help="Optional Markdown report path.")
+    parser.add_argument("--gene-aliases", help="Optional TSV with symbol and alias columns, e.g. HGNC to Entrez IDs.")
     parser.add_argument("--time-col", default="time")
     parser.add_argument("--event-col", default="event")
     return parser
@@ -31,9 +33,11 @@ def build_parser() -> argparse.ArgumentParser:
 def main() -> None:
     args = build_parser().parse_args()
     known_genes = {gene.upper() for genes in SIGNATURES.values() for gene in genes}
-    expr = orient_expression(read_expression(args.expression), known_genes)
+    aliases = read_aliases(args.gene_aliases)
+    expanded_genes = expand_gene_filter(known_genes, aliases)
+    expr = orient_expression(read_expression(args.expression, gene_filter=expanded_genes), expanded_genes)
     metadata = read_metadata(args.metadata)
-    scores = add_state_flags(attach_patient_metadata(score_expression(expr), metadata))
+    scores = add_state_flags(attach_patient_metadata(score_expression(expr, aliases=aliases), metadata))
 
     out = Path(args.out)
     out.parent.mkdir(parents=True, exist_ok=True)

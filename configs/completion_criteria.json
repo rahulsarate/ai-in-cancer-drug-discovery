@@ -8,7 +8,8 @@
     {"id": "plots", "label": "Core plotting hooks for EMT/stromal, partial EMT, niche heatmap, and ferroptosis-window views", "weight": 8, "status": "done"},
     {"id": "toy_demo", "label": "Toy demo inputs, outputs, and smoke workflow", "weight": 8, "status": "done"},
     {"id": "public_manifest", "label": "Public data manifest with direct TCGA/Xena download entries", "weight": 8, "status": "done"},
-    {"id": "real_tcga_run", "label": "Full TCGA/Xena pan-cancer run completed locally", "weight": 12, "status": "blocked_external_data"},
+    {"id": "tcga_clinical_download", "label": "TCGA/Xena curated survival table downloaded locally", "weight": 3, "status": "done"},
+    {"id": "real_tcga_run", "label": "Full TCGA/Xena pan-cancer expression run completed locally", "weight": 9, "status": "done"},
     {"id": "single_cell_validation", "label": "CancerSEA/TISCH2/HTAN single-cell validation workflow", "weight": 10, "status": "partial"}
   ],
   "metastasis_target_ranker": [
@@ -19,7 +20,8 @@
     {"id": "toy_demo", "label": "Toy evidence tables, ranking report, and smoke workflow", "weight": 8, "status": "done"},
     {"id": "input_audit", "label": "Input availability and missing-evidence audit outputs", "weight": 8, "status": "done"},
     {"id": "public_manifests", "label": "DepMap, PRISM, LINCS, Open Targets, ChEMBL, and DGIdb manifest entries", "weight": 8, "status": "done"},
-    {"id": "real_depmap_open_targets", "label": "Real DepMap/Open Targets/ChEMBL/DGIdb evidence extracts integrated locally", "weight": 14, "status": "blocked_external_data"},
+    {"id": "api_open_targets_chembl_dgidb", "label": "API-based Open Targets, ChEMBL, and DGIdb evidence extraction workflow", "weight": 8, "status": "done"},
+    {"id": "real_depmap", "label": "Real DepMap dependency extracts integrated locally", "weight": 6, "status": "blocked_external_data"},
     {"id": "real_prism_lincs", "label": "Real PRISM/LINCS drug-response and signature-reversal evidence integrated locally", "weight": 8, "status": "blocked_external_data"},
     {"id": "manual_target_review", "label": "Manual expert review of top 20 targets using raw evidence", "weight": 4, "status": "partial"}
   ]

@@ -1,2 +1,6 @@
-status	reason
-not_run	Install lifelines or use `pip install -e .[survival]`.
+score	method	n	events	high_group_median_time	low_group_median_time	logrank_chi2	p
+emt_score	median_split_logrank_fallback	30	15	1200.0	972.0	0.8974600048251798	0.34346369140072597
+partial_emt_score	median_split_logrank_fallback	30	15	1200.0	972.0	0.8400002959890669	0.3593966861675221
+stromal_fibroblast	median_split_logrank_fallback	30	15	1129.0	1135.0	0.052531418870522296	0.8187155429727353
+immune_total	median_split_logrank_fallback	30	15	935.0	1207.0	0.44048465529937286	0.5068886256185299
+caf_tam_niche	median_split_logrank_fallback	30	15	876.0	1200.0	1.6154553074366431	0.20372664629870152

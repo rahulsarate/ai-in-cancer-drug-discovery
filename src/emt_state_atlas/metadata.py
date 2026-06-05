@@ -8,6 +8,7 @@ import pandas as pd
 SAMPLE_ALIASES = ["sample_id", "sample", "Sample", "ID", "id", "submitter_id"]
 CANCER_TYPE_ALIASES = [
     "cancer_type",
+    "cancer type abbreviation",
     "cohort",
     "project",
     "project_id",

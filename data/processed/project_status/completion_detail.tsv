@@ -7,7 +7,8 @@ emt_state_atlas	summaries_reports	Cancer-type summaries, output validation, and 
 emt_state_atlas	plots	Core plotting hooks for EMT/stromal, partial EMT, niche heatmap, and ferroptosis-window views	8	done
 emt_state_atlas	toy_demo	Toy demo inputs, outputs, and smoke workflow	8	done
 emt_state_atlas	public_manifest	Public data manifest with direct TCGA/Xena download entries	8	done
-emt_state_atlas	real_tcga_run	Full TCGA/Xena pan-cancer run completed locally	12	blocked_external_data
+emt_state_atlas	tcga_clinical_download	TCGA/Xena curated survival table downloaded locally	3	done
+emt_state_atlas	real_tcga_run	Full TCGA/Xena pan-cancer expression run completed locally	9	done
 emt_state_atlas	single_cell_validation	CancerSEA/TISCH2/HTAN single-cell validation workflow	10	partial
 metastasis_target_ranker	target_families	Curated target families for EMT/metastasis biology	10	done
 metastasis_target_ranker	weighted_ranker	Weighted ranker with missing-evidence accounting	14	done
@@ -16,6 +17,7 @@ metastasis_target_ranker	evidence_cards	Top-target Markdown reports and evidence
 metastasis_target_ranker	toy_demo	Toy evidence tables, ranking report, and smoke workflow	8	done
 metastasis_target_ranker	input_audit	Input availability and missing-evidence audit outputs	8	done
 metastasis_target_ranker	public_manifests	DepMap, PRISM, LINCS, Open Targets, ChEMBL, and DGIdb manifest entries	8	done
-metastasis_target_ranker	real_depmap_open_targets	Real DepMap/Open Targets/ChEMBL/DGIdb evidence extracts integrated locally	14	blocked_external_data
+metastasis_target_ranker	api_open_targets_chembl_dgidb	API-based Open Targets, ChEMBL, and DGIdb evidence extraction workflow	8	done
+metastasis_target_ranker	real_depmap	Real DepMap dependency extracts integrated locally	6	blocked_external_data
 metastasis_target_ranker	real_prism_lincs	Real PRISM/LINCS drug-response and signature-reversal evidence integrated locally	8	blocked_external_data
 metastasis_target_ranker	manual_target_review	Manual expert review of top 20 targets using raw evidence	4	partial
