@@ -35,3 +35,5 @@ data/processed/tcga_xena_v1/*
 !data/processed/target_ranker_real_evidence_v1/**
 !data/processed/target_review/
 !data/processed/target_review/**
+!data/processed/spatial_emt_niche_gnn_demo/
+!data/processed/spatial_emt_niche_gnn_demo/**

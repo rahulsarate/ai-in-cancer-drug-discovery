@@ -1,0 +1,79 @@
+{
+  "model": "graph_logistic_message_passing_baseline",
+  "feature_names": [
+    "intercept",
+    "emt_score",
+    "partial_emt_score",
+    "stromal_contamination_risk",
+    "immune_context",
+    "caf_tam_niche",
+    "hypoxia",
+    "ferroptosis_window",
+    "neighbor_emt_score",
+    "neighbor_partial_emt_score",
+    "neighbor_stromal_contamination_risk",
+    "neighbor_immune_context",
+    "neighbor_caf_tam_niche",
+    "neighbor_hypoxia",
+    "neighbor_ferroptosis_window"
+  ],
+  "weights": [
+    -2.6079147139675043,
+    1.0974256508646543,
+    1.3212165055744365,
+    -0.4002795692920476,
+    0.033399488536514386,
+    0.17812438929272595,
+    0.1804893722670383,
+    -0.35241872628139154,
+    1.555986216527119,
+    0.21082353295541614,
+    0.11854637685909393,
+    -0.5075073360636527,
+    0.19465037227760706,
+    0.11871203510267045,
+    0.30874492004907433
+  ],
+  "scaler": {
+    "mean": [
+      0.033571602069945,
+      -0.5490814773946988,
+      0.5052231718898386,
+      0.0029928089483044163,
+      0.012248905481021257,
+      -0.04916065577277976,
+      0.036337259336881984,
+      0.16063238229096932,
+      -0.5663377028712725,
+      0.5209871847019387,
+      0.008864796000077814,
+      0.04251448726248859,
+      0.062423477880753385,
+      0.020171475254282607
+    ],
+    "scale": [
+      1.332659733559047,
+      0.46877411682914305,
+      0.2872938292540793,
+      0.7209877246393818,
+      0.7021271453344514,
+      0.8194735061343584,
+      0.46426006010941545,
+      1.2639993750744607,
+      0.3193045982839042,
+      0.24845726914543037,
+      0.6287106702190555,
+      0.6388817315038743,
+      0.758770170828947,
+      0.1709308809517073
+    ]
+  },
+  "train_accuracy": 0.9572649572649573,
+  "test_accuracy": 1.0,
+  "holdout_cohort": "",
+  "risk_controls": [
+    "neighbor message passing uses typed spatial graph",
+    "weak labels remain explicit in scored table",
+    "leave-cohort-out validation supported through --holdout-cohort"
+  ]
+}

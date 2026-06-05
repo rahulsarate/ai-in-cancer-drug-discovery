@@ -1,0 +1,12 @@
+ablation	test_accuracy	delta_from_full
+none	1.0	0.0
+remove:hypoxia_gradient	1.0	0.0
+remove:ligand_receptor:CSF1-CSF1R	1.0	0.0
+remove:ligand_receptor:CXCL12-CXCR4	1.0	0.0
+remove:ligand_receptor:GAS6-AXL	1.0	0.0
+remove:ligand_receptor:SPP1-CD44	1.0	0.0
+remove:ligand_receptor:SPP1-ITGAV	1.0	0.0
+remove:ligand_receptor:TGFB1-TGFBR1	1.0	0.0
+remove:ligand_receptor:TGFB1-TGFBR2	1.0	0.0
+remove:ligand_receptor:VEGFA-KDR	1.0	0.0
+remove:spatial_knn	1.0	0.0

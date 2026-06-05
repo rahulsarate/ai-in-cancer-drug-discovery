@@ -1,0 +1,2 @@
+cohort	cancer_type	sample_id	section_id	spots	emt_niche_fraction	stromal_inflated_fraction	tumor_cell_emt_fraction	mean_partial_emt	mean_caf_tam	mean_hypoxia
+synthetic	demo_breast	demo_slide_001	demo_section_A	144	0.25	0.08333333333333333	0.16666666666666666	-0.5577219532085251	-2.0816681711721685e-17	-9.868649107779169e-17

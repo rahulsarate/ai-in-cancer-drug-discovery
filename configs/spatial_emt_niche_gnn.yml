@@ -1,0 +1,21 @@
+project: spatial-emt-niche-gnn
+description: Risk-aware MVP for spatial EMT niche graph learning.
+data:
+  demo_out_dir: data/processed/spatial_emt_niche_gnn_demo
+  raw_data_root: data/raw/spatial
+  manifest: data/processed/spatial_emt_niche_gnn_demo/spatial_manifest.tsv
+graph:
+  k_neighbors: 6
+  radius: 2.5
+model:
+  label_column: emt_niche_label
+  holdout_cohort: ""
+  epochs: 1200
+  learning_rate: 0.08
+  l2: 0.01
+risk_controls:
+  preprocessing: Start with standardized 10x/HEST-style spot tables and manifest.
+  stromal_contamination: Track stromal-inflated EMT separately from tumor-cell EMT candidates.
+  weak_labels: Preserve label_strength and weak_label_source columns.
+  batch_effects: Use cohort metadata and leave-cohort-out validation when cohorts are available.
+  interpretability: Run edge ablations and feature perturbation reports.

@@ -1,0 +1,6 @@
+source	dataset_family	url	recommended_use	risk_note	expression_path	metadata_path
+10x Visium Discovery Hub	public_10x_visium_cancer	https://www.10xgenomics.com/visium-discovery-hub	Starter Visium cancer slides with standardized Space Ranger outputs.	Vendor examples are clean but may not represent independent clinical cohorts.		
+HEST-1k	hest_1k_histology_spatial	https://github.com/mahmoodlab/hest	Scale-up multimodal spatial transcriptomics plus H&E foundation embeddings.	Large multimodal data; use selected cancer cohorts first.		
+HTAN Data Portal	htan_spatial_cancer	https://data.humantumoratlas.org/	External validation with disease-specific cancer atlases.	Portal exports vary by assay and study; metadata harmonization is non-trivial.		
+GEO	geo_visium_cancer	https://www.ncbi.nlm.nih.gov/geo/	Independent published spatial cohorts.	Formats vary widely; require dataset-specific adapters.		
+synthetic_demo	demo_spatial_emt_niche		Smoke-test the complete spatial EMT niche graph workflow.	Synthetic data are for pipeline validation only, not biological claims.	data\processed\spatial_emt_niche_gnn_demo\demo_spatial_expression.tsv	data\processed\spatial_emt_niche_gnn_demo\demo_spatial_metadata.tsv

@@ -4,6 +4,7 @@ This repository is a public-data research starter kit for two linked projects:
 
 1. **emt-state-atlas**: score EMT, partial EMT, stromal contamination, immune context, hypoxia, CAF/TAM niches, and survival associations across TCGA-style bulk RNA-seq and single-cell summaries.
 2. **metastasis-target-ranker**: prioritize susceptible metastasis/EMT targets by integrating EMT-state specificity, metastatic association, druggability, CRISPR dependency, public compound availability, normal-tissue safety risk, and literature support.
+3. **spatial-emt-niche-gnn**: map EMT-permissive spatial niches with Visium/HEST/HTAN-style spot graphs, stromal-contamination controls, weak-label-aware graph learning, and edge-ablation interpretability.
 
 The project is designed for reproducible GitHub work. Large datasets are not committed. Place public data under `data/raw/`, run pipelines, and write outputs to `data/processed/`.
 
@@ -41,6 +42,34 @@ Expression matrices can be either genes x samples or samples x genes. The scorer
 5. Feed EMT-high and partial-EMT target evidence into the target ranker.
 
 See `docs/literature/` and `docs/methods/` for the scientific rationale and implementation notes.
+
+## Spatial EMT Niche GNN
+
+The spatial project starts with a runnable synthetic demo and expands to 10x Visium, HEST-1k, HTAN, and GEO cohorts:
+
+```powershell
+$env:PYTHONPATH="src"
+python scripts/01_download_public_spatial_data.py --make-demo
+python scripts/02_score_spatial_emt_niches.py `
+  --expression data/processed/spatial_emt_niche_gnn_demo/demo_spatial_expression.tsv `
+  --metadata data/processed/spatial_emt_niche_gnn_demo/demo_spatial_metadata.tsv
+python scripts/03_build_spatial_graphs.py `
+  --scores data/processed/spatial_emt_niche_gnn_demo/spatial_emt_niche_scores.tsv
+python scripts/04_train_gnn.py `
+  --scores data/processed/spatial_emt_niche_gnn_demo/spatial_emt_niche_scores.tsv `
+  --edges data/processed/spatial_emt_niche_gnn_demo/spatial_graph_edges.tsv
+python scripts/05_interpret_niche_drivers.py `
+  --scores data/processed/spatial_emt_niche_gnn_demo/spatial_emt_niche_scores.tsv `
+  --edges data/processed/spatial_emt_niche_gnn_demo/spatial_graph_edges.tsv `
+  --predictions data/processed/spatial_emt_niche_gnn_demo/emt_niche_predictions.tsv
+python scripts/06_generate_paper_figures.py `
+  --scores data/processed/spatial_emt_niche_gnn_demo/spatial_emt_niche_scores.tsv `
+  --edges data/processed/spatial_emt_niche_gnn_demo/spatial_graph_edges.tsv `
+  --predictions data/processed/spatial_emt_niche_gnn_demo/emt_niche_predictions.tsv `
+  --interpret-dir data/processed/spatial_emt_niche_gnn_demo
+```
+
+See `docs/spatial_emt_niche_gnn/README.md`.
 
 ## Real-Data v1 Workflow
 
