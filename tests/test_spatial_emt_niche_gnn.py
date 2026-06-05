@@ -3,7 +3,10 @@ from __future__ import annotations
 import pandas as pd
 
 from spatial_emt_niche_gnn.data import make_demo_spatial_dataset, read_spatial_expression, read_spatial_metadata
+from spatial_emt_niche_gnn.deconvolution import estimate_marker_proxy_compartments
+from spatial_emt_niche_gnn.export import write_lightweight_h5ad
 from spatial_emt_niche_gnn.graph import build_spatial_graph
+from spatial_emt_niche_gnn.heterograph import build_heterogeneous_graph_nodes
 from spatial_emt_niche_gnn.model import train_graph_logistic
 from spatial_emt_niche_gnn.scoring import score_spatial_niches
 
@@ -50,3 +53,19 @@ def test_spatial_graph_does_not_connect_different_samples(tmp_path):
     ]
 
     assert cross_edges == []
+
+
+def test_export_proxy_deconvolution_and_heterograph(tmp_path):
+    expression_path, metadata_path = make_demo_spatial_dataset(tmp_path, n=36)
+    expression = read_spatial_expression(expression_path)
+    metadata = read_spatial_metadata(metadata_path)
+    scored = score_spatial_niches(expression, metadata)
+
+    h5ad = write_lightweight_h5ad(expression, metadata, tmp_path / "demo.h5ad")
+    proxy = estimate_marker_proxy_compartments(scored)
+    nodes, edges = build_heterogeneous_graph_nodes(scored, proxy)
+
+    assert h5ad.exists()
+    assert "dominant_compartment" in proxy.columns
+    assert {"spot", "caf", "tam"}.issubset(set(nodes["node_type"]))
+    assert not edges.empty

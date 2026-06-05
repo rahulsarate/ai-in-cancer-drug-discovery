@@ -30,6 +30,17 @@ python scripts/06_generate_paper_figures.py `
   --edges data/processed/spatial_emt_niche_gnn_demo/spatial_graph_edges.tsv `
   --predictions data/processed/spatial_emt_niche_gnn_demo/emt_niche_predictions.tsv `
   --interpret-dir data/processed/spatial_emt_niche_gnn_demo
+python scripts/export_spatial_h5ad.py `
+  --expression data/processed/spatial_emt_niche_gnn_demo/demo_spatial_expression.tsv `
+  --metadata data/processed/spatial_emt_niche_gnn_demo/demo_spatial_metadata.tsv `
+  --out data/processed/spatial_emt_niche_gnn_demo/processed_h5ad/spatial_signature_matrix.h5ad
+python scripts/07_estimate_cell_type_proxy_deconvolution.py `
+  --scores data/processed/spatial_emt_niche_gnn_demo/spatial_emt_niche_scores.tsv `
+  --out-dir data/processed/spatial_emt_niche_gnn_demo
+python scripts/08_build_heterogeneous_niche_graph.py `
+  --scores data/processed/spatial_emt_niche_gnn_demo/spatial_emt_niche_scores.tsv `
+  --proxy data/processed/spatial_emt_niche_gnn_demo/cell_type_proxy_proportions.tsv `
+  --out-dir data/processed/spatial_emt_niche_gnn_demo
 ```
 
 ## Risk Controls
@@ -51,6 +62,29 @@ Start with 10x Visium public cancer examples and selected HEST-1k cancer cohorts
 Then add HTAN and GEO exports through dataset-specific adapters. Raw datasets
 remain local under `data/raw/spatial/`; only small derived tables should be
 committed.
+
+## Completion Status
+
+Generate the project status chart:
+
+```powershell
+$env:PYTHONPATH="src"
+python scripts/spatial_project_status.py
+```
+
+Current status:
+
+- Starter data phase: 87.5% complete.
+- Ingestion workflow: 88.2% complete.
+- Spatial scoring workflow: 61.9% complete.
+- Graph workflow: 81.0% complete.
+- Validation phase: 32.1% complete.
+- Advanced validation phase: 0.0% complete.
+- Overall spatial project: 60.5% complete.
+
+The main current blockers are full HEST-1k scale ingestion, pathologist/H&E tile
+features, matched scRNA-seq deconvolution references, HTAN validation, and
+metastasis/progression-associated cohorts.
 
 ## Real 10x Breast Cancer Comparison
 

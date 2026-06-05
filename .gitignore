@@ -85,3 +85,5 @@ data/processed/spatial_emt_niche_gnn_10x_colorectal/*
 !data/processed/spatial_emt_niche_gnn_10x_colorectal/model_metrics.json
 !data/processed/spatial_emt_niche_gnn_comparison/
 !data/processed/spatial_emt_niche_gnn_comparison/**
+!data/processed/spatial_emt_niche_gnn_project_status/
+!data/processed/spatial_emt_niche_gnn_project_status/**

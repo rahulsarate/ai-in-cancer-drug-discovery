@@ -29,8 +29,12 @@ def main() -> None:
     scores = out / "spatial_emt_niche_scores.tsv"
     edges = out / "spatial_graph_edges.tsv"
     predictions = out / "emt_niche_predictions.tsv"
+    proxy = out / "cell_type_proxy_proportions.tsv"
+    run(["scripts/export_spatial_h5ad.py", "--expression", args.expression, "--metadata", args.metadata, "--out", str(out / "processed_h5ad" / "spatial_signature_matrix.h5ad")])
     run(["scripts/02_score_spatial_emt_niches.py", "--expression", args.expression, "--metadata", args.metadata, "--out-dir", args.out_dir])
+    run(["scripts/07_estimate_cell_type_proxy_deconvolution.py", "--scores", str(scores), "--out-dir", args.out_dir])
     run(["scripts/03_build_spatial_graphs.py", "--scores", str(scores), "--out-dir", args.out_dir, "--k", str(args.k), "--radius", str(args.radius)])
+    run(["scripts/08_build_heterogeneous_niche_graph.py", "--scores", str(scores), "--proxy", str(proxy), "--out-dir", args.out_dir])
     run(["scripts/04_train_gnn.py", "--scores", str(scores), "--edges", str(edges), "--out-dir", args.out_dir])
     interpret = [
         "scripts/05_interpret_niche_drivers.py",
