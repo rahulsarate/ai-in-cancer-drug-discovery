@@ -56,18 +56,26 @@ def build_spatial_graph(
                 local_edges.append(edge)
                 rows.append({key: value for key, value in edge.items() if not key.endswith("_idx")})
 
-        hypoxia_sd = float(group["hypoxia"].std(ddof=0)) if "hypoxia" in group.columns else 0.0
-        if hypoxia_sd > 0:
+        gradient_specs = [
+            ("hypoxia", "hypoxia_gradient"),
+            ("ecm_remodeling", "ecm_gradient"),
+        ]
+        for feature_col, edge_type in gradient_specs:
+            if feature_col not in group.columns:
+                continue
+            feature_sd = float(group[feature_col].std(ddof=0))
+            if feature_sd <= 0:
+                continue
             for edge in local_edges:
                 i = edge["source_idx"]
                 j = edge["target_idx"]
-                niche_delta = abs(float(group.loc[i, "hypoxia"]) - float(group.loc[j, "hypoxia"]))
-                if niche_delta >= hypoxia_sd:
+                niche_delta = abs(float(group.loc[i, feature_col]) - float(group.loc[j, feature_col]))
+                if niche_delta >= feature_sd:
                     rows.append(
                         {
                             "source": edge["source"],
                             "target": edge["target"],
-                            "edge_type": "hypoxia_gradient",
+                            "edge_type": edge_type,
                             "distance": edge["distance"],
                             "weight": float(niche_delta / (1.0 + edge["distance"])),
                         }

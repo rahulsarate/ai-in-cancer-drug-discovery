@@ -12,7 +12,7 @@ COMPARTMENT_COLUMNS = {
     "tam": ["tam_spp1"],
     "t_cell": ["t_cell_cytotoxic"],
     "hypoxic_zone": ["hypoxia"],
-    "ecm_rich_zone": ["stromal_fibroblast", "caf"],
+    "ecm_rich_zone": ["stromal_fibroblast", "caf", "ecm_remodeling"],
     "ferroptosis_window": ["ferroptosis_window"],
 }
 

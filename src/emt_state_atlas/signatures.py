@@ -42,6 +42,14 @@ SIGNATURES = {
         "HIF1A", "CA9", "VEGFA", "SLC2A1", "LDHA", "ENO1", "PGK1",
         "BNIP3", "NDRG1", "EGLN3", "ADM",
     ],
+    "ecm_remodeling": [
+        "COL1A1", "COL1A2", "COL3A1", "COL5A1", "FN1", "POSTN", "LUM",
+        "DCN", "LOX", "MMP2", "MMP9", "MMP11", "MMP14", "CTHRC1",
+    ],
+    "angiogenesis": [
+        "VEGFA", "KDR", "FLT1", "ANGPT2", "TEK", "PECAM1", "VWF",
+        "ENG", "ESAM", "CDH5", "MCAM", "RAMP2",
+    ],
     "ferroptosis_sensitivity": [
         "ACSL4", "LPCAT3", "ALOX15", "ALOX12", "TFRC", "SAT1",
         "NOX4", "HMOX1",
@@ -51,4 +59,3 @@ SIGNATURES = {
         "SCD", "FADS2", "AIFM2",
     ],
 }
-

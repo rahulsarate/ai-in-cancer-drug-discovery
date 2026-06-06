@@ -20,6 +20,8 @@ def test_demo_spatial_scoring_creates_risk_labels(tmp_path):
 
     assert "emt_niche_label" in scored.columns
     assert "stromal_inflated_emt_candidate" in scored.columns
+    assert "ecm_remodeling" in scored.columns
+    assert "angiogenesis" in scored.columns
     assert scored["emt_niche_label"].sum() > 0
 
 
@@ -31,6 +33,7 @@ def test_spatial_graph_and_model_produce_predictions(tmp_path):
     predictions, metrics = train_graph_logistic(scored, edges, epochs=50)
 
     assert not edges.empty
+    assert "ecm_gradient" in set(edges["edge_type"])
     assert set(predictions["split"]).issubset({"train", "test"})
     assert predictions["emt_niche_probability"].between(0, 1).all()
     assert pd.notna(metrics["train_accuracy"])

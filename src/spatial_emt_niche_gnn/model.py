@@ -16,6 +16,8 @@ MODEL_FEATURES = [
     "immune_context",
     "caf_tam_niche",
     "hypoxia",
+    "ecm_remodeling",
+    "angiogenesis",
     "ferroptosis_window",
 ]
 

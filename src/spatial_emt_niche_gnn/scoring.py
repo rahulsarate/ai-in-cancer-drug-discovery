@@ -14,6 +14,8 @@ SPATIAL_SCORE_COLUMNS = [
     "immune_context",
     "caf_tam_niche",
     "hypoxia",
+    "ecm_remodeling",
+    "angiogenesis",
     "ferroptosis_window",
 ]
 
@@ -54,7 +56,12 @@ def add_spatial_proxy_labels(frame: pd.DataFrame) -> pd.DataFrame:
     before pathologist-reviewed annotations are available.
     """
     out = frame.copy()
-    niche = out[["caf_tam_niche", "hypoxia", "stromal_contamination_risk"]].rank(pct=True).mean(axis=1)
+    niche_cols = [
+        col
+        for col in ["caf_tam_niche", "hypoxia", "ecm_remodeling", "angiogenesis", "stromal_contamination_risk"]
+        if col in out.columns
+    ]
+    niche = out[niche_cols].rank(pct=True).mean(axis=1)
     partial = out["partial_emt_score"].rank(pct=True)
     tumor_emt = out["tumor_cell_emt_candidate"].astype(float)
     out["emt_niche_proxy_score"] = (0.45 * tumor_emt + 0.35 * partial + 0.20 * niche).clip(0, 1)
@@ -78,5 +85,7 @@ def summarize_niches(scored: pd.DataFrame) -> pd.DataFrame:
         mean_partial_emt=("partial_emt_score", "mean"),
         mean_caf_tam=("caf_tam_niche", "mean"),
         mean_hypoxia=("hypoxia", "mean"),
+        mean_ecm_remodeling=("ecm_remodeling", "mean"),
+        mean_angiogenesis=("angiogenesis", "mean"),
     )
     return summary.reset_index()
