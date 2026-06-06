@@ -7,7 +7,7 @@ import pandas as pd
 
 TASKS = [
     ("starter", "10x public Visium cancer datasets: breast, lung, prostate, ovarian, colorectal", 16, "done"),
-    ("starter", "HEST-1k manifest/reproducibility plan", 8, "partial"),
+    ("starter", "HEST-1k manifest/reproducibility plan", 8, "access_required"),
     ("starter", "TCGA EMT signatures reused as bulk reference", 8, "done"),
     ("workflow_ingestion", "Standardize Visium tables and coordinates", 10, "done"),
     ("workflow_ingestion", "AnnData-style processed_h5ad export", 8, "done"),
@@ -15,7 +15,7 @@ TASKS = [
     ("workflow_ingestion", "QC: detected genes, counts, tissue spots, batch/platform labels", 8, "done"),
     ("workflow_scoring", "EMT, partial EMT, hypoxia, CAF/TAM, ferroptosis scoring", 10, "done"),
     ("workflow_scoring", "ECM and angiogenesis scoring", 6, "done"),
-    ("workflow_scoring", "cell2location/Tangram/RCTD/stereoscope deconvolution", 12, "blocked_external_reference"),
+    ("workflow_scoring", "cell2location/Tangram/RCTD/stereoscope deconvolution", 12, "reference_candidates_ready"),
     ("workflow_scoring", "Marker-proxy and NNLS deconvolution fallback", 6, "done"),
     ("workflow_scoring", "Candidate niche labels", 8, "template_ready"),
     ("workflow_graph", "Spot spatial kNN/radius graph", 8, "done"),
@@ -23,24 +23,29 @@ TASKS = [
     ("workflow_graph", "ECM/hypoxia gradient edges", 8, "done"),
     ("workflow_graph", "Histology-similarity edges", 8, "implemented_first_cohort"),
     ("workflow_graph", "Heterogeneous compartment graph", 10, "done"),
-    ("validation", "HTAN spatial datasets", 10, "manifest_ready"),
+    ("validation", "HTAN spatial datasets", 10, "portal_download_pending"),
     ("validation", "Additional GEO Visium cancer cohorts", 10, "implemented_multiple_cohorts"),
     ("validation", "SpatialTME/SCAR public atlas feasibility", 8, "partial"),
-    ("advanced", "Matched scRNA-seq references", 12, "marker_reference_ready"),
-    ("advanced", "Metastasis/progression cohorts", 10, "matched_pilot_implemented"),
-    ("advanced", "Pathology foundation embeddings", 10, "pending"),
+    ("advanced", "Matched scRNA-seq references", 12, "reference_candidates_ready"),
+    ("advanced", "Metastasis/progression cohorts", 10, "full_scoring_complete"),
+    ("advanced", "Pathology foundation embeddings", 10, "embedding_baseline_ready"),
 ]
 
 STATUS_MULTIPLIER = {
     "done": 1.0,
+    "access_required": 0.5,
     "partial": 0.5,
     "blocked_external_reference": 0.25,
+    "reference_candidates_ready": 0.55,
     "marker_reference_ready": 0.4,
     "manifest_ready": 0.6,
+    "portal_download_pending": 0.65,
     "template_ready": 0.65,
+    "embedding_baseline_ready": 0.65,
     "implemented_first_cohort": 0.7,
     "implemented_multiple_cohorts": 0.75,
     "matched_pilot_implemented": 0.85,
+    "full_scoring_complete": 0.9,
     "pending": 0.0,
 }
 
@@ -103,19 +108,19 @@ def write_markdown(detail: pd.DataFrame, summary: pd.DataFrame, out: Path) -> No
         ]
     )
     estimates = {
-        "HEST-1k manifest/reproducibility plan": "2-4 days",
+        "HEST-1k manifest/reproducibility plan": "access request required; metadata cache after access",
         "Image tile storage/extraction": "3-5 days",
         "ECM and angiogenesis scoring": "1 day",
-        "cell2location/Tangram/RCTD/stereoscope deconvolution": "2-4 weeks after matched scRNA reference",
+        "cell2location/Tangram/RCTD/stereoscope deconvolution": "reference candidates ready; 2-4 weeks after scRNA download",
         "Candidate niche labels": "template ready; 3-7 days with expert review",
         "ECM/hypoxia gradient edges": "1-2 days",
         "Histology-similarity edges": "first cohort implemented; 3-7 days for all image-backed cohorts",
-        "HTAN spatial datasets": "target manifest ready; 1-3 weeks for portal download and adapter",
+        "HTAN spatial datasets": "target manifest ready; Synapse/portal download required",
         "Additional GEO Visium cancer cohorts": "multiple cohorts implemented; 1-2 weeks for broader disease expansion",
         "SpatialTME/SCAR public atlas feasibility": "3-5 days",
-        "Matched scRNA-seq references": "marker-reference baseline ready; 2-6 weeks for true public/matched scRNA",
-        "Metastasis/progression cohorts": "matched Pt-1 pilot implemented; 1-3 weeks for full GSE274557 scale-up",
-        "Pathology foundation embeddings": "3-6 weeks",
+        "Matched scRNA-seq references": "public candidates ready; 1-3 weeks for processed matrix download and aggregation",
+        "Metastasis/progression cohorts": "full GSE274557 scored; 1-2 weeks for patient-batched full graph workflow",
+        "Pathology foundation embeddings": "baseline ready; model weights/access required for foundation upgrade",
     }
     for _, row in remaining.iterrows():
         lines.append(f"| {row['task']} | {row['status']} | {estimates.get(row['task'], 'TBD')} |")

@@ -2,7 +2,7 @@
 
 ## Executive Summary
 
-The project is currently 77.4% complete by the weighted implementation tracker.
+The project is currently 83.6% complete by the weighted implementation tracker.
 It has processed 61,764 spatial spots and 1,303,172 graph edges across demo, 10x public cancer, GEO pancreatic cancer, and GEO brain-metastasis cohorts.
 The core value is an interpretable pipeline for weak-label discovery of EMT, partial EMT, stromal contamination, CAF/TAM/hypoxic niches, ECM remodeling, angiogenesis, and ferroptosis-window signals in spatial transcriptomics.
 
@@ -12,13 +12,13 @@ All current outputs are research hypotheses only. They are not diagnostic, progn
 
 | Phase | Completion |
 | --- | ---: |
-| advanced | 41.6% |
+| advanced | 69.1% |
 | starter | 87.5% |
-| validation | 62.5% |
+| validation | 64.3% |
 | workflow_graph | 94.3% |
 | workflow_ingestion | 100.0% |
-| workflow_scoring | 71.9% |
-| overall | 77.4% |
+| workflow_scoring | 80.5% |
+| overall | 83.6% |
 
 ## Implemented System
 
@@ -32,6 +32,7 @@ All current outputs are research hypotheses only. They are not diagnostic, progn
 - Added H&E tile color/stain-proxy feature extraction for 10x tissue images.
 - Added first real histology-similarity graph edges in the 10x breast cohort.
 - Added GSE274557 matched Pt-1 primary/liver/peritoneal metastatic PDAC pilot.
+- Downloaded, standardized, and scored the full 55-sample non-PDX GSE274557 cohort locally.
 - Added PDAC marker-reference NNLS deconvolution summary for the matched metastatic pilot.
 
 ## Cohort Results
@@ -52,37 +53,48 @@ All current outputs are research hypotheses only. They are not diagnostic, progn
 
 | Accession | Disease | Samples | Pipeline Status | Output |
 | --- | --- | --- | --- | --- |
-| GSE274557 | metastatic pancreatic cancer | 55 samples; primary, liver, lung, peritoneal metastases | matched_pt1_primary_liver_peritoneal_pilot_implemented | data/processed/spatial_emt_niche_gnn_geo_met_pdac_gse274557 |
+| GSE274557 | metastatic pancreatic cancer | 55 samples; primary, liver, lung, peritoneal metastases | all_55_non_pdx_downloaded_standardized_scored; pt1_graph_pilot_implemented | data/processed/spatial_emt_niche_gnn_geo_met_pdac_gse274557_fullprep |
 | GSE179572 | brain metastasis | six brain metastasis samples | downloaded_standardized_scored_graph_trained | data/processed/spatial_emt_niche_gnn_geo_brain_met |
+
+## Full GSE274557 Scoring Scale-Up
+
+Full non-PDX status: 55/55 samples downloaded for 13 patients.
+
+| Site | Spots | EMT niche fraction | Stromal-inflated fraction | Tumor-cell EMT fraction | Mean CAF/TAM | Mean hypoxia | Mean ECM |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| liver_metastasis | 44,415 | 0.172 | 0.032 | 0.089 | -0.152 | 0.103 | -0.206 |
+| lung_metastasis | 15,981 | 0.266 | 0.126 | 0.107 | 0.121 | -0.045 | 0.010 |
+| peritoneal_metastasis | 36,633 | 0.346 | 0.198 | 0.170 | 0.070 | 0.056 | 0.157 |
+| primary | 45,612 | 0.244 | 0.164 | 0.123 | 0.050 | -0.129 | 0.071 |
 
 ## Blocker Solutions
 
 | Blocker | Current Solution | Status | Next Action |
 | --- | --- | --- | --- |
 | HEST-1k scale ingestion | Use authenticated HuggingFace/Hest library manifest; select cancer subsets first. | access_required | Request/confirm HF access, then cache HEST_v1_1_0.csv and subset cancer samples. |
-| H&E/pathology features | Use 10x tissue_hires_image + spot coordinates for basic tile features; later add foundation embeddings. | basic_solution_implemented | Run extract_he_tile_features.py for each cohort; add QuPath/pathologist regions when available. |
-| Real deconvolution | Use marker-proxy plus PDAC marker-reference NNLS now; later run cell2location/Tangram/RCTD with real matched scRNA. | nnls_marker_reference_run | Replace marker reference with public or matched PDAC scRNA cell-type signatures. |
-| HTAN validation | Use HTAN portal manifests and level-2 spatial transcriptomics auxiliary/RNA-seq files. | htan_wustl_pdac_target_manifest_ready | Download HTAN WUSTL PDAC matrix/spatial metadata files from the portal and adapt to standard tables. |
-| Metastasis/progression cohorts | Run brain-metastasis plus a matched GSE274557 Pt-1 primary/liver/peritoneal metastatic PDAC pilot. | matched_site_pilot_implemented | Scale GSE274557 from Pt-1 to all non-PDX patients when storage/runtime budget allows. |
+| H&E/pathology features | Use 10x H&E tile features plus morphology embedding baseline; later add configured foundation model weights. | morphology_embedding_baseline_implemented | Configure UNI/CONCH/HEST-compatible model weights and compare embeddings to the current baseline. |
+| Real deconvolution | Use marker-proxy plus PDAC marker-reference NNLS now; public scRNA reference candidates are selected. | public_scrna_reference_manifest_ready | Download processed scRNA matrices/cell metadata and build real cell_type x gene references. |
+| HTAN validation | Use HTAN portal manifests and level-2 spatial transcriptomics auxiliary/RNA-seq files. | htan_wustl_pdac_target_manifest_ready | Install/configure Synapse or use the HTAN portal Download selected files workflow for HTAN WUSTL PDAC. |
+| Metastasis/progression cohorts | Run brain-metastasis plus GSE274557 Pt-1 graph pilot; full GSE274557 non-PDX data are downloaded, standardized, and scored. | full_non_pdx_standardized_and_scored | Run full GSE274557 graph workflow by patient batches to avoid monolithic edge-table failures. |
 
 ## Remaining Work
 
 | Task | Status | Why It Still Matters |
 | --- | --- | --- |
-| HEST-1k manifest/reproducibility plan | partial | Needed for multimodal scale and H&E-linked validation. |
-| cell2location/Tangram/RCTD/stereoscope deconvolution | blocked_external_reference | Needed to separate malignant EMT from CAF/stromal mixtures. |
+| HEST-1k manifest/reproducibility plan | access_required | Needed for multimodal scale and H&E-linked validation. |
+| cell2location/Tangram/RCTD/stereoscope deconvolution | reference_candidates_ready | Needed to separate malignant EMT from CAF/stromal mixtures. |
 | Candidate niche labels | template_ready | Needed before claims move beyond weak-label biology. |
 | Histology-similarity edges | implemented_first_cohort | Needed to fuse transcriptomic neighborhoods with tissue morphology. |
-| HTAN spatial datasets | manifest_ready | Needed for external validation beyond 10x/GEO examples. |
+| HTAN spatial datasets | portal_download_pending | Needed for external validation beyond 10x/GEO examples. |
 | Additional GEO Visium cancer cohorts | implemented_multiple_cohorts | Needed for broader generalization and disease diversity. |
 | SpatialTME/SCAR public atlas feasibility | partial | Needed to compare against public immune/stromal spatial atlases. |
-| Matched scRNA-seq references | marker_reference_ready | Needed for real deconvolution and compartment-level claims. |
-| Metastasis/progression cohorts | matched_pilot_implemented | First cohort done; matched primary-metastatic PDAC remains the important scale-up. |
-| Pathology foundation embeddings | pending | Needed for richer H&E features beyond color/stain proxies. |
+| Matched scRNA-seq references | reference_candidates_ready | Needed for real deconvolution and compartment-level claims. |
+| Metastasis/progression cohorts | full_scoring_complete | First cohort done; matched primary-metastatic PDAC remains the important scale-up. |
+| Pathology foundation embeddings | embedding_baseline_ready | Needed for richer H&E features beyond color/stain proxies. |
 
 ## Next Execution Order
 
-1. Scale GSE274557 from Pt-1 to all non-PDX matched primary/liver/lung/peritoneal metastatic samples.
+1. Run the full GSE274557 graph workflow by patient batches, starting from the already standardized 55-sample fullprep tables.
 2. Replace the PDAC marker-reference matrix with public or matched scRNA-derived cell-type signatures.
 3. Download one HTAN WUSTL PDAC spatial sample from the portal and adapt it into the standard expression/metadata format.
 4. Run histology-similarity edges across every cohort with local H&E tiles, then compare against pathologist regions.

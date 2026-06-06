@@ -10,6 +10,8 @@ DETAIL_PATH = Path("data/processed/spatial_emt_niche_gnn_project_status/spatial_
 COMPARISON_PATH = Path("data/processed/spatial_emt_niche_gnn_comparison/spatial_cancer_cohort_summary.tsv")
 BLOCKERS_PATH = Path("data/processed/spatial_emt_niche_gnn_blockers/blocker_solution_manifest.tsv")
 METASTASIS_PATH = Path("data/processed/spatial_emt_niche_gnn_blockers/metastasis_progression_candidates.tsv")
+GSE274557_SCALEUP_PATH = Path("data/processed/spatial_emt_niche_gnn_blockers/gse274557_scaleup_summary.tsv")
+GSE274557_SITE_PATH = Path("data/processed/spatial_emt_niche_gnn_geo_met_pdac_gse274557_fullprep/gse274557_full_site_summary.tsv")
 OUT_PATH = Path("docs/spatial_emt_niche_gnn/project_report.md")
 
 
@@ -131,12 +133,41 @@ def metastasis_rows(metastasis: pd.DataFrame) -> list[str]:
     return rows
 
 
+def gse274557_rows(site_summary: pd.DataFrame) -> list[str]:
+    if site_summary.empty:
+        return ["Full GSE274557 site summary has not been generated yet."]
+    rows = [
+        "| Site | Spots | EMT niche fraction | Stromal-inflated fraction | Tumor-cell EMT fraction | Mean CAF/TAM | Mean hypoxia | Mean ECM |",
+        "| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |",
+    ]
+    for _, row in site_summary.iterrows():
+        rows.append(
+            "| "
+            + " | ".join(
+                [
+                    str(row.get("site_label", "")),
+                    fmt_num(row.get("spots", 0)),
+                    f"{float(row.get('emt_niche_fraction', 0)):.3f}",
+                    f"{float(row.get('stromal_inflated_fraction', 0)):.3f}",
+                    f"{float(row.get('tumor_cell_emt_fraction', 0)):.3f}",
+                    f"{float(row.get('mean_caf_tam_niche', 0)):.3f}",
+                    f"{float(row.get('mean_hypoxia', 0)):.3f}",
+                    f"{float(row.get('mean_ecm_remodeling', 0)):.3f}",
+                ]
+            )
+            + " |"
+        )
+    return rows
+
+
 def write_report() -> None:
     status = read_table(STATUS_PATH)
     detail = read_table(DETAIL_PATH)
     comparison = read_table(COMPARISON_PATH)
     blockers = read_table(BLOCKERS_PATH)
     metastasis = read_table(METASTASIS_PATH)
+    scaleup = read_table(GSE274557_SCALEUP_PATH)
+    gse_site = read_table(GSE274557_SITE_PATH)
 
     overall = status.loc[status["phase"].eq("overall"), "completion_percent"].iloc[0] if not status.empty else 0
     total_spots = int(comparison["spots"].sum()) if "spots" in comparison else 0
@@ -169,6 +200,7 @@ def write_report() -> None:
         "- Added H&E tile color/stain-proxy feature extraction for 10x tissue images.",
         "- Added first real histology-similarity graph edges in the 10x breast cohort.",
         "- Added GSE274557 matched Pt-1 primary/liver/peritoneal metastatic PDAC pilot.",
+        "- Downloaded, standardized, and scored the full 55-sample non-PDX GSE274557 cohort locally.",
         "- Added PDAC marker-reference NNLS deconvolution summary for the matched metastatic pilot.",
         "",
         "## Cohort Results",
@@ -178,6 +210,17 @@ def write_report() -> None:
         "## Metastasis And Progression Work",
         "",
         *metastasis_rows(metastasis),
+        "",
+        "## Full GSE274557 Scoring Scale-Up",
+        "",
+        (
+            f"Full non-PDX status: {int(scaleup['raw_sample_complete'].iloc[0])}/{int(scaleup['non_pdx_samples'].iloc[0])} "
+            f"samples downloaded for {int(scaleup['patients'].iloc[0])} patients."
+            if not scaleup.empty
+            else "Full GSE274557 scale-up status has not been generated yet."
+        ),
+        "",
+        *gse274557_rows(gse_site),
         "",
         "## Blocker Solutions",
         "",
@@ -189,7 +232,7 @@ def write_report() -> None:
         "",
         "## Next Execution Order",
         "",
-        "1. Scale GSE274557 from Pt-1 to all non-PDX matched primary/liver/lung/peritoneal metastatic samples.",
+        "1. Run the full GSE274557 graph workflow by patient batches, starting from the already standardized 55-sample fullprep tables.",
         "2. Replace the PDAC marker-reference matrix with public or matched scRNA-derived cell-type signatures.",
         "3. Download one HTAN WUSTL PDAC spatial sample from the portal and adapt it into the standard expression/metadata format.",
         "4. Run histology-similarity edges across every cohort with local H&E tiles, then compare against pathologist regions.",

@@ -3,13 +3,13 @@
 ## Best Solutions
 
 - HEST-1k: gated HuggingFace access check plus selected cancer subset ingestion before full-scale download.
-- H&E/pathology: basic tile features are implemented now; foundation embeddings come later.
-- Deconvolution: marker-proxy and PDAC marker-reference NNLS are implemented; cell2location/RCTD/Tangram need matched scRNA references.
-- HTAN: WUSTL PDAC target manifest is selected; portal file download remains next.
-- Metastasis/progression: GSE179572 brain metastasis and GSE274557 Pt-1 matched primary/liver/peritoneal PDAC now run end-to-end.
+- H&E/pathology: tile features, histology-similarity edges, and morphology embedding baseline are implemented; foundation model weights remain optional.
+- Deconvolution: marker-proxy and PDAC marker-reference NNLS are implemented; public scRNA references are prioritized for upgrade.
+- HTAN: WUSTL PDAC target manifest is selected; Synapse/portal assay download remains next.
+- Metastasis/progression: GSE179572 brain metastasis and GSE274557 full non-PDX scoring are complete; Pt-1 graph pilot is complete.
 
 ## Immediate Next Runs
 
 1. Run H&E tile features across all local 10x cohorts.
-2. Replace marker-reference NNLS with matched/public PDAC scRNA signatures.
-3. Scale GSE274557 from Pt-1 to the full non-PDX sample set.
+2. Build real scRNA-derived references from GSE154778/GSE155698/GSE205013.
+3. Run full GSE274557 graph workflow in patient batches.

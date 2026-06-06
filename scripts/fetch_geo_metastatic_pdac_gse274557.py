@@ -63,12 +63,15 @@ def parse_soft(path: Path) -> pd.DataFrame:
             current["sex"] = line.split("Sex:", 1)[1].strip()
         elif line.startswith("!Sample_characteristics_ch1 = treatment: "):
             current["treatment"] = line.split("treatment:", 1)[1].strip()
-        elif line.startswith("!Sample_supplementary_file_1 = "):
-            current["h5_url"] = line.split("=", 1)[1].strip()
-        elif line.startswith("!Sample_supplementary_file_2 = "):
-            current["spatial_url"] = line.split("=", 1)[1].strip()
-        elif line.startswith("!Sample_supplementary_file_3 = "):
-            current["histology_url"] = line.split("=", 1)[1].strip()
+        elif line.startswith("!Sample_supplementary_file_"):
+            url = line.split("=", 1)[1].strip()
+            name = Path(url).name.lower()
+            if "filtered_feature_bc_matrix.h5" in name:
+                current["h5_url"] = url
+            elif "spatial.tar.gz" in name:
+                current["spatial_url"] = url
+            elif name.endswith(".jpg.gz") or name.endswith(".png.gz"):
+                current["histology_url"] = url
     if current:
         samples.append(current)
     frame = pd.DataFrame(samples)

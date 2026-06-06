@@ -1,0 +1,5 @@
+model	input	strength	access_status	source_url
+HEST-1k / HEST model ecosystem	H&E tile plus spatial transcriptomics context	Designed around ST plus histology benchmarking.	HEST dataset access gated in this environment; request HuggingFace access first.	https://huggingface.co/datasets/MahmoodLab/hest
+UNI	H&E tiles	General-purpose pathology foundation embeddings.	Requires configured model weights/license before automated extraction.	https://github.com/mahmoodlab/UNI
+CONCH	H&E tiles and text-aligned pathology representation	Useful when text-guided pathology concepts are needed.	Requires configured model weights/license before automated extraction.	https://github.com/mahmoodlab/CONCH
+CTransPath / HIPT-style encoders	H&E tiles	Practical baseline family for tile embeddings.	Optional local weights required.	https://github.com/Xiyue-Wang/TransPath
