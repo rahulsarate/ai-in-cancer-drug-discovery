@@ -12,6 +12,8 @@ BLOCKERS_PATH = Path("data/processed/spatial_emt_niche_gnn_blockers/blocker_solu
 METASTASIS_PATH = Path("data/processed/spatial_emt_niche_gnn_blockers/metastasis_progression_candidates.tsv")
 GSE274557_SCALEUP_PATH = Path("data/processed/spatial_emt_niche_gnn_blockers/gse274557_scaleup_summary.tsv")
 GSE274557_SITE_PATH = Path("data/processed/spatial_emt_niche_gnn_geo_met_pdac_gse274557_fullprep/gse274557_full_site_summary.tsv")
+GSE274557_PATIENT_GRAPH_PATH = Path("data/processed/spatial_emt_niche_gnn_geo_met_pdac_gse274557_patient_batches/gse274557_patient_graph_batch_summary.tsv")
+GSE154778_DECONV_PATH = Path("data/processed/spatial_emt_niche_gnn_geo_met_pdac_gse274557/gse154778_scrna_deconv/reference_deconvolution_nnls_summary.tsv")
 OUT_PATH = Path("docs/spatial_emt_niche_gnn/project_report.md")
 
 
@@ -160,6 +162,47 @@ def gse274557_rows(site_summary: pd.DataFrame) -> list[str]:
     return rows
 
 
+def patient_graph_rows(batch_summary: pd.DataFrame) -> list[str]:
+    if batch_summary.empty:
+        return ["Patient-batched graph summary has not been generated yet."]
+    rows = ["| Patient | Samples | Spots | Edges | Test accuracy |", "| --- | ---: | ---: | ---: | ---: |"]
+    for _, row in batch_summary.iterrows():
+        rows.append(
+            f"| {row['patient_id']} | {fmt_num(row['samples'])} | {fmt_num(row['spots'])} | "
+            f"{fmt_num(row['edges'])} | {float(row['test_accuracy']):.3f} |"
+        )
+    return rows
+
+
+def scrna_deconv_rows(deconv: pd.DataFrame) -> list[str]:
+    if deconv.empty:
+        return ["Real scRNA deconvolution summary has not been generated yet."]
+    cols = [
+        "sample_id",
+        "site_label",
+        "spots",
+        "mean_tumor_epithelial_pdac_scrna",
+        "mean_tumor_mesenchymal_plastic_scrna",
+        "mean_caf_myofibroblast_scrna",
+        "mean_tam_spp1_macrophage_scrna",
+        "mean_t_cell_cytotoxic_scrna",
+    ]
+    rows = [
+        "| Sample | Site | Spots | Epithelial tumor | Mesenchymal-plastic tumor | CAF | TAM | T cell |",
+        "| --- | --- | ---: | ---: | ---: | ---: | ---: | ---: |",
+    ]
+    for _, row in deconv[cols].iterrows():
+        rows.append(
+            f"| {row['sample_id']} | {row['site_label']} | {fmt_num(row['spots'])} | "
+            f"{float(row['mean_tumor_epithelial_pdac_scrna']):.3f} | "
+            f"{float(row['mean_tumor_mesenchymal_plastic_scrna']):.3f} | "
+            f"{float(row['mean_caf_myofibroblast_scrna']):.3f} | "
+            f"{float(row['mean_tam_spp1_macrophage_scrna']):.3f} | "
+            f"{float(row['mean_t_cell_cytotoxic_scrna']):.3f} |"
+        )
+    return rows
+
+
 def write_report() -> None:
     status = read_table(STATUS_PATH)
     detail = read_table(DETAIL_PATH)
@@ -168,6 +211,8 @@ def write_report() -> None:
     metastasis = read_table(METASTASIS_PATH)
     scaleup = read_table(GSE274557_SCALEUP_PATH)
     gse_site = read_table(GSE274557_SITE_PATH)
+    patient_graph = read_table(GSE274557_PATIENT_GRAPH_PATH)
+    scrna_deconv = read_table(GSE154778_DECONV_PATH)
 
     overall = status.loc[status["phase"].eq("overall"), "completion_percent"].iloc[0] if not status.empty else 0
     total_spots = int(comparison["spots"].sum()) if "spots" in comparison else 0
@@ -201,7 +246,9 @@ def write_report() -> None:
         "- Added first real histology-similarity graph edges in the 10x breast cohort.",
         "- Added GSE274557 matched Pt-1 primary/liver/peritoneal metastatic PDAC pilot.",
         "- Downloaded, standardized, and scored the full 55-sample non-PDX GSE274557 cohort locally.",
+        "- Completed patient-batched graph/model summaries for all 13 GSE274557 non-PDX patients.",
         "- Added PDAC marker-reference NNLS deconvolution summary for the matched metastatic pilot.",
+        "- Added real GSE154778 scRNA-derived marker-assigned reference and NNLS deconvolution summary.",
         "",
         "## Cohort Results",
         "",
@@ -222,6 +269,16 @@ def write_report() -> None:
         "",
         *gse274557_rows(gse_site),
         "",
+        "## Full GSE274557 Patient-Batched Graphs",
+        "",
+        *patient_graph_rows(patient_graph),
+        "",
+        "## Real scRNA-Based Deconvolution",
+        "",
+        "Reference: GSE154778 PDAC primary and metastatic scRNA-seq, marker-assigned into major compartments.",
+        "",
+        *scrna_deconv_rows(scrna_deconv),
+        "",
         "## Blocker Solutions",
         "",
         *blocker_rows(blockers),
@@ -232,8 +289,8 @@ def write_report() -> None:
         "",
         "## Next Execution Order",
         "",
-        "1. Run the full GSE274557 graph workflow by patient batches, starting from the already standardized 55-sample fullprep tables.",
-        "2. Replace the PDAC marker-reference matrix with public or matched scRNA-derived cell-type signatures.",
+        "1. Install a dedicated Python/R deconvolution environment for Tangram, cell2location, and RCTD.",
+        "2. Expand the real scRNA reference with GSE155698 and GSE205013, then compare against the GSE154778 reference.",
         "3. Download one HTAN WUSTL PDAC spatial sample from the portal and adapt it into the standard expression/metadata format.",
         "4. Run histology-similarity edges across every cohort with local H&E tiles, then compare against pathologist regions.",
         "5. Use the pathologist review template to annotate invasive edge, necrosis/hypoxia, stroma-rich, tumor-rich, immune-rich, and vessel-rich regions.",

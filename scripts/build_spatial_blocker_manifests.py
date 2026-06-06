@@ -22,10 +22,10 @@ BLOCKERS = [
     },
     {
         "blocker": "Real deconvolution",
-        "solution": "Use marker-proxy plus PDAC marker-reference NNLS now; public scRNA reference candidates are selected.",
-        "status": "public_scrna_reference_manifest_ready",
+        "solution": "Use marker-proxy, marker-reference NNLS, and real GSE154778 scRNA-derived NNLS now.",
+        "status": "real_scrna_reference_v1_nnls_run",
         "source": "GSE154778, GSE155698, GSE205013, HTAN WUSTL",
-        "next_action": "Download processed scRNA matrices/cell metadata and build real cell_type x gene references.",
+        "next_action": "Install Scanpy/AnnData/Tangram/cell2location or R/spacexr in a dedicated environment for advanced deconvolution.",
     },
     {
         "blocker": "HTAN validation",
@@ -36,10 +36,10 @@ BLOCKERS = [
     },
     {
         "blocker": "Metastasis/progression cohorts",
-        "solution": "Run brain-metastasis plus GSE274557 Pt-1 graph pilot; full GSE274557 non-PDX data are downloaded, standardized, and scored.",
-        "status": "full_non_pdx_standardized_and_scored",
+        "solution": "Run brain-metastasis, GSE274557 Pt-1 pilot, and full GSE274557 patient-batched graph/model summaries.",
+        "status": "full_patient_batched_graph_complete",
         "source": "GEO GSE274557, GSE179572",
-        "next_action": "Run full GSE274557 graph workflow by patient batches to avoid monolithic edge-table failures.",
+        "next_action": "Use patient-batched outputs for leave-patient/site validation and manuscript figures.",
     },
 ]
 
@@ -53,8 +53,8 @@ METASTASIS_COHORTS = [
         "samples": "55 samples; primary, liver, lung, peritoneal metastases",
         "source_url": "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE274557",
         "priority": "high",
-        "pipeline_status": "all_55_non_pdx_downloaded_standardized_scored; pt1_graph_pilot_implemented",
-        "pipeline_output": "data/processed/spatial_emt_niche_gnn_geo_met_pdac_gse274557_fullprep",
+        "pipeline_status": "all_55_non_pdx_downloaded_standardized_scored_patient_batched_graph_complete",
+        "pipeline_output": "data/processed/spatial_emt_niche_gnn_geo_met_pdac_gse274557_patient_batches",
     },
     {
         "accession": "GSE179572",
@@ -98,15 +98,15 @@ def write_report(out: Path) -> None:
         "",
         "- HEST-1k: gated HuggingFace access check plus selected cancer subset ingestion before full-scale download.",
         "- H&E/pathology: tile features, histology-similarity edges, and morphology embedding baseline are implemented; foundation model weights remain optional.",
-        "- Deconvolution: marker-proxy and PDAC marker-reference NNLS are implemented; public scRNA references are prioritized for upgrade.",
+        "- Deconvolution: marker-proxy, PDAC marker-reference NNLS, and real GSE154778 scRNA-derived NNLS are implemented.",
         "- HTAN: WUSTL PDAC target manifest is selected; Synapse/portal assay download remains next.",
-        "- Metastasis/progression: GSE179572 brain metastasis and GSE274557 full non-PDX scoring are complete; Pt-1 graph pilot is complete.",
+        "- Metastasis/progression: GSE179572 brain metastasis and full GSE274557 patient-batched graph/model summaries are complete.",
         "",
         "## Immediate Next Runs",
         "",
         "1. Run H&E tile features across all local 10x cohorts.",
-        "2. Build real scRNA-derived references from GSE154778/GSE155698/GSE205013.",
-        "3. Run full GSE274557 graph workflow in patient batches.",
+        "2. Install an advanced deconvolution environment for Tangram/cell2location/RCTD.",
+        "3. Expand real scRNA references with GSE155698/GSE205013.",
     ]
     (out / "blocker_solution_report.md").write_text("\n".join(lines) + "\n", encoding="utf-8")
 

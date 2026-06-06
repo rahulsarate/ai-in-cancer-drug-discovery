@@ -13,7 +13,7 @@ REFERENCES = [
         "best_use": "Matched primary/metastatic PDAC reference for malignant, CAF, macrophage, T-cell compartments.",
         "source_url": "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE154778",
         "priority": "high",
-        "status": "candidate_for_real_reference_download",
+        "status": "downloaded_marker_assigned_reference_v1_built",
     },
     {
         "accession": "GSE155698",

@@ -1,0 +1,7 @@
+tool	runtime	available	best_use	next_action
+cell2location	python	False	publication-grade probabilistic deconvolution	Install in a dedicated Python <=3.11 environment with GPU optional.
+tangram	python	False	cell-to-space mapping and projection	Install in a dedicated Python <=3.11 environment with GPU optional.
+anndata	python	False	shared h5ad IO for spatial/scRNA workflows	Install in a dedicated Python <=3.11 environment with GPU optional.
+scanpy	python	False	single-cell preprocessing	Install in a dedicated Python <=3.11 environment with GPU optional.
+torch	python	False	deep learning backend for tangram/cell2location	Install in a dedicated Python <=3.11 environment with GPU optional.
+RCTD/spacexr	R	False	robust cell-type mixture deconvolution	Install R, Bioconductor dependencies, and spacexr/RCTD.

@@ -1,5 +1,5 @@
 accession	disease	modality	best_use	source_url	priority	status
-GSE154778	PDAC primary and metastatic lesions	10x scRNA-seq	Matched primary/metastatic PDAC reference for malignant, CAF, macrophage, T-cell compartments.	https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE154778	high	candidate_for_real_reference_download
+GSE154778	PDAC primary and metastatic lesions	10x scRNA-seq	Matched primary/metastatic PDAC reference for malignant, CAF, macrophage, T-cell compartments.	https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE154778	high	downloaded_marker_assigned_reference_v1_built
 GSE155698	PDAC and non-cancer pancreas	10x scRNA-seq	Large PDAC/non-cancer reference; useful for ductal/tumor epithelial and normal pancreas controls.	https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE155698	high	candidate_for_real_reference_download
 GSE205013	PDAC chemotherapy-treated and untreated tumor microenvironment	single-cell RNA-seq	Treatment-context reference for CAF, TAM, T-cell, and malignant compartments.	https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE205013	medium	candidate_for_real_reference_download
 HTAN WUSTL snRNA/scRNA	Untreated and chemo-resistant pancreatic cancer	single-nucleus/single-cell RNA-seq	Best matched reference for HTAN WUSTL spatial PDAC if downloaded through HTAN/Synapse.	https://data.humantumoratlas.org/	high	portal_download_required

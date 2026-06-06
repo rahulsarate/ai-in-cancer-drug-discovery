@@ -1,0 +1,17 @@
+assigned_cell_type	tissue_type	cells	mean_score	mean_margin
+caf_myofibroblast_scrna	Metastasis	2	1.6043866	0.88674855
+caf_myofibroblast_scrna	Primary	1501	0.61850023	0.16326408
+endothelial_angiogenic_scrna	Metastasis	15	1.0480218	0.4957976
+endothelial_angiogenic_scrna	Primary	89	0.6048812	0.14512007
+hypoxic_stress_scrna	Metastasis	380	0.8850669	0.19462772
+hypoxic_stress_scrna	Primary	474	0.49676377	0.09549263
+t_cell_cytotoxic_scrna	Metastasis	100	0.88686645	0.45283672
+t_cell_cytotoxic_scrna	Primary	33	0.49974823	0.14530021
+tam_spp1_macrophage_scrna	Metastasis	200	1.3172221	0.6693412
+tam_spp1_macrophage_scrna	Primary	768	0.5716142	0.1323985
+tumor_epithelial_pdac_scrna	Metastasis	5896	1.1183995	0.662791
+tumor_epithelial_pdac_scrna	Primary	3864	0.7783437	0.38957763
+tumor_mesenchymal_plastic_scrna	Metastasis	265	0.57143843	0.16265488
+tumor_mesenchymal_plastic_scrna	Primary	1029	0.5758515	0.123170696
+unassigned_low_confidence	Metastasis	68	0.5749956	0.0045761727
+unassigned_low_confidence	Primary	242	0.47879305	0.0028755318

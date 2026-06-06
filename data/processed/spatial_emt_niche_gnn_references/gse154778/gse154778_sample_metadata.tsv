@@ -1,0 +1,17 @@
+geo_accession	sample_title	sample_prefix	tissue_type	gender
+GSM4679532	P01: Primary tumor 01 (10x 3' v1)	P01	Primary	M
+GSM4679533	P02: Primary tumor 02 (10x 3' v2)	P02	Primary	F
+GSM4679534	P03: Primary tumor 03 (10x 3' v2)	P03	Primary	M
+GSM4679535	P04: Primary tumor 04 (10x 3' v2)	P04	Primary	M
+GSM4679536	P05: Primary tumor 05 (10x 3' v2)	P05	Primary	M
+GSM4679537	P06: Primary tumor 06 (10x 3' v2)	P06	Primary	M
+GSM4679538	P07: Primary tumor 07 (10x 3' v2)	P07	Primary	F
+GSM4679539	P08: Primary tumor 08 (10x 3' v2)	P08	Primary	F
+GSM4679540	P09: Primary tumor 09 (10x 3' v2)	P09	Primary	M
+GSM4679541	P10: Primary tumor 10 (10x 3' v2)	P10	Primary	F
+GSM4679542	MET01: Metastatic lesion 01 (10x 3' v2)	MET01	Metastasis	M
+GSM4679543	MET02: Metastatic lesion 02 (10x 3' v2)	MET02	Metastasis	M
+GSM4679544	MET03: Metastatic lesion 03 (10x 3' v2)	MET03	Metastasis	M
+GSM4679545	MET04: Metastatic lesion 04 (10x 3' v2)	MET04	Metastasis	F
+GSM4679546	MET05: Metastatic lesion 05 (10x 3' v2)	MET05	Metastasis	M
+GSM4679547	MET06: Metastatic lesion 06 (10x 3' v2)	MET06	Metastasis	M
