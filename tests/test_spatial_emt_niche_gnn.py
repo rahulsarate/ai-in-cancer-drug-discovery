@@ -39,6 +39,26 @@ def test_spatial_graph_and_model_produce_predictions(tmp_path):
     assert pd.notna(metrics["train_accuracy"])
 
 
+def test_spatial_graph_adds_histology_similarity_edges(tmp_path):
+    expression_path, metadata_path = make_demo_spatial_dataset(tmp_path, n=36)
+    scored = score_spatial_niches(read_spatial_expression(expression_path), read_spatial_metadata(metadata_path))
+    for col in [
+        "tile_red_mean",
+        "tile_green_mean",
+        "tile_blue_mean",
+        "tile_brightness_mean",
+        "tile_brightness_std",
+        "hematoxylin_proxy_mean",
+        "eosin_proxy_mean",
+        "tissue_dark_fraction",
+    ]:
+        scored[col] = scored["x"].astype(float) / max(float(scored["x"].max()), 1.0)
+
+    edges = build_spatial_graph(scored, k=4, radius=2.5)
+
+    assert "histology_similarity" in set(edges["edge_type"])
+
+
 def test_spatial_graph_does_not_connect_different_samples(tmp_path):
     expression_path, metadata_path = make_demo_spatial_dataset(tmp_path, n=36)
     scored = score_spatial_niches(read_spatial_expression(expression_path), read_spatial_metadata(metadata_path))

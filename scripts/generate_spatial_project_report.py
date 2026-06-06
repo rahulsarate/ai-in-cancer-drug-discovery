@@ -44,14 +44,18 @@ def top_cohort_rows(comparison: pd.DataFrame) -> list[str]:
         "emt_niche_fraction",
         "tumor_cell_emt_fraction",
         "stromal_inflated_fraction",
+        "mean_ecm_remodeling",
+        "mean_angiogenesis",
         "edges",
         "ligand_receptor_edges",
         "hypoxia_gradient_edges",
+        "ecm_gradient_edges",
+        "histology_similarity_edges",
     ]
     present = [col for col in cols if col in comparison.columns]
     rows = [
-        "| Cohort | Spots | EMT niche fraction | Tumor-cell EMT fraction | Stromal-inflated fraction | Edges | LR edges | Hypoxia edges |",
-        "| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |",
+        "| Cohort | Spots | EMT niche fraction | Tumor-cell EMT fraction | Stromal-inflated fraction | Mean ECM | Mean angiogenesis | Edges | LR edges | Hypoxia edges | ECM edges | Histology edges |",
+        "| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |",
     ]
     for _, row in comparison[present].iterrows():
         rows.append(
@@ -63,9 +67,13 @@ def top_cohort_rows(comparison: pd.DataFrame) -> list[str]:
                     f"{float(row.get('emt_niche_fraction', 0)):.3f}",
                     f"{float(row.get('tumor_cell_emt_fraction', 0)):.3f}",
                     f"{float(row.get('stromal_inflated_fraction', 0)):.3f}",
+                    f"{float(row.get('mean_ecm_remodeling', 0)):.3f}",
+                    f"{float(row.get('mean_angiogenesis', 0)):.3f}",
                     fmt_num(row.get("edges", 0)),
                     fmt_num(row.get("ligand_receptor_edges", 0)),
                     fmt_num(row.get("hypoxia_gradient_edges", 0)),
+                    fmt_num(row.get("ecm_gradient_edges", 0)),
+                    fmt_num(row.get("histology_similarity_edges", 0)),
                 ]
             )
             + " |"
@@ -159,6 +167,9 @@ def write_report() -> None:
         "- Built heterogeneous compartment graphs for tumor, CAF, TAM, endothelial, T cell, hypoxic, ECM-rich, and ferroptosis-window nodes.",
         "- Trained a dependency-light graph-aware logistic baseline for reproducible MVP benchmarking.",
         "- Added H&E tile color/stain-proxy feature extraction for 10x tissue images.",
+        "- Added first real histology-similarity graph edges in the 10x breast cohort.",
+        "- Added GSE274557 matched Pt-1 primary/liver/peritoneal metastatic PDAC pilot.",
+        "- Added PDAC marker-reference NNLS deconvolution summary for the matched metastatic pilot.",
         "",
         "## Cohort Results",
         "",
@@ -178,12 +189,12 @@ def write_report() -> None:
         "",
         "## Next Execution Order",
         "",
-        "1. Rerun all spatial cohorts with the new ECM remodeling and angiogenesis features.",
-        "2. Add GSE274557 primary/liver/lung/peritoneal metastatic pancreatic cancer labels and run the full workflow.",
-        "3. Build one disease-matched scRNA reference matrix, then run NNLS deconvolution as the first real reference-based deconvolution output.",
-        "4. Select one HTAN spatial atlas and standardize it into the same expression/metadata format.",
-        "5. Add histology-similarity edges from H&E tile features; later replace proxies with foundation embeddings.",
-        "6. Draft pathologist-review templates for invasive edge, necrosis/hypoxia, stroma-rich, tumor-rich, and immune-rich regions.",
+        "1. Scale GSE274557 from Pt-1 to all non-PDX matched primary/liver/lung/peritoneal metastatic samples.",
+        "2. Replace the PDAC marker-reference matrix with public or matched scRNA-derived cell-type signatures.",
+        "3. Download one HTAN WUSTL PDAC spatial sample from the portal and adapt it into the standard expression/metadata format.",
+        "4. Run histology-similarity edges across every cohort with local H&E tiles, then compare against pathologist regions.",
+        "5. Use the pathologist review template to annotate invasive edge, necrosis/hypoxia, stroma-rich, tumor-rich, immune-rich, and vessel-rich regions.",
+        "6. Evaluate pathology foundation embeddings after the color/stain-proxy baseline is stable.",
         "",
         "## Publication Direction",
         "",

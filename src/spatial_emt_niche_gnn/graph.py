@@ -15,6 +15,17 @@ DEFAULT_LR_PAIRS = [
     ("CSF1", "CSF1R"),
 ]
 
+HISTOLOGY_FEATURE_COLUMNS = [
+    "tile_red_mean",
+    "tile_green_mean",
+    "tile_blue_mean",
+    "tile_brightness_mean",
+    "tile_brightness_std",
+    "hematoxylin_proxy_mean",
+    "eosin_proxy_mean",
+    "tissue_dark_fraction",
+]
+
 
 def build_spatial_graph(
     scored: pd.DataFrame,
@@ -78,6 +89,28 @@ def build_spatial_graph(
                             "edge_type": edge_type,
                             "distance": edge["distance"],
                             "weight": float(niche_delta / (1.0 + edge["distance"])),
+                        }
+                    )
+
+        histology_cols = [col for col in HISTOLOGY_FEATURE_COLUMNS if col in group.columns]
+        if histology_cols:
+            histology = group[histology_cols].apply(pd.to_numeric, errors="coerce").fillna(0.0).to_numpy(dtype=float)
+            histology_sd = histology.std(axis=0)
+            histology_sd[histology_sd == 0] = 1.0
+            histology_z = (histology - histology.mean(axis=0)) / histology_sd
+            distances = []
+            for edge in local_edges:
+                distances.append(float(np.linalg.norm(histology_z[edge["source_idx"]] - histology_z[edge["target_idx"]])))
+            threshold = float(np.quantile(distances, 0.25)) if distances else 0.0
+            for edge, histology_distance in zip(local_edges, distances):
+                if histology_distance <= threshold:
+                    rows.append(
+                        {
+                            "source": edge["source"],
+                            "target": edge["target"],
+                            "edge_type": "histology_similarity",
+                            "distance": edge["distance"],
+                            "weight": float(1.0 / (1.0 + histology_distance)),
                         }
                     )
 

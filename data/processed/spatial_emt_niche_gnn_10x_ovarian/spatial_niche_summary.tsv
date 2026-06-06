@@ -1,2 +1,2 @@
-cohort	cancer_type	sample_id	section_id	spots	emt_niche_fraction	stromal_inflated_fraction	tumor_cell_emt_fraction	mean_partial_emt	mean_caf_tam	mean_hypoxia
-10x_public	ovarian_cancer	Visium_FFPE_Human_Ovarian_Cancer	section_B1	3455	0.25007235890014473	0.18321273516642547	0.06685962373371925	-0.34391348190135795	-3.952458235279139e-18	-8.957298642959838e-18
+cohort	cancer_type	sample_id	section_id	spots	emt_niche_fraction	stromal_inflated_fraction	tumor_cell_emt_fraction	mean_partial_emt	mean_caf_tam	mean_hypoxia	mean_ecm_remodeling	mean_angiogenesis
+10x_public	ovarian_cancer	Visium_FFPE_Human_Ovarian_Cancer	section_B1	3455	0.25007235890014473	0.18321273516642547	0.06685962373371925	-0.34391348190135795	-3.952458235279139e-18	-8.957298642959838e-18	2.2493664753621116e-19	4.8040041152376527e-17

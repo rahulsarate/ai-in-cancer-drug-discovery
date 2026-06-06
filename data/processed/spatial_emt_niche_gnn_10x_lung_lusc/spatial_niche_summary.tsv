@@ -1,2 +1,2 @@
-cohort	cancer_type	sample_id	section_id	spots	emt_niche_fraction	stromal_inflated_fraction	tumor_cell_emt_fraction	mean_partial_emt	mean_caf_tam	mean_hypoxia
-10x_public	lung_cancer	CytAssist_FFPE_Human_Lung_Squamous_Cell_Carcinoma	section_B1	3858	0.2501296008294453	0.13374805598755832	0.116381544841887	-0.21287469612896248	-4.80578655034736e-18	-6.474862118731473e-19
+cohort	cancer_type	sample_id	section_id	spots	emt_niche_fraction	stromal_inflated_fraction	tumor_cell_emt_fraction	mean_partial_emt	mean_caf_tam	mean_hypoxia	mean_ecm_remodeling	mean_angiogenesis
+10x_public	lung_cancer	CytAssist_FFPE_Human_Lung_Squamous_Cell_Carcinoma	section_B1	3858	0.2501296008294453	0.13374805598755832	0.116381544841887	-0.21287469612896248	-4.80578655034736e-18	-6.474862118731473e-19	-2.611887435783846e-17	4.283481006103021e-17

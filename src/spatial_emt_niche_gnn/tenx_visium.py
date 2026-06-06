@@ -81,6 +81,15 @@ GEO_BRAIN_MET_GSE179572 = {
     "disease": "Brain Metastasis",
 }
 
+GEO_METASTATIC_PDAC_GSE274557 = {
+    "dataset_id": "GSE274557",
+    "dataset_name": "GEO GSE274557 metastatic pancreatic cancer Visium",
+    "soft_url": "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE274557&targ=gsm&form=text&view=full",
+    "source_page": "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE274557",
+    "cancer_type": "pancreatic_cancer",
+    "disease": "Metastatic Pancreatic Ductal Adenocarcinoma",
+}
+
 
 def required_genes() -> set[str]:
     return {gene.upper() for genes in SIGNATURES.values() for gene in genes} | DEMO_DRIVER_GENES

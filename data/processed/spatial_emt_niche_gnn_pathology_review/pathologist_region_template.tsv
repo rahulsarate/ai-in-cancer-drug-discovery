@@ -1,0 +1,3 @@
+sample_id	region_id	region_class	confidence	spot_ids	notes
+example_sample	R001	invasive_edge	high		Replace with reviewed spots or polygon-linked spot IDs.
+example_sample	R002	stroma_rich_caf	medium		Use for high stromal/CAF EMT-inflation checks.

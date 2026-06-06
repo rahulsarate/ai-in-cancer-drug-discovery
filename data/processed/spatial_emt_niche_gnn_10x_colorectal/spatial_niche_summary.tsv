@@ -1,2 +1,2 @@
-cohort	cancer_type	sample_id	section_id	spots	emt_niche_fraction	stromal_inflated_fraction	tumor_cell_emt_fraction	mean_partial_emt	mean_caf_tam	mean_hypoxia
-10x_public	colorectal_cancer	Visium_FFPE_Human_Intestinal_Cancer	section_B1	2660	0.25	0.15639097744360902	0.09360902255639098	-0.30838255050886865	-1.4994271488593513e-17	1.0330082653937077e-18
+cohort	cancer_type	sample_id	section_id	spots	emt_niche_fraction	stromal_inflated_fraction	tumor_cell_emt_fraction	mean_partial_emt	mean_caf_tam	mean_hypoxia	mean_ecm_remodeling	mean_angiogenesis
+10x_public	colorectal_cancer	Visium_FFPE_Human_Intestinal_Cancer	section_B1	2660	0.25	0.15639097744360902	0.09360902255639098	-0.30838255050886865	-1.4994271488593513e-17	1.0330082653937077e-18	-8.60840221161423e-18	-1.6256837146296936e-17

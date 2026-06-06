@@ -38,6 +38,8 @@ def summarize_run(label: str, folder: Path) -> dict:
                 "stromal_inflated_fraction": scores["stromal_inflated_emt_candidate"].mean(),
                 "mean_caf_tam": scores["caf_tam_niche"].mean(),
                 "mean_hypoxia": scores["hypoxia"].mean(),
+                "mean_ecm_remodeling": scores["ecm_remodeling"].mean() if "ecm_remodeling" in scores.columns else "",
+                "mean_angiogenesis": scores["angiogenesis"].mean() if "angiogenesis" in scores.columns else "",
             }
         )
     if not predictions.empty:
@@ -52,6 +54,8 @@ def summarize_run(label: str, folder: Path) -> dict:
         row["spatial_knn_edges"] = edges["edge_type"].eq("spatial_knn").sum()
         row["ligand_receptor_edges"] = edges["edge_type"].astype(str).str.startswith("ligand_receptor:").sum()
         row["hypoxia_gradient_edges"] = edges["edge_type"].eq("hypoxia_gradient").sum()
+        row["ecm_gradient_edges"] = edges["edge_type"].eq("ecm_gradient").sum()
+        row["histology_similarity_edges"] = edges["edge_type"].eq("histology_similarity").sum()
     if not source.empty:
         source_map = dict(zip(source.get("field", []), source.get("value", [])))
         row["source_page"] = source_map.get("source_page", "")

@@ -56,6 +56,17 @@ data/processed/spatial_emt_niche_gnn_geo_pdac/*
 !data/processed/spatial_emt_niche_gnn_geo_pdac/edge_type_summary.tsv
 !data/processed/spatial_emt_niche_gnn_geo_pdac/feature_perturbation.tsv
 !data/processed/spatial_emt_niche_gnn_geo_pdac/model_metrics.json
+!data/processed/spatial_emt_niche_gnn_geo_met_pdac_gse274557/
+data/processed/spatial_emt_niche_gnn_geo_met_pdac_gse274557/*
+!data/processed/spatial_emt_niche_gnn_geo_met_pdac_gse274557/dataset_source.tsv
+!data/processed/spatial_emt_niche_gnn_geo_met_pdac_gse274557/gse274557_sample_manifest.tsv
+!data/processed/spatial_emt_niche_gnn_geo_met_pdac_gse274557/gse274557_selected_samples.tsv
+!data/processed/spatial_emt_niche_gnn_geo_met_pdac_gse274557/spatial_niche_summary.tsv
+!data/processed/spatial_emt_niche_gnn_geo_met_pdac_gse274557/spatial_graph_summary.tsv
+!data/processed/spatial_emt_niche_gnn_geo_met_pdac_gse274557/edge_type_summary.tsv
+!data/processed/spatial_emt_niche_gnn_geo_met_pdac_gse274557/feature_perturbation.tsv
+!data/processed/spatial_emt_niche_gnn_geo_met_pdac_gse274557/model_metrics.json
+!data/processed/spatial_emt_niche_gnn_geo_met_pdac_gse274557/reference_deconvolution_nnls_summary.tsv
 !data/processed/spatial_emt_niche_gnn_geo_brain_met/
 data/processed/spatial_emt_niche_gnn_geo_brain_met/*
 !data/processed/spatial_emt_niche_gnn_geo_brain_met/dataset_source.tsv
@@ -101,3 +112,16 @@ data/processed/spatial_emt_niche_gnn_10x_colorectal/*
 !data/processed/spatial_emt_niche_gnn_histology/
 data/processed/spatial_emt_niche_gnn_histology/*
 !data/processed/spatial_emt_niche_gnn_histology/he_tile_feature_summary.tsv
+!data/processed/spatial_emt_niche_gnn_references/
+!data/processed/spatial_emt_niche_gnn_references/**
+!data/processed/spatial_emt_niche_gnn_htan/
+!data/processed/spatial_emt_niche_gnn_htan/**
+!data/processed/spatial_emt_niche_gnn_pathology_review/
+!data/processed/spatial_emt_niche_gnn_pathology_review/**
+
+# Keep new large rerun artifacts local even in older broadly-unignored cohort folders.
+data/processed/spatial_emt_niche_gnn_10x_breast/processed_h5ad/
+data/processed/spatial_emt_niche_gnn_10x_breast/cell_type_proxy_proportions.tsv
+data/processed/spatial_emt_niche_gnn_10x_breast/cell_type_proxy_summary.tsv
+data/processed/spatial_emt_niche_gnn_10x_breast/heterogeneous_edges.tsv
+data/processed/spatial_emt_niche_gnn_10x_breast/heterogeneous_nodes.tsv
