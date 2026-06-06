@@ -2,7 +2,7 @@
 
 ## Executive Summary
 
-The project is currently 90.3% complete by the weighted implementation tracker.
+The project is currently 90.5% complete by the weighted implementation tracker.
 It has processed 61,764 spatial spots and 1,303,172 graph edges across demo, 10x public cancer, GEO pancreatic cancer, and GEO brain-metastasis cohorts.
 The core value is an interpretable pipeline for weak-label discovery of EMT, partial EMT, stromal contamination, CAF/TAM/hypoxic niches, ECM remodeling, angiogenesis, and ferroptosis-window signals in spatial transcriptomics.
 
@@ -17,8 +17,8 @@ All current outputs are research hypotheses only. They are not diagnostic, progn
 | validation | 75.4% |
 | workflow_graph | 94.3% |
 | workflow_ingestion | 100.0% |
-| workflow_scoring | 91.9% |
-| overall | 90.3% |
+| workflow_scoring | 92.9% |
+| overall | 90.5% |
 
 ## Implemented System
 
@@ -108,13 +108,16 @@ Reference: GSE154778 PDAC primary and metastatic scRNA-seq, marker-assigned into
 | Pathologist expert review | Generate an AI-prioritized review queue with explicit human scoring fields and literature-grounded region classes. | review_queue_ready_human_annotation_required | A pathologist/translational scientist scores the queue; use expert_action and 0-3 morphology scores for validation. |
 | Metastasis/progression cohorts | Run brain-metastasis, GSE274557 Pt-1 pilot, and full GSE274557 patient-batched graph/model summaries. | full_patient_batched_graph_complete | Use patient-batched outputs for leave-patient/site validation and manuscript figures. |
 
+External access and expert-review execution details are consolidated in `docs/spatial_emt_niche_gnn/external_blocker_resolution_playbook.md`.
+The pathologist operations pack includes reviewer roles, sourcing options, calibration batches, high-impact overlap review, and a recruitment email.
+
 ## Remaining Work
 
 | Task | Status | Why It Still Matters |
 | --- | --- | --- |
 | HEST-1k manifest/reproducibility plan | hf_access_check_implemented_auth_required | Needed for multimodal scale and H&E-linked validation. |
 | cell2location/Tangram/RCTD/stereoscope deconvolution | advanced_environment_installed | Needed to separate malignant EMT from CAF/stromal mixtures. |
-| Candidate niche labels | review_queue_ready | Needed before claims move beyond weak-label biology. |
+| Candidate niche labels | review_ops_ready | Needed before claims move beyond weak-label biology. |
 | Histology-similarity edges | implemented_first_cohort | Needed to fuse transcriptomic neighborhoods with tissue morphology. |
 | HTAN spatial datasets | client_check_ready_credentials_required | Needed for external validation beyond 10x/GEO examples. |
 | Additional GEO Visium cancer cohorts | implemented_multiple_cohorts | Needed for broader generalization and disease diversity. |

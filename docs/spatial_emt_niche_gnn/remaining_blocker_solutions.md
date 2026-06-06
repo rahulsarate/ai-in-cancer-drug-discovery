@@ -53,6 +53,14 @@ Practical route:
 6. Place the matrix, barcodes/features, spatial metadata, and image files under
    `data/raw/spatial/htan/wustl_pdac/<sample_id>/`.
 
+Exact local checks:
+
+```text
+.venv-deconv\Scripts\htan.exe config check
+.venv-deconv\Scripts\synapse.exe login
+.venv-deconv\Scripts\gen3.exe --help
+```
+
 ## Pathologist Expert Review
 
 Status: review template and an AI-prioritized scoring queue exist. Expert
@@ -62,11 +70,22 @@ Generated files:
 
 - `data/processed/spatial_emt_niche_gnn_pathology_review/pathologist_review_queue.tsv`
 - `data/processed/spatial_emt_niche_gnn_pathology_review/pathologist_review_queue_summary.tsv`
+- `data/processed/spatial_emt_niche_gnn_pathology_review/pathologist_review_batches.tsv`
+- `data/processed/spatial_emt_niche_gnn_pathology_review/pathologist_reviewer_roles.tsv`
+- `data/processed/spatial_emt_niche_gnn_pathology_review/pathologist_sourcing_options.tsv`
+- `data/processed/spatial_emt_niche_gnn_pathology_review/pathologist_recruitment_email.md`
+- `data/processed/spatial_emt_niche_gnn_pathology_review/pathologist_review_sop.md`
 
 The template asks for tumor-rich, invasive-edge, stroma-rich/CAF-rich,
 necrosis/hypoxia, immune/TAM-rich, vessel-rich, and artifact/acellular regions.
 These labels can validate whether weak EMT labels are tumor-cell EMT, stromal
 inflation, or mixed-spot ambiguity.
+
+Best solution: use a small expert panel. One lead pathologist calibrates and
+adjudicates, one second reviewer independently scores overlap cases, and one
+computational pathology or cancer-biology reviewer checks whether morphology
+supports the transcriptomic interpretation. Use paid expert networks only as a
+backup pilot route, with credential verification and no final clinical claims.
 
 ## Pathology Foundation Embeddings
 
@@ -85,6 +104,20 @@ Recommended staged solution:
    models after weights/access are configured.
 3. Compare foundation embeddings against the current histology-similarity edge
    baseline and pathologist regions.
+
+Exact local check:
+
+```text
+$env:HF_TOKEN="hf_your_token_here"
+.venv-deconv\Scripts\python.exe scripts\check_foundation_model_access.py
+```
+
+Do not commit `HF_TOKEN`, downloaded weights, or gated HEST images.
+
+## Consolidated External Access Playbook
+
+See `docs/spatial_emt_niche_gnn/external_blocker_resolution_playbook.md` for
+credential, download, and expert-review decision rules.
 
 ## Advanced Deconvolution Tooling
 

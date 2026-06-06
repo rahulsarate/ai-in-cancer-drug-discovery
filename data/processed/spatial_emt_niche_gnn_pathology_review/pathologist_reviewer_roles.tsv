@@ -1,0 +1,4 @@
+role	preferred_profile	responsibility	minimum_cases	priority
+lead_pathologist	board-certified pathologist with GI, thoracic, breast, or translational cancer pathology experience	calibrate rubric, score high-impact cases, adjudicate disagreements	120	highest
+second_pathologist_or_fellow	second attending, pathology fellow, or senior resident under supervision	independent overlap scoring and disagreement discovery	100	high
+computational_pathology_scientist	computational pathologist or cancer biologist familiar with spatial transcriptomics	check whether morphology labels support transcriptomic interpretation	80	medium

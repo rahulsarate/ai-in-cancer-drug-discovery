@@ -4,5 +4,5 @@ starter	32	29.6	92.5
 validation	28	21.1	75.4
 workflow_graph	42	39.6	94.3
 workflow_ingestion	34	34.0	100.0
-workflow_scoring	42	38.6	91.9
-overall	210	189.69999999999996	90.3
+workflow_scoring	42	39.0	92.9
+overall	210	190.09999999999997	90.5

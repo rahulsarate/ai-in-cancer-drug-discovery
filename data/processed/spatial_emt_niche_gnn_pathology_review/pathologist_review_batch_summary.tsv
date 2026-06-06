@@ -1,0 +1,13 @@
+batch_id	review_phase	ai_suggested_review_class	review_items	required_reviewers
+BATCH_CALIBRATION	calibration	caf_tam_hypoxic	28	3
+BATCH_CALIBRATION	calibration	stromal_inflated_emt	14	3
+BATCH_CALIBRATION	calibration	angiogenic_vessel_proxy	8	3
+BATCH_CALIBRATION	calibration	ecm_invasive_edge_proxy	6	3
+BATCH_CALIBRATION	calibration	ferroptosis_window_proxy	2	3
+BATCH_CALIBRATION	calibration	tumor_emt_high	2	3
+BATCH_CAF_TAM_HYPOXIA	primary	caf_tam_hypoxic	95	1
+BATCH_INVASIVE_EDGE	primary	ecm_invasive_edge_proxy	105	2
+BATCH_PRIMARY	primary	angiogenic_vessel_proxy	121	1
+BATCH_PRIMARY	primary	ferroptosis_window_proxy	32	1
+BATCH_STROMAL_EMT	primary	stromal_inflated_emt	118	2
+BATCH_TUMOR_EMT	primary	tumor_emt_high	69	2
