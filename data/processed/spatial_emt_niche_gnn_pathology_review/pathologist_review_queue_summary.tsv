@@ -1,0 +1,9 @@
+cohort	ai_suggested_review_class	review_items
+10x_public	stromal_inflated_emt	6
+10x_public	angiogenic_vessel_proxy	4
+geo_met_pdac_gse274557	stromal_inflated_emt	126
+geo_met_pdac_gse274557	angiogenic_vessel_proxy	125
+geo_met_pdac_gse274557	caf_tam_hypoxic	123
+geo_met_pdac_gse274557	ecm_invasive_edge_proxy	111
+geo_met_pdac_gse274557	tumor_emt_high	71
+geo_met_pdac_gse274557	ferroptosis_window_proxy	34

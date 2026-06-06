@@ -1,4 +1,6 @@
 .venv/
+.venv-deconv/
+.r-lib/
 __pycache__/
 *.pyc
 .pytest_cache/
@@ -116,6 +118,7 @@ data/processed/spatial_emt_niche_gnn_10x_colorectal/*
 data/processed/spatial_emt_niche_gnn_histology/*
 !data/processed/spatial_emt_niche_gnn_histology/he_tile_feature_summary.tsv
 !data/processed/spatial_emt_niche_gnn_histology/pathology_foundation_model_manifest.tsv
+!data/processed/spatial_emt_niche_gnn_histology/foundation_model_access_status.tsv
 !data/processed/spatial_emt_niche_gnn_histology/morphology_embedding_baseline_summary.tsv
 !data/processed/spatial_emt_niche_gnn_references/
 !data/processed/spatial_emt_niche_gnn_references/**

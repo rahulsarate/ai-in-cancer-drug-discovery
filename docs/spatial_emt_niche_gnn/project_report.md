@@ -2,7 +2,7 @@
 
 ## Executive Summary
 
-The project is currently 87.2% complete by the weighted implementation tracker.
+The project is currently 90.3% complete by the weighted implementation tracker.
 It has processed 61,764 spatial spots and 1,303,172 graph edges across demo, 10x public cancer, GEO pancreatic cancer, and GEO brain-metastasis cohorts.
 The core value is an interpretable pipeline for weak-label discovery of EMT, partial EMT, stromal contamination, CAF/TAM/hypoxic niches, ECM remodeling, angiogenesis, and ferroptosis-window signals in spatial transcriptomics.
 
@@ -12,13 +12,13 @@ All current outputs are research hypotheses only. They are not diagnostic, progn
 
 | Phase | Completion |
 | --- | ---: |
-| advanced | 81.6% |
-| starter | 87.5% |
-| validation | 72.9% |
+| advanced | 83.8% |
+| starter | 92.5% |
+| validation | 75.4% |
 | workflow_graph | 94.3% |
 | workflow_ingestion | 100.0% |
-| workflow_scoring | 83.3% |
-| overall | 87.2% |
+| workflow_scoring | 91.9% |
+| overall | 90.3% |
 
 ## Implemented System
 
@@ -101,26 +101,27 @@ Reference: GSE154778 PDAC primary and metastatic scRNA-seq, marker-assigned into
 
 | Blocker | Current Solution | Status | Next Action |
 | --- | --- | --- | --- |
-| HEST-1k scale ingestion | Use authenticated HuggingFace/Hest library manifest; select cancer subsets first. | access_required | Request/confirm HF access, then cache HEST_v1_1_0.csv and subset cancer samples. |
-| H&E/pathology features | Use 10x H&E tile features plus morphology embedding baseline; later add configured foundation model weights. | morphology_embedding_baseline_implemented | Configure UNI/CONCH/HEST-compatible model weights and compare embeddings to the current baseline. |
-| Real deconvolution | Use marker-proxy, marker-reference NNLS, and real GSE154778 scRNA-derived NNLS now. | real_scrna_reference_v1_nnls_run | Install Scanpy/AnnData/Tangram/cell2location or R/spacexr in a dedicated environment for advanced deconvolution. |
-| HTAN validation | Use HTAN portal manifests and level-2 spatial transcriptomics auxiliary/RNA-seq files. | htan_wustl_pdac_target_manifest_ready | Install/configure Synapse or use the HTAN portal Download selected files workflow for HTAN WUSTL PDAC. |
+| HEST-1k scale ingestion | Use scripts/check_foundation_model_access.py to verify HuggingFace access; select cancer subsets before full image download. | hf_access_check_implemented_auth_required | Accept HEST/HuggingFace terms with an institutional account, set HF_TOKEN, then cache HEST metadata and cancer subsets. |
+| H&E/pathology features | Use 10x H&E tile features, morphology baseline embeddings, and foundation access checks for UNI2/UNI/CONCH. | baseline_ready_foundation_access_check_implemented | After HF terms are accepted, run optional foundation embedding adapters and compare to the current baseline. |
+| Real deconvolution | Use marker-proxy, real GSE154778 NNLS, Tangram/Scanpy/PyTorch/cell2location Python env, and Bioconductor spacexr/RCTD R env. | advanced_environment_installed_cell2location_tangram_rctd_ready | Implement Tangram, RCTD, and cell2location adapters using the real GSE154778 reference; prefer GPU/WSL for long cell2location model training. |
+| HTAN validation | Use HTAN portal manifests plus scripts/check_htan_access.py; Synapse client is installed, Gen3 remains credential/profile dependent. | client_check_implemented_synapse_credentials_required | Log in to Synapse or configure Gen3 credentials, select open-access WUSTL PDAC files in the HTAN portal, and download selected assay files. |
+| Pathologist expert review | Generate an AI-prioritized review queue with explicit human scoring fields and literature-grounded region classes. | review_queue_ready_human_annotation_required | A pathologist/translational scientist scores the queue; use expert_action and 0-3 morphology scores for validation. |
 | Metastasis/progression cohorts | Run brain-metastasis, GSE274557 Pt-1 pilot, and full GSE274557 patient-batched graph/model summaries. | full_patient_batched_graph_complete | Use patient-batched outputs for leave-patient/site validation and manuscript figures. |
 
 ## Remaining Work
 
 | Task | Status | Why It Still Matters |
 | --- | --- | --- |
-| HEST-1k manifest/reproducibility plan | access_required | Needed for multimodal scale and H&E-linked validation. |
-| cell2location/Tangram/RCTD/stereoscope deconvolution | environment_blocked_after_real_reference | Needed to separate malignant EMT from CAF/stromal mixtures. |
-| Candidate niche labels | template_ready | Needed before claims move beyond weak-label biology. |
+| HEST-1k manifest/reproducibility plan | hf_access_check_implemented_auth_required | Needed for multimodal scale and H&E-linked validation. |
+| cell2location/Tangram/RCTD/stereoscope deconvolution | advanced_environment_installed | Needed to separate malignant EMT from CAF/stromal mixtures. |
+| Candidate niche labels | review_queue_ready | Needed before claims move beyond weak-label biology. |
 | Histology-similarity edges | implemented_first_cohort | Needed to fuse transcriptomic neighborhoods with tissue morphology. |
-| HTAN spatial datasets | portal_download_pending | Needed for external validation beyond 10x/GEO examples. |
+| HTAN spatial datasets | client_check_ready_credentials_required | Needed for external validation beyond 10x/GEO examples. |
 | Additional GEO Visium cancer cohorts | implemented_multiple_cohorts | Needed for broader generalization and disease diversity. |
 | SpatialTME/SCAR public atlas feasibility | feasibility_manifest_ready | Needed to compare against public immune/stromal spatial atlases. |
 | Matched scRNA-seq references | real_reference_v1 | Needed for real deconvolution and compartment-level claims. |
 | Metastasis/progression cohorts | full_graph_complete | First cohort done; matched primary-metastatic PDAC remains the important scale-up. |
-| Pathology foundation embeddings | embedding_baseline_ready | Needed for richer H&E features beyond color/stain proxies. |
+| Pathology foundation embeddings | baseline_ready_foundation_access_check | Needed for richer H&E features beyond color/stain proxies. |
 
 ## Next Execution Order
 

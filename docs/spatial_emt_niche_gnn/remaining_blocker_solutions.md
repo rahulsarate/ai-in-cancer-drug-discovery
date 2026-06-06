@@ -18,8 +18,8 @@ failure recovery simple.
 
 ## Real scRNA References
 
-Status: marker-reference NNLS has run; true public/matched scRNA remains the
-next upgrade.
+Status: marker-reference NNLS has run, and a real GSE154778 marker-assigned
+PDAC scRNA reference is available for advanced deconvolution.
 
 Prioritized references:
 
@@ -38,8 +38,10 @@ Execution path:
 
 ## HTAN Portal Download
 
-Status: HTAN WUSTL PDAC manifest is ready; actual assay download requires
-using the HTAN Data Portal file table and Synapse/Gen3 workflow.
+Status: HTAN WUSTL PDAC manifest is ready, the HTAN CLI is installed, and
+Synapse/Gen3 status checks are executable. Actual assay download still requires
+logged-in HTAN/Synapse/Gen3 credentials and selected file IDs from the HTAN
+portal.
 
 Practical route:
 
@@ -53,7 +55,13 @@ Practical route:
 
 ## Pathologist Expert Review
 
-Status: review template exists; expert review is external human work.
+Status: review template and an AI-prioritized scoring queue exist. Expert
+review remains external human work.
+
+Generated files:
+
+- `data/processed/spatial_emt_niche_gnn_pathology_review/pathologist_review_queue.tsv`
+- `data/processed/spatial_emt_niche_gnn_pathology_review/pathologist_review_queue_summary.tsv`
 
 The template asks for tumor-rich, invasive-edge, stroma-rich/CAF-rich,
 necrosis/hypoxia, immune/TAM-rich, vessel-rich, and artifact/acellular regions.
@@ -62,8 +70,13 @@ inflation, or mixed-spot ambiguity.
 
 ## Pathology Foundation Embeddings
 
-Status: color/stain-proxy histology features and first histology-similarity
-edges are implemented. Foundation embeddings require model weights/access.
+Status: color/stain-proxy histology features, first histology-similarity edges,
+morphology embedding baseline, and HuggingFace access checks are implemented.
+Foundation file downloads require accepted model/dataset terms and `HF_TOKEN`.
+
+Generated access file:
+
+- `data/processed/spatial_emt_niche_gnn_histology/foundation_model_access_status.tsv`
 
 Recommended staged solution:
 
@@ -72,3 +85,17 @@ Recommended staged solution:
    models after weights/access are configured.
 3. Compare foundation embeddings against the current histology-similarity edge
    baseline and pathologist regions.
+
+## Advanced Deconvolution Tooling
+
+Status: dedicated local tooling is installed.
+
+- Python 3.10 venv: `.venv-deconv`
+- Installed/import-verified: Scanpy, AnnData, PyTorch CPU, Tangram,
+  cell2location, HuggingFace Hub, Synapse client, HTAN CLI
+- R 4.6.0 local library: `.r-lib`
+- Installed/import-verified: Bioconductor `spacexr 1.4.0`
+
+Generated readiness file:
+
+- `data/processed/spatial_emt_niche_gnn_blockers/deconvolution_tool_readiness.tsv`

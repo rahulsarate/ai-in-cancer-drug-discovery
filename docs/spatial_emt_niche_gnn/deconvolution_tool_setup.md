@@ -6,35 +6,44 @@ The project now has a real PDAC scRNA-derived marker-assigned reference from
 GSE154778 and an NNLS deconvolution run against the GSE274557 matched Pt-1
 spatial pilot.
 
-The following advanced tools are not installed in the current Windows Python
-3.14 environment:
+The current Windows Python 3.14 runtime is no longer the recommended runtime
+for advanced spatial deconvolution. A dedicated Python 3.10 environment now
+exists at `.venv-deconv`, and a project-local R library exists at `.r-lib`.
 
-- cell2location
+Installed and import-verified in `.venv-deconv`:
+
+- anndata
+- scanpy
+- PyTorch CPU
 - Tangram
-- Scanpy/AnnData
-- PyTorch
-- R/RCTD
+- cell2location
+- HuggingFace Hub
+- Synapse client
+
+Note: cell2location imports successfully, but full model training should still
+be treated as a heavier run. Prefer WSL/Linux or GPU-backed execution for
+publication-scale training.
+
+Installed and import-verified in local R:
+
+- R 4.6.0
+- Bioconductor `spacexr 1.4.0`
 
 ## Recommended Environment
 
-Use a separate conda or micromamba environment instead of the current Python
-3.14 runtime:
+Use the existing project environment or rebuild it with:
 
 ```text
-python=3.10 or python=3.11
-scanpy
-anndata
-pytorch
-tangram-sc
-cell2location
+py -3.10 -m venv .venv-deconv
+.venv-deconv\Scripts\python.exe -m pip install scanpy anndata torch tangram-sc cell2location huggingface_hub synapseclient
 ```
 
 For RCTD/spacexr:
 
 ```text
-R >= 4.2
-Bioconductor dependencies
-spacexr
+winget install --id RProject.R --exact
+$env:R_LIBS_USER=(Resolve-Path .r-lib).Path
+& "C:\Program Files\R\R-4.6.0\bin\Rscript.exe" -e "install.packages('BiocManager'); BiocManager::install('spacexr')"
 ```
 
 ## Inputs Already Available
@@ -51,7 +60,7 @@ spacexr
 ## Next Run Order
 
 1. Use NNLS as the sanity check baseline.
-2. Install Scanpy/AnnData and export the reference/spatial tables to h5ad.
-3. Run Tangram first because it is usually lighter than cell2location.
-4. Run cell2location after validating the reference and GPU/CPU runtime.
-5. Run RCTD in an R environment to cross-check spot mixture estimates.
+2. Export the reference/spatial tables to h5ad.
+3. Run Tangram first because it is installed and import-verified.
+4. Run RCTD/spacexr to cross-check spot mixture estimates.
+5. Run cell2location after validating the same input, preferably in WSL/Linux or a GPU-backed environment for full-scale training.

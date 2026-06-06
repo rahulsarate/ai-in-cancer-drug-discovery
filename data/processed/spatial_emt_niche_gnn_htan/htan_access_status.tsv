@@ -1,0 +1,34 @@
+resource	tool	available	authenticated	evidence	next_action
+HTAN CLI	htan	True	False	"{
+  ""ok"": true,
+  ""status"": {
+    ""synapse"": {
+      ""configured"": false,
+      ""method"": null
+    },
+    ""portal"": {
+      ""configured"": false,
+      ""source"": null,
+      ""path"": null
+    },
+    ""gen3"": {
+      ""configured"": false,
+      ""method"": null
+    },
+    ""bigquery"": {
+      ""configured"": false,
+      ""method"": null
+    },
+    ""uv"": {
+      ""available"": false,
+      ""path"": null
+    },
+    ""python"": {
+      ""version"": ""3.10.11"",
+      ""sufficient"": true
+    }
+  }
+}"	Configure HTAN portal/Synapse/Gen3 credentials after selected HTAN files are known.
+Synapse client and login	synapseclient	True	False	"{""synapseclient_version"": ""4.12.0"", ""logged_in"": false, ""error"": ""SynapseNoCredentialsError: No valid authentication credentials provided.\nTried profile: 'default', email: 'N/A'.\nCheck your `.synapseConfig` or ensure the provided auth token is valid.""}"	Run `synapse login` or set Synapse credentials, then rerun this check.
+Gen3 client and credentials	gen3-client	False	False	gen3-client not found on PATH	Install Gen3 client and configure the portal-generated profile only for controlled/CRDC files.
+HTAN WUSTL PDAC target manifest	local manifest	True	False	data/processed/spatial_emt_niche_gnn_htan/htan_wustl_pdac_manifest.tsv	Select one open-access Level 3/4 spatial assay file in the HTAN portal and use its Synapse/Gen3 instructions.
