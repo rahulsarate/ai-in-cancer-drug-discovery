@@ -1,0 +1,3 @@
+metric	value	interpretation
+internal_blocker_resolution_percent	100.0	Engineering/reproducibility readiness for all known blockers.
+blockers_closeable_without_credentials_or_human_percent	20.0	Some blockers require legal credentials or human expert work by design.

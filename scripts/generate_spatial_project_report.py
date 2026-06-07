@@ -14,6 +14,8 @@ GSE274557_SCALEUP_PATH = Path("data/processed/spatial_emt_niche_gnn_blockers/gse
 GSE274557_SITE_PATH = Path("data/processed/spatial_emt_niche_gnn_geo_met_pdac_gse274557_fullprep/gse274557_full_site_summary.tsv")
 GSE274557_PATIENT_GRAPH_PATH = Path("data/processed/spatial_emt_niche_gnn_geo_met_pdac_gse274557_patient_batches/gse274557_patient_graph_batch_summary.tsv")
 GSE154778_DECONV_PATH = Path("data/processed/spatial_emt_niche_gnn_geo_met_pdac_gse274557/gse154778_scrna_deconv/reference_deconvolution_nnls_summary.tsv")
+FINAL_BLOCKER_AUDIT_PATH = Path("data/processed/spatial_emt_niche_gnn_project_status/final_blocker_audit.tsv")
+FINAL_BLOCKER_AUDIT_SUMMARY_PATH = Path("data/processed/spatial_emt_niche_gnn_project_status/final_blocker_audit_summary.tsv")
 OUT_PATH = Path("docs/spatial_emt_niche_gnn/project_report.md")
 
 
@@ -123,6 +125,17 @@ def blocker_rows(blockers: pd.DataFrame) -> list[str]:
     return rows
 
 
+def final_blocker_rows(audit: pd.DataFrame) -> list[str]:
+    if audit.empty:
+        return ["Final blocker audit has not been generated yet."]
+    rows = ["| Blocker | Category | Internal Status | External Action |", "| --- | --- | --- | --- |"]
+    for _, row in audit.iterrows():
+        rows.append(
+            f"| {row['blocker']} | {row['category']} | {row['internal_status']} | {row['required_external_action']} |"
+        )
+    return rows
+
+
 def metastasis_rows(metastasis: pd.DataFrame) -> list[str]:
     if metastasis.empty:
         return ["No metastasis candidate table was found."]
@@ -213,6 +226,8 @@ def write_report() -> None:
     gse_site = read_table(GSE274557_SITE_PATH)
     patient_graph = read_table(GSE274557_PATIENT_GRAPH_PATH)
     scrna_deconv = read_table(GSE154778_DECONV_PATH)
+    final_audit = read_table(FINAL_BLOCKER_AUDIT_PATH)
+    final_audit_summary = read_table(FINAL_BLOCKER_AUDIT_SUMMARY_PATH)
 
     overall = status.loc[status["phase"].eq("overall"), "completion_percent"].iloc[0] if not status.empty else 0
     total_spots = int(comparison["spots"].sum()) if "spots" in comparison else 0
@@ -285,6 +300,18 @@ def write_report() -> None:
         "",
         "External access and expert-review execution details are consolidated in `docs/spatial_emt_niche_gnn/external_blocker_resolution_playbook.md`.",
         "The pathologist operations pack includes reviewer roles, sourcing options, calibration batches, high-impact overlap review, and a recruitment email.",
+        "",
+        "## Final Blocker Audit",
+        "",
+        *(
+            [
+                f"Internal blocker resolution: {float(final_audit_summary.loc[final_audit_summary['metric'].eq('internal_blocker_resolution_percent'), 'value'].iloc[0]):.1f}%."
+            ]
+            if not final_audit_summary.empty
+            else ["Internal blocker resolution summary has not been generated yet."]
+        ),
+        "",
+        *final_blocker_rows(final_audit),
         "",
         "## Remaining Work",
         "",

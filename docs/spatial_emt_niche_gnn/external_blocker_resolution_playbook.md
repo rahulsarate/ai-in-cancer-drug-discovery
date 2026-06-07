@@ -32,6 +32,7 @@ Use a read-only or fine-grained token. Do not store it in the repo.
 ```powershell
 $env:HF_TOKEN="hf_your_token_here"
 .venv-deconv\Scripts\python.exe scripts\check_foundation_model_access.py
+.venv-deconv\Scripts\python.exe scripts\download_hf_gated_resources.py --attempt-download
 ```
 
 Expected unlock sequence:
@@ -67,12 +68,15 @@ Gen3 depending on file access type.
 ```powershell
 .venv-deconv\Scripts\htan.exe config check
 .venv-deconv\Scripts\synapse.exe login
+python scripts\build_htan_selected_file_template.py
+python scripts\download_htan_selected_files.py
 ```
 
 For Gen3-controlled files, configure the portal-generated credentials/profile:
 
 ```powershell
 .venv-deconv\Scripts\gen3.exe --help
+python scripts\download_htan_selected_files.py --execute
 ```
 
 Target workflow:
@@ -140,6 +144,24 @@ Report:
 | HEST/UNI/CONCH | Run foundation embeddings on review queue first | Keep color/stain baseline and publish as reproducible comparator |
 | HTAN | Add external WUSTL PDAC validation | Use GEO/10x validation while credentials process |
 | Pathologist review | Move from weak-label biology to morphology-anchored validation | Keep claims explicitly weak-label and hypothesis-generating |
+
+## Final Audit
+
+Run:
+
+```powershell
+python scripts\final_blocker_audit.py
+```
+
+The audit reports two different facts:
+
+- Internal blocker resolution, meaning code, manifests, and execution paths are
+  ready.
+- External closure, meaning credentials, accepted licenses, selected HTAN files,
+  or human expert labels are actually present.
+
+The project can be internally 100% ready while still requiring external legal
+or human actions before the scientific claims are final.
 
 ## Sources
 

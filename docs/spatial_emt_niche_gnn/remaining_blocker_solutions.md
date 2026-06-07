@@ -110,6 +110,7 @@ Exact local check:
 ```text
 $env:HF_TOKEN="hf_your_token_here"
 .venv-deconv\Scripts\python.exe scripts\check_foundation_model_access.py
+.venv-deconv\Scripts\python.exe scripts\download_hf_gated_resources.py --attempt-download
 ```
 
 Do not commit `HF_TOKEN`, downloaded weights, or gated HEST images.
@@ -132,3 +133,24 @@ Status: dedicated local tooling is installed.
 Generated readiness file:
 
 - `data/processed/spatial_emt_niche_gnn_blockers/deconvolution_tool_readiness.tsv`
+
+Advanced adapter inputs are now prepared for the GSE274557 matched PDAC pilot:
+
+- `data/processed/spatial_emt_niche_gnn_geo_met_pdac_gse274557/advanced_deconvolution/advanced_deconvolution_input_manifest.tsv`
+- `data/processed/spatial_emt_niche_gnn_geo_met_pdac_gse274557/advanced_deconvolution/advanced_deconvolution_input_qc.tsv`
+
+Run:
+
+```text
+.venv-deconv\Scripts\python.exe scripts\prepare_advanced_deconvolution_inputs.py --expression data\processed\spatial_emt_niche_gnn_geo_met_pdac_gse274557\geo_met_pdac_gse274557_signature_expression.tsv --metadata data\processed\spatial_emt_niche_gnn_geo_met_pdac_gse274557\geo_met_pdac_gse274557_spatial_metadata.tsv --reference data\processed\spatial_emt_niche_gnn_references\gse154778\gse154778_scrna_marker_reference.tsv --out-dir data\processed\spatial_emt_niche_gnn_geo_met_pdac_gse274557\advanced_deconvolution
+```
+
+## Final Blocker Audit
+
+Generated files:
+
+- `data/processed/spatial_emt_niche_gnn_project_status/final_blocker_audit.tsv`
+- `data/processed/spatial_emt_niche_gnn_project_status/final_blocker_audit_summary.tsv`
+
+The audit separates internal engineering completion from external legal and
+human expert gates.

@@ -1,0 +1,6 @@
+check	value	status
+shared_genes	125	ok
+spatial_h5ad	data\processed\spatial_emt_niche_gnn_geo_met_pdac_gse274557\advanced_deconvolution\spatial_counts_for_deconvolution.h5ad	ok
+reference_h5ad	data\processed\spatial_emt_niche_gnn_geo_met_pdac_gse274557\advanced_deconvolution\scrna_reference_pseudocells_for_deconvolution.h5ad	ok
+spots	8756	ok
+reference_cell_types	7	ok

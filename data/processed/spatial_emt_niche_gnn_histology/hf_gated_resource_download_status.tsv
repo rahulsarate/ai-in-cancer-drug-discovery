@@ -1,0 +1,5 @@
+resource	repo_id	repo_type	filename	local_subdir	safe_to_attempt	hf_token_configured	download_attempted	downloaded	local_path	error	next_action
+HEST metadata	MahmoodLab/hest	dataset	HEST_v1_1_0.csv	data/raw/hest	True	False	False	False			Set HF_TOKEN and rerun with --attempt-download after accepting gated terms.
+UNI2-h model card	MahmoodLab/UNI2-h	model	README.md	data/raw/pathology_foundation/UNI2-h	True	False	False	False			Set HF_TOKEN and rerun with --attempt-download after accepting gated terms.
+UNI model card	MahmoodLab/UNI	model	README.md	data/raw/pathology_foundation/UNI	True	False	False	False			Set HF_TOKEN and rerun with --attempt-download after accepting gated terms.
+CONCH model card	MahmoodLab/CONCH	model	README.md	data/raw/pathology_foundation/CONCH	True	False	False	False			Set HF_TOKEN and rerun with --attempt-download after accepting gated terms.

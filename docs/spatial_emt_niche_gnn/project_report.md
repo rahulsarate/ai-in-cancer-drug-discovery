@@ -111,6 +111,18 @@ Reference: GSE154778 PDAC primary and metastatic scRNA-seq, marker-assigned into
 External access and expert-review execution details are consolidated in `docs/spatial_emt_niche_gnn/external_blocker_resolution_playbook.md`.
 The pathologist operations pack includes reviewer roles, sourcing options, calibration batches, high-impact overlap review, and a recruitment email.
 
+## Final Blocker Audit
+
+Internal blocker resolution: 100.0%.
+
+| Blocker | Category | Internal Status | External Action |
+| --- | --- | --- | --- |
+| HEST gated download | credential_legal_gate | complete | Accept HEST terms and set HF_TOKEN |
+| UNI/CONCH foundation weights | credential_license_gate | complete | Accept model terms and set HF_TOKEN; keep weights local |
+| HTAN selected assay download | credential_file_selection_gate | complete | Export selected HTAN file IDs and configure portal/Synapse/Gen3 credentials |
+| Pathologist expert scoring | human_expert_gate | complete | Verified pathologist or translational pathology reviewer scores the queue |
+| Advanced deconvolution adapters | engineering_gate | complete | None for adapter readiness; full publication-scale model training remains optional/heavy |
+
 ## Remaining Work
 
 | Task | Status | Why It Still Matters |

@@ -1,0 +1,2 @@
+htan_data_file_id	sample_id	atlas	cancer_type	assay	access_type	synapse_id	gen3_guid	expected_file_role	portal_export_date	download_status	local_target_dir	notes	attempted	success	command	evidence	next_action
+	HT264P1	HTAN WUSTL	pancreatic_cancer	10x Visium spatial transcriptomics	synapse_or_gen3			matrix_or_spatial_metadata_or_image		pending_portal_file_selection	data/raw/spatial/htan/wustl_pdac/HT264P1	Fill from HTAN portal Download selected files export.	False	False		No Synapse ID or Gen3 GUID filled in.	Export selected file IDs from the HTAN portal.
