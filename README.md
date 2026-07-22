@@ -8,6 +8,19 @@ This repository is a public-data research starter kit for two linked projects:
 
 The project is designed for reproducible GitHub work. Large datasets are not committed. Place public data under `data/raw/`, run pipelines, and write outputs to `data/processed/`.
 
+## Pan-Cancer EMT State Atlas Website
+
+The atlas website is the easiest way to explore the project. It includes clinician and researcher modes, cancer-group comparisons, sample search, clinical warnings, malignant-versus-CAF/TAM single-cell separation, spatial/pathology review, target evidence, downloads, and a plain-language Guide & Q&A.
+
+Launch it from the repository root:
+
+```powershell
+$env:PYTHONPATH="src"
+streamlit run apps/pan_cancer_emt_state_atlas_app.py
+```
+
+Then open the local URL shown by Streamlit. The standalone project guide is available at `docs/pan_cancer_emt_state_atlas/project_questions_and_answers.md`.
+
 ## Quick Start
 
 ```powershell

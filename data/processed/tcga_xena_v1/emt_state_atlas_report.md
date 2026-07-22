@@ -38,4 +38,7 @@ Interpret all results as research hypotheses. Bulk EMT scores can be inflated by
 
 ## Plots
 
-No plots were written because plotting dependencies were unavailable or required columns were missing.
+- emt_vs_stromal.png
+- partial_emt_distribution.png
+- niche_heatmap.png
+- ferroptosis_window_top.png
