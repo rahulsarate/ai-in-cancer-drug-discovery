@@ -1,0 +1,44 @@
+field_name	level	type	required	description
+patient_id	patient	string	yes	De-identified patient identifier.
+sample_id	sample	string	yes	Unique sample identifier.
+timepoint	sample	categorical	yes	T0 pretreatment, T1 early on-treatment, T2 surgery/residual disease, or T3 follow-up/relapse.
+cancer_type	patient	categorical	yes	Should be triple-negative breast cancer for this project.
+er_status	patient	categorical	yes	Estrogen receptor status; must be negative for TNBC.
+pr_status	patient	categorical	yes	Progesterone receptor status; must be negative for TNBC.
+her2_status	patient	categorical	yes	HER2 status; must be negative for TNBC.
+tnbc_confirmed	patient	boolean	yes	Whether ER-negative, PR-negative, HER2-negative status is confirmed.
+age	patient	numeric	no	Age at diagnosis.
+clinical_stage	patient	categorical	no	Clinical stage before NAC.
+tumor_grade	patient	categorical	no	Histologic tumor grade.
+nac_regimen	patient	categorical	yes	Neoadjuvant chemotherapy regimen.
+cycle_number	sample	numeric	no	Cycle number at sample collection.
+pcr_status	patient	binary	yes	Pathological complete response after NAC.
+residual_cancer_burden	patient	numeric	no	Residual cancer burden score if available.
+relapse_status	patient	binary	no	Relapse status during follow-up.
+followup_months	patient	numeric	no	Follow-up duration in months.
+epithelial_score	sample	numeric	yes	Epithelial transcriptional program score.
+mesenchymal_score	sample	numeric	yes	Mesenchymal transcriptional program score.
+partial_emt_score	sample	numeric	yes	Hybrid or partial EMT score.
+stemness_score	sample	numeric	no	Stem-like or tumor-initiating-cell program score.
+persister_score	sample	numeric	no	Drug-tolerant persister-like program score.
+proliferation_score	sample	numeric	no	Cell-cycle/proliferation program score.
+hypoxia_score	sample	numeric	no	Hypoxia pathway activity score.
+tgfb_score	sample	numeric	no	TGF-beta pathway activity score.
+axl_tam_score	sample	numeric	no	AXL/TYRO3/MERTK/GAS6 pathway activity score.
+caf_score	sample	numeric	no	Cancer-associated fibroblast/stromal signal score.
+tam_score	sample	numeric	no	Tumor-associated macrophage signal score.
+cytotoxic_immune_score	sample	numeric	no	CD8/NK cytotoxic immune activity score.
+immune_checkpoint_score	sample	numeric	no	Checkpoint/exhaustion program score.
+tumor_volume	sample	numeric	no	MRI or imaging-derived tumor volume.
+tumor_cellularity	sample	numeric	no	Pathology-estimated tumor cellularity.
+epithelial_fraction_estimate	model_output	numeric	yes	Estimated E compartment fraction.
+hybrid_fraction_estimate	model_output	numeric	yes	Estimated H compartment fraction.
+mesenchymal_fraction_estimate	model_output	numeric	yes	Estimated M compartment fraction.
+persister_fraction_estimate	model_output	numeric	yes	Estimated P compartment fraction.
+plasticity_index	model_output	numeric	yes	Estimated ability of tumor population to switch EMT states.
+emt_shift_delta	model_output	numeric	yes	Change in EMT state between time points or simulated under therapy.
+therapy_selection_pressure	model_output	numeric	yes	Model-estimated selection pressure favoring resistant H/M/P states.
+pcr_probability	model_output	numeric	yes	Predicted probability of pathological complete response.
+residual_disease_probability	model_output	numeric	yes	Predicted probability of residual disease.
+dominant_resistance_axis	model_output	categorical	yes	Most likely resistance axis, such as AXL, TGF-beta, hypoxia, CAF, persister, or immune exclusion.
+prediction_confidence	model_output	numeric	yes	Model confidence or inverse uncertainty.

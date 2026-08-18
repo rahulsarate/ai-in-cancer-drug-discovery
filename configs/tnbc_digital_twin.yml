@@ -1,0 +1,137 @@
+project:
+  name: DTEP-TNBC
+  full_name: Digital Twin of EMT Plasticity Under Neoadjuvant Chemotherapy in TNBC
+  disease: triple-negative breast cancer
+  therapy_context: neoadjuvant chemotherapy
+  primary_endpoint: pathological complete response versus residual disease
+  status: research_prototype
+
+timepoints:
+  T0: pretreatment biopsy
+  T1: early on-treatment biopsy after 1-2 cycles
+  T2: surgery or residual disease sample
+  T3: relapse or follow-up sample
+
+states:
+  E:
+    label: epithelial_like_chemo_sensitive
+    expected_chemo_sensitivity: high
+  H:
+    label: hybrid_epithelial_mesenchymal_plastic
+    expected_chemo_sensitivity: medium_low
+  M:
+    label: mesenchymal_like_resistant
+    expected_chemo_sensitivity: low
+  P:
+    label: drug_tolerant_persister
+    expected_chemo_sensitivity: very_low
+
+signature_blocks:
+  epithelial:
+    - CDH1
+    - EPCAM
+    - KRT5
+    - KRT8
+    - KRT14
+    - KRT18
+    - KRT19
+    - CLDN3
+    - CLDN4
+  mesenchymal:
+    - VIM
+    - FN1
+    - CDH2
+    - S100A4
+    - SPARC
+    - ITGA5
+    - ITGB1
+    - MMP2
+    - MMP9
+  emt_transcription_factors:
+    - SNAI1
+    - SNAI2
+    - ZEB1
+    - ZEB2
+    - TWIST1
+    - TWIST2
+  hybrid_plasticity:
+    - GRHL2
+    - OVOL1
+    - OVOL2
+    - JAG1
+    - NOTCH1
+    - NUMB
+  resistance_axes:
+    axl_tam:
+      - AXL
+      - MERTK
+      - TYRO3
+      - GAS6
+    tgfb:
+      - TGFB1
+      - TGFBR1
+      - TGFBR2
+      - SMAD2
+      - SMAD3
+      - SMAD4
+    yap_taz:
+      - YAP1
+      - WWTR1
+    hypoxia:
+      - HIF1A
+      - CA9
+      - VEGFA
+    stemness_persister:
+      - ALDH1A1
+      - PROM1
+      - CD44
+    persister_tumor_refined:
+      - NOTCH1
+      - YAP1
+      - WWTR1
+      - ZEB1
+      - HMOX1
+      - GAS6
+      - TGFB1
+      - CD274
+      - SPARC
+      - TJP1
+      - FTH1
+      - FTL
+      - KRT14
+      - KRT19
+      - SMAD2
+      - LAMC2
+      - S100A4
+    persister_stress_tolerance:
+      - FTH1
+      - FTL
+      - HMOX1
+      - SLC7A11
+      - GPX4
+      - NFE2L2
+      - HIF1A
+      - BNIP3
+    persister_niche:
+      - FLT1
+      - CDH5
+      - PECAM1
+      - KDR
+      - ESAM
+      - ENG
+      - CXCL12
+      - RAMP2
+      - SPARC
+
+outputs:
+  - epithelial_fraction_estimate
+  - hybrid_fraction_estimate
+  - mesenchymal_fraction_estimate
+  - persister_fraction_estimate
+  - plasticity_index
+  - emt_shift_delta
+  - therapy_selection_pressure
+  - pcr_probability
+  - residual_disease_probability
+  - dominant_resistance_axis
+  - prediction_confidence

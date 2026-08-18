@@ -1,0 +1,8 @@
+resource	type	TNBC NAC	EMT/EMP states	Persister biology	Longitudinal shift	Single-cell layer	Label curation	Platform-aware validation	Clinician report rules	similarity	difference
+pCR/RCB outcome literature	clinical endpoint	2	0	0	0	0	1	0	1	Defines why pCR/residual disease matters.	Does not model dynamic EMT or persister state transitions.
+EMP/EMT plasticity reviews	biology review	1	2	1	0	1	0	0	0	Frames EMT as a continuum linked to resistance.	Usually conceptual, not an executable TNBC NAC digital-twin pipeline.
+Drug-tolerant persister reviews	biology review	0	1	2	0	1	0	0	0	Highlights reversible survivor states and relapse reservoirs.	Not TNBC NAC-specific and usually not linked to response-model validation.
+MRI-based TNBC NAC digital twins	imaging/mechanistic DT	2	0	0	2	0	0	1	1	Builds patient-specific NAC response twins in TNBC.	Primarily imaging/tumor-growth centered rather than transcriptomic EMT/persister state biology.
+QSP / virtual-patient IO twins	mechanistic systems model	1	0	0	1	0	0	1	1	Uses mechanistic simulation and virtual patients for oncology decisions.	Usually immune/QSP-focused, not EMT/persister digital-state reporting in TNBC NAC.
+Oncology DT scoping reviews	field review	0	0	0	1	0	0	1	2	Identifies validation, governance, and credibility requirements.	Broad review layer, not a disease-specific executable pipeline.
+This TNBC EMT digital twin	research prototype	2	2	2	2	2	2	2	2	Uses accepted response endpoints, public cohorts, state modeling, and external validation principles.	Combines EMT/persister state dynamics, curated labels, cross-platform validation, and single-cell ambiguity governance in one TNBC NAC workflow.
