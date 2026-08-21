@@ -117,6 +117,24 @@ python scripts/compare_spatial_cancer_cohorts.py
 
 See `docs/spatial_emt_niche_gnn/pathology_literature_grounding.md` for pathology and literature interpretation rules before treating EMT-niche outputs as biological hypotheses.
 
+## EMT Virtual Spatial Staining
+
+EMT-ViSTA learns H&E-derived spatial maps of epithelial, mesenchymal, partial
+EMT, CAF, TAM, hypoxia, ECM, and stromal-risk programs from the paired public
+spatial cohorts. It includes patient-safe splits, multi-scale image embeddings,
+graph-refined multitask prediction, uncertainty, abstention, and H&E overlays.
+
+```powershell
+.venv-deconv\Scripts\python.exe scripts\run_emt_vista_pipeline.py `
+  --config configs\emt_virtual_spatial_staining.yml `
+  --backend handcrafted `
+  --max-spots-per-dataset 512
+```
+
+Start with `docs/emt_virtual_spatial_staining/README.md`. The linked student
+report, interview guide, research-article draft, executed benchmark report, and
+detailed protocol cover the scientific and technical workflow end to end.
+
 ## Real-Data v1 Workflow
 
 List public data sources and exact expected local paths:

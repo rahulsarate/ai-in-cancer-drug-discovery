@@ -1,0 +1,3 @@
+backend	test_spots	median_test_spearman	best_test_spearman	best_program	gates_passed	gates_total	partial_emt_auprc_above_prevalence	stroma_false_positive_rate	calibration_error
+handcrafted	1024	0.0135266842855106	0.3103356947681676	epithelial	2	7	0.1030501309434664	0.0	0.1126682638714555
+resnet50	256	-0.08560955854472654	-0.0316799375714651	partial_emt_score	2	7	0.0753968253968253	0.0151515151515151	0.1443486619973555

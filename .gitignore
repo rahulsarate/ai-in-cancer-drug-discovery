@@ -6,6 +6,13 @@ __pycache__/
 .pytest_cache/
 *.egg-info/
 
+# Generated presentation/document build and QA artifacts stay local.
+deliverables/**/_build/
+deliverables/**/qa_*/
+deliverables/**/*.inspect.ndjson
+deliverables/**/*Montage.png
+deliverables/**/qa_montage*.png
+
 # Large public datasets should stay local.
 data/raw/*
 !data/raw/.gitkeep

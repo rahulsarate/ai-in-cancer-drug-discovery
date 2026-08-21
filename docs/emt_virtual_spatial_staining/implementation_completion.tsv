@@ -1,0 +1,13 @@
+component	status	percent
+Protocol and hypotheses	complete	100
+Five-cohort paired data	complete	100
+Risk-aware molecular labels	complete	100
+Handcrafted morphology baseline	complete	100
+Generic learned-image baseline	complete	100
+Ungated pathology foundation adapter	operational	100
+H-Optimus-0 adapter	metadata_accessible_gated_auto	90
+Graph-refined multitask model	complete	100
+Uncertainty and safety gates	complete	100
+H&E overlays and hotspot export	complete	100
+Independent multi-patient clinical validation	not_started	0
+Prospective clinical validation	out_of_scope_v1	0
