@@ -5,6 +5,8 @@ __pycache__/
 *.pyc
 .pytest_cache/
 *.egg-info/
+node_modules/
+tmp/
 
 # Generated presentation/document build and QA artifacts stay local.
 deliverables/**/_build/
@@ -139,6 +141,22 @@ data/processed/spatial_emt_niche_gnn_references/gse154778/gse154778_marker_cell_
 !data/processed/spatial_emt_niche_gnn_htan/**
 !data/processed/spatial_emt_niche_gnn_pathology_review/
 !data/processed/spatial_emt_niche_gnn_pathology_review/**
+
+!data/processed/crc_liver_invasion_front_v1/
+data/processed/crc_liver_invasion_front_v1/*
+!data/processed/crc_liver_invasion_front_v1/model_metrics.json
+!data/processed/crc_liver_invasion_front_v1/spatial_data_manifest.tsv
+!data/processed/crc_liver_invasion_front_v1/geomx_validation_availability.tsv
+!data/processed/crc_liver_invasion_front_v1/interface_section_summary.tsv
+!data/processed/crc_liver_invasion_front_v1/front_vs_core_statistics.tsv
+!data/processed/crc_liver_invasion_front_v1/model_feature_importance.tsv
+!data/processed/crc_liver_invasion_front_v1/feature_group_ablation.tsv
+!data/processed/crc_liver_invasion_front_v1/edge_type_summary.tsv
+!data/processed/crc_liver_invasion_front_v1/signature_coverage.tsv
+!data/processed/crc_liver_invasion_front_v1/reference/
+!data/processed/crc_liver_invasion_front_v1/reference/*.tsv
+!data/processed/crc_liver_invasion_front_v1/figures/
+!data/processed/crc_liver_invasion_front_v1/figures/*.png
 
 # Keep new large rerun artifacts local even in older broadly-unignored cohort folders.
 data/processed/spatial_emt_niche_gnn_10x_breast/processed_h5ad/

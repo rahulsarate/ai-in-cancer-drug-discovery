@@ -1,0 +1,34 @@
+project: crc_liver_invasion_front
+version: v1
+research_use_only: true
+data:
+  discovery: GSE225857
+  orthogonal_validation: Zenodo_7520789
+  future_external_validation:
+    - PRJEB71493
+    - CRCLM_ISS_2026
+graph:
+  spatial_neighbors: 6
+  interface_hops: 3
+  approximate_spot_spacing_um: 100
+  node_types:
+    - malignant_epithelial
+    - malignant_partial_emt
+    - hepatocyte
+    - mrc1_ccl18_macrophage
+    - activated_fibroblast
+    - endothelial
+  edge_families:
+    - spatial
+    - compartment_contact
+    - cross_interface
+    - ligand_receptor
+    - ecm_gradient
+    - glycolysis_gradient
+model:
+  baseline: standardized_logistic_typed_message_passing
+  validation: leave_one_liver_section_out
+  permutations: 100
+claims:
+  label_type: marker_plus_spatial_weak_label
+  clinical_use: prohibited

@@ -5,6 +5,7 @@ This repository is a public-data research starter kit for two linked projects:
 1. **emt-state-atlas**: score EMT, partial EMT, stromal contamination, immune context, hypoxia, CAF/TAM niches, and survival associations across TCGA-style bulk RNA-seq and single-cell summaries.
 2. **metastasis-target-ranker**: prioritize susceptible metastasis/EMT targets by integrating EMT-state specificity, metastatic association, druggability, CRISPR dependency, public compound availability, normal-tissue safety risk, and literature support.
 3. **spatial-emt-niche-gnn**: map EMT-permissive spatial niches with Visium/HEST/HTAN-style spot graphs, stromal-contamination controls, weak-label-aware graph learning, and edge-ablation interpretability.
+4. **crc-liver-invasion-front**: construct typed tumour-liver interface graphs for malignant partial EMT, hepatocytes, macrophages, fibroblasts, endothelium, ECM and glycolytic gradients.
 
 The project is designed for reproducible GitHub work. Large datasets are not committed. Place public data under `data/raw/`, run pipelines, and write outputs to `data/processed/`.
 
@@ -134,6 +135,23 @@ graph-refined multitask prediction, uncertainty, abstention, and H&E overlays.
 Start with `docs/emt_virtual_spatial_staining/README.md`. The linked student
 report, interview guide, research-article draft, executed benchmark report, and
 detailed protocol cover the scientific and technical workflow end to end.
+
+## CRC Liver-Metastasis Invasion-Front Model
+
+This project executes a six-section GSE225857 Visium analysis, builds signed
+approximately 300-micrometre tumour/liver fronts, constructs heterogeneous
+contact, ligand-receptor and gradient edges, and validates an interpretable
+typed message-passing baseline by leaving out one liver section at a time.
+
+```powershell
+$env:PYTHONPATH="src"
+python scripts/run_crc_liver_invasion_front.py --permutations 50
+python scripts/build_crc_liver_scrna_reference.py
+streamlit run apps/crc_liver_invasion_front_app.py --server.port 8511
+```
+
+Start with `docs/crc_liver_invasion_front/README.md`. Growth-pattern labels are
+weak proxies pending consensus H&E review; the outputs are not clinical predictions.
 
 ## Real-Data v1 Workflow
 

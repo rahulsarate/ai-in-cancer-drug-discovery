@@ -1,0 +1,7 @@
+section_id	site	spots	boundary_pairs	interface_spots	tumour_front_spots	mean_front_partial_emt	mean_front_macrophage	mean_front_fibroblast	mean_front_ecm	mean_front_glycolysis	direct_contact_fraction	growth_pattern_proxy	label_source
+GSM7058756_C1	primary_crc	2054	0	0	0						0.0	not_applicable_primary_crc	marker_plus_spatial_weak_label
+GSM7058757_C2	primary_crc	3305	0	0	0						0.0	not_applicable_primary_crc	marker_plus_spatial_weak_label
+GSM7058758_C3	primary_crc	3417	0	0	0						0.0	not_applicable_primary_crc	marker_plus_spatial_weak_label
+GSM7058759_C4	primary_crc	4016	0	0	0						0.0	not_applicable_primary_crc	marker_plus_spatial_weak_label
+GSM7058760_L1	liver_metastasis	4672	303	1562	861	0.3099623828274666	0.4072150348385456	0.39069159665339487	0.4060778216152456	0.49423342866977704	0.019436782346526398	mixed_or_uncertain_proxy	marker_plus_spatial_weak_label
+GSM7058761_L2	liver_metastasis	4796	452	2597	1130	0.31025180139087005	0.4746271681284911	0.4276882240141717	0.4255544987913493	0.46241629608552626	0.02825	mixed_or_uncertain_proxy	marker_plus_spatial_weak_label

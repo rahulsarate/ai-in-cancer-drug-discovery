@@ -1,0 +1,7 @@
+dataset_id	section_id	sample_label	site	spots_under_tissue	source_url	study_doi	patient_pairing
+GSE225857	GSM7058756_C1	C1	primary_crc	2054	https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE225857	10.1126/sciadv.adf5464	not available for public Visium section IDs
+GSE225857	GSM7058757_C2	C2	primary_crc	3305	https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE225857	10.1126/sciadv.adf5464	not available for public Visium section IDs
+GSE225857	GSM7058758_C3	C3	primary_crc	3417	https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE225857	10.1126/sciadv.adf5464	not available for public Visium section IDs
+GSE225857	GSM7058759_C4	C4	primary_crc	4016	https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE225857	10.1126/sciadv.adf5464	not available for public Visium section IDs
+GSE225857	GSM7058760_L1	L1	liver_metastasis	4672	https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE225857	10.1126/sciadv.adf5464	not available for public Visium section IDs
+GSE225857	GSM7058761_L2	L2	liver_metastasis	4796	https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE225857	10.1126/sciadv.adf5464	not available for public Visium section IDs
