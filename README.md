@@ -1,6 +1,33 @@
-# EMT Metastasis AI
+# Translational cancer analytics: EMT, spatial niches, and target prioritisation
 
-This repository is a public-data research starter kit for two linked projects:
+**Python · Molecular and spatial data · Experimental context · Interpretable research hypotheses**
+
+A research portfolio by **Rahul Sarate, PhD**, connecting cancer biology with computational analysis of epithelial–mesenchymal transition (EMT), the tumour microenvironment, and candidate therapeutic targets.
+
+## Scientific analytics overview
+
+The workflows below address three complementary questions: how to characterise EMT-related states, how to examine their spatial context, and how to combine evidence for target prioritisation. They complement a wet-lab background in stem cells, cancer, tissue biology, and microscopy.
+
+| Workstream | Scientific question | Reviewer focus |
+| --- | --- | --- |
+| EMT state atlas | How do molecular programmes vary across samples and cellular contexts? | Signature definitions, sample metadata, stromal confounding, and survival analysis assumptions |
+| Spatial EMT niches | How are EMT-associated states organised in tissue? | Spot coordinates, graph construction, weak-label provenance, and interpretable neighbourhood effects |
+| Target prioritisation | Which candidates merit experimental follow-up? | Evidence provenance, missing evidence, dependency context, druggability, and uncertainty |
+
+**Scope:** This is a research toolkit. The documentation includes synthetic demonstrations and entry points for public-data analyses; commands alone do not establish that a cohort has been analysed successfully. Spatial transcriptomic spot analysis is distinct from histology-image segmentation. Candidate rankings are hypotheses for experimental review, not validated drug efficacy or clinical recommendations.
+
+## Interpretation and validation
+
+- Keep synthetic demonstrations and real-cohort outputs clearly labelled.
+- Split evaluation by independent patient or sample where appropriate; avoid leakage between correlated cells or spatial spots.
+- Check whether stromal content, tumour purity, tissue type, or batch explains apparent EMT differences.
+- Distinguish association from causality, and report effect sizes, uncertainty, and multiple-testing procedures.
+- Validate weak labels against independent expert-reviewed evidence. Predicting a score-derived label does not independently validate that score's biology.
+- Review target rankings with disease-area scientists and test candidate mechanisms experimentally.
+
+## Technical workflows
+
+This repository is a public-data research starter kit for three linked workstreams:
 
 1. **emt-state-atlas**: score EMT, partial EMT, stromal contamination, immune context, hypoxia, CAF/TAM niches, and survival associations across TCGA-style bulk RNA-seq and single-cell summaries.
 2. **metastasis-target-ranker**: prioritize susceptible metastasis/EMT targets by integrating EMT-state specificity, metastatic association, druggability, CRISPR dependency, public compound availability, normal-tissue safety risk, and literature support.
