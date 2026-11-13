@@ -32,8 +32,22 @@ This repository is a public-data research starter kit for three linked workstrea
 1. **emt-state-atlas**: score EMT, partial EMT, stromal contamination, immune context, hypoxia, CAF/TAM niches, and survival associations across TCGA-style bulk RNA-seq and single-cell summaries.
 2. **metastasis-target-ranker**: prioritize susceptible metastasis/EMT targets by integrating EMT-state specificity, metastatic association, druggability, CRISPR dependency, public compound availability, normal-tissue safety risk, and literature support.
 3. **spatial-emt-niche-gnn**: map EMT-permissive spatial niches with Visium/HEST/HTAN-style spot graphs, stromal-contamination controls, weak-label-aware graph learning, and edge-ablation interpretability.
+4. **crc-liver-invasion-front**: construct typed tumour-liver interface graphs for malignant partial EMT, hepatocytes, macrophages, fibroblasts, endothelium, ECM and glycolytic gradients.
 
 The project is designed for reproducible GitHub work. Large datasets are not committed. Place public data under `data/raw/`, run pipelines, and write outputs to `data/processed/`.
+
+## Pan-Cancer EMT State Atlas Website
+
+The atlas website is the easiest way to explore the project. It includes clinician and researcher modes, cancer-group comparisons, sample search, clinical warnings, malignant-versus-CAF/TAM single-cell separation, spatial/pathology review, target evidence, downloads, and a plain-language Guide & Q&A.
+
+Launch it from the repository root:
+
+```powershell
+$env:PYTHONPATH="src"
+streamlit run apps/pan_cancer_emt_state_atlas_app.py
+```
+
+Then open the local URL shown by Streamlit. The standalone project guide is available at `docs/pan_cancer_emt_state_atlas/project_questions_and_answers.md`.
 
 ## Quick Start
 
@@ -130,6 +144,41 @@ python scripts/compare_spatial_cancer_cohorts.py
 ```
 
 See `docs/spatial_emt_niche_gnn/pathology_literature_grounding.md` for pathology and literature interpretation rules before treating EMT-niche outputs as biological hypotheses.
+
+## EMT Virtual Spatial Staining
+
+EMT-ViSTA learns H&E-derived spatial maps of epithelial, mesenchymal, partial
+EMT, CAF, TAM, hypoxia, ECM, and stromal-risk programs from the paired public
+spatial cohorts. It includes patient-safe splits, multi-scale image embeddings,
+graph-refined multitask prediction, uncertainty, abstention, and H&E overlays.
+
+```powershell
+.venv-deconv\Scripts\python.exe scripts\run_emt_vista_pipeline.py `
+  --config configs\emt_virtual_spatial_staining.yml `
+  --backend handcrafted `
+  --max-spots-per-dataset 512
+```
+
+Start with `docs/emt_virtual_spatial_staining/README.md`. The linked student
+report, interview guide, research-article draft, executed benchmark report, and
+detailed protocol cover the scientific and technical workflow end to end.
+
+## CRC Liver-Metastasis Invasion-Front Model
+
+This project executes a six-section GSE225857 Visium analysis, builds signed
+approximately 300-micrometre tumour/liver fronts, constructs heterogeneous
+contact, ligand-receptor and gradient edges, and validates an interpretable
+typed message-passing baseline by leaving out one liver section at a time.
+
+```powershell
+$env:PYTHONPATH="src"
+python scripts/run_crc_liver_invasion_front.py --permutations 50
+python scripts/build_crc_liver_scrna_reference.py
+streamlit run apps/crc_liver_invasion_front_app.py --server.port 8511
+```
+
+Start with `docs/crc_liver_invasion_front/README.md`. Growth-pattern labels are
+weak proxies pending consensus H&E review; the outputs are not clinical predictions.
 
 ## Real-Data v1 Workflow
 

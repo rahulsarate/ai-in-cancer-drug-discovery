@@ -8,10 +8,18 @@ import pandas as pd
 def table_to_markdown(frame: pd.DataFrame) -> str:
     if frame.empty:
         return "No rows available."
+
+    def format_number(value: float) -> str:
+        if pd.isna(value):
+            return ""
+        if float(value).is_integer():
+            return str(int(value))
+        return f"{value:.3g}"
+
     text = frame.copy()
     for col in text.columns:
         if pd.api.types.is_numeric_dtype(text[col]):
-            text[col] = text[col].map(lambda value: f"{value:.3g}" if pd.notna(value) else "")
+            text[col] = text[col].map(format_number)
         else:
             text[col] = text[col].fillna("").astype(str)
     header = "| " + " | ".join(text.columns) + " |"

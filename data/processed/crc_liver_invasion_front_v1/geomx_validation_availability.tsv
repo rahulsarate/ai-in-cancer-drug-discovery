@@ -1,0 +1,2 @@
+dataset_id	platform	patients	aois	genes	role	status	limitation	doi
+Zenodo_7520789	NanoString GeoMx CTA	4	48	1825	orthogonal matched primary/metastasis evidence	downloaded_not_region_labeled	public count table lacks a machine-readable AOI-to-tissue annotation	10.5281/zenodo.7520789

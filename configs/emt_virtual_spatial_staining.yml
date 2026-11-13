@@ -1,0 +1,41 @@
+project: EMT-ViSTA
+description: Risk-aware virtual spatial staining of EMT and TME programs from routine H&E.
+output_dir: data/processed/emt_virtual_spatial_staining_v1
+cohorts:
+  - dataset_id: Visium_FFPE_Human_Breast_Cancer
+    scores: data/processed/spatial_emt_niche_gnn_10x_breast/spatial_emt_niche_scores.tsv
+    spatial_dir: data/raw/spatial/10x/Visium_FFPE_Human_Breast_Cancer/spatial
+  - dataset_id: Visium_FFPE_Human_Ovarian_Cancer
+    scores: data/processed/spatial_emt_niche_gnn_10x_ovarian/spatial_emt_niche_scores.tsv
+    spatial_dir: data/raw/spatial/10x/Visium_FFPE_Human_Ovarian_Cancer/spatial
+  - dataset_id: Visium_FFPE_Human_Prostate_Cancer
+    scores: data/processed/spatial_emt_niche_gnn_10x_prostate/spatial_emt_niche_scores.tsv
+    spatial_dir: data/raw/spatial/10x/Visium_FFPE_Human_Prostate_Cancer/spatial
+  - dataset_id: CytAssist_FFPE_Human_Lung_Squamous_Cell_Carcinoma
+    scores: data/processed/spatial_emt_niche_gnn_10x_lung_lusc/spatial_emt_niche_scores.tsv
+    spatial_dir: data/raw/spatial/10x/CytAssist_FFPE_Human_Lung_Squamous_Cell_Carcinoma/spatial
+  - dataset_id: Visium_FFPE_Human_Intestinal_Cancer
+    scores: data/processed/spatial_emt_niche_gnn_10x_colorectal/spatial_emt_niche_scores.tsv
+    spatial_dir: data/raw/spatial/10x/Visium_FFPE_Human_Intestinal_Cancer/spatial
+test_dataset_ids:
+  - CytAssist_FFPE_Human_Lung_Squamous_Cell_Carcinoma
+  - Visium_FFPE_Human_Intestinal_Cancer
+validation_dataset_ids:
+  - Visium_FFPE_Human_Ovarian_Cancer
+image:
+  backend: handcrafted
+  tile_px: 224
+  context_px: 448
+  batch_size: 128
+model:
+  alpha: 10.0
+  n_models: 5
+  max_components: 48
+  k_neighbors: 6
+  random_state: 31
+risk_controls:
+  patient_safe_split: true
+  malignant_partial_emt_gate: true
+  stromal_risk_export: true
+  calibrated_abstention: true
+  clinical_use: false

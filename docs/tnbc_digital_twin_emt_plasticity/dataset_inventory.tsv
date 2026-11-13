@@ -1,0 +1,9 @@
+dataset_id	source	cancer_type	tnbc_specific	data_type	timepoints	therapy_context	response_label	sample_count	access_status	planned_use	notes
+TBD_GEO_NAC_01	GEO	TNBC	yes	bulk RNA-seq or microarray	T0,T2	neoadjuvant chemotherapy	pCR/residual disease	unknown	to_search	Tier A training/validation	Find public TNBC NAC cohort with response labels.
+TBD_GEO_NAC_LONGITUDINAL_01	GEO	TNBC	yes	bulk or single-cell RNA-seq	T0,T1,T2	neoadjuvant chemotherapy	pCR/residual disease	unknown	to_search	Tier A/B dynamic EMT calibration	Priority dataset if early on-treatment biopsy exists.
+TBD_SCRNA_TNBC_01	GEO/HTAN	TNBC	preferred	single-cell RNA-seq	T0 or mixed	treated or untreated	optional	unknown	to_search	Tier B EMT state calibration	Use for epithelial/hybrid/mesenchymal state definitions.
+TBD_SPATIAL_TNBC_01	HTAN/10x/GEO	TNBC	preferred	spatial transcriptomics	T0 or residual	treated or untreated	optional	unknown	to_search	Tier B spatial EMT/TME calibration	Use for CAF, hypoxia, macrophage, immune-exclusion context.
+TCGA_BRCA_TNBC_REFERENCE	TCGA/cBioPortal/UCSC Xena	breast cancer	subset	bulk RNA-seq	baseline	not NAC	no pCR labels	unknown	public	Tier D baseline reference	Use only as baseline TNBC context, not NAC response training.
+METABRIC_TNBC_REFERENCE	METABRIC	breast cancer	subset	microarray	baseline	not NAC	survival	unknown	public/controlled	Tier D survival reference	Use for external baseline EMT-survival association.
+DEPMAP_TNBC_CELL_LINES	DepMap	breast cancer cell lines	subset	dependency/drug response	in vitro	not NAC	drug sensitivity	unknown	public	Tier C target/drug support	Use for AXL/TGF-beta/FAK/SRC/persister hypothesis support.
+PRISM_TNBC_CELL_LINES	PRISM	breast cancer cell lines	subset	compound response	in vitro	not NAC	compound sensitivity	unknown	public	Tier C target/drug support	Use for simulated combination plausibility.

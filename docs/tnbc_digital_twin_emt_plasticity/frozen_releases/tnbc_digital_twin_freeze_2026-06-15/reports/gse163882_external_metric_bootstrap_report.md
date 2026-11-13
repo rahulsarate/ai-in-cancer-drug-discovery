@@ -1,0 +1,27 @@
+# TNBC External Response Metric Robustness
+
+## Bootstrap Intervals
+
+| dataset_id         | feature_set        | calibration_method            |   samples |   accuracy_point |   accuracy_q025 |   accuracy_q975 |   brier_point |   brier_q025 |   brier_q975 |   auroc_point |   auroc_q025 |   auroc_q975 |   auprc_point |   auprc_q025 |   auprc_q975 |
+|:-------------------|:-------------------|:------------------------------|----------:|-----------------:|----------------:|----------------:|--------------:|-------------:|-------------:|--------------:|-------------:|-------------:|--------------:|-------------:|-------------:|
+| GSE163882_TNBC_TPM | combined           | external_quantile_to_internal |        90 |         0.655556 |        0.555556 |        0.722222 |      0.231701 |     0.211334 |     0.259672 |      0.648785 |     0.520594 |     0.728303 |      0.713864 |          nan |          nan |
+| GSE163882_TNBC_TPM | combined           | external_zscore_to_internal   |        90 |         0.611111 |        0.510833 |        0.688889 |      0.234608 |     0.210477 |     0.260372 |      0.631579 |     0.513488 |     0.74148  |      0.707764 |          nan |          nan |
+| GSE163882_TNBC_TPM | combined           | internal_percentile           |        90 |         0.566667 |        0.4775   |        0.655833 |      0.242155 |     0.207698 |     0.276015 |      0.61083  |     0.515263 |     0.717709 |      0.674309 |          nan |          nan |
+| GSE163882_TNBC_TPM | combined           | raw                           |        90 |         0.644444 |        0.533333 |        0.733611 |      0.228155 |     0.193809 |     0.265245 |      0.647773 |     0.516644 |     0.764937 |      0.721259 |          nan |          nan |
+| GSE163882_TNBC_TPM | digital_twin       | external_quantile_to_internal |        90 |         0.488889 |        0.388611 |        0.600278 |      0.24948  |     0.235146 |     0.264367 |      0.527834 |     0.409224 |     0.651089 |      0.646858 |          nan |          nan |
+| GSE163882_TNBC_TPM | digital_twin       | external_zscore_to_internal   |        90 |         0.466667 |        0.3775   |        0.577778 |      0.249878 |     0.233702 |     0.262126 |      0.522773 |     0.436716 |     0.65234  |      0.643652 |          nan |          nan |
+| GSE163882_TNBC_TPM | digital_twin       | internal_percentile           |        90 |         0.511111 |        0.410833 |        0.633333 |      0.254651 |     0.232199 |     0.278723 |      0.507085 |     0.381846 |     0.621581 |      0.626495 |          nan |          nan |
+| GSE163882_TNBC_TPM | digital_twin       | raw                           |        90 |         0.577778 |        0.5      |        0.666667 |      0.242047 |     0.226316 |     0.25538  |      0.584008 |     0.489435 |     0.704298 |      0.700093 |          nan |          nan |
+| GSE163882_TNBC_TPM | emt_core           | external_quantile_to_internal |        90 |         0.444444 |        0.355556 |        0.544444 |      0.253432 |     0.24469  |     0.260159 |      0.447874 |     0.320178 |     0.579815 |      0.597876 |          nan |          nan |
+| GSE163882_TNBC_TPM | emt_core           | external_zscore_to_internal   |        90 |         0.455556 |        0.344444 |        0.555556 |      0.254566 |     0.24788  |     0.262126 |      0.435223 |     0.31408  |     0.55623  |      0.580112 |          nan |          nan |
+| GSE163882_TNBC_TPM | emt_core           | internal_percentile           |        90 |         0.477778 |        0.377778 |        0.588889 |      0.260752 |     0.248118 |     0.273167 |      0.444838 |     0.33961  |     0.560192 |      0.567499 |          nan |          nan |
+| GSE163882_TNBC_TPM | emt_core           | raw                           |        90 |         0.511111 |        0.422222 |        0.622222 |      0.257857 |     0.249182 |     0.265555 |      0.434211 |     0.331802 |     0.560464 |      0.582964 |          nan |          nan |
+| GSE163882_TNBC_TPM | emt_tme_resistance | external_quantile_to_internal |        90 |         0.666667 |        0.588611 |        0.766667 |      0.234539 |     0.206307 |     0.261069 |      0.646255 |     0.536547 |     0.767116 |      0.709051 |          nan |          nan |
+| GSE163882_TNBC_TPM | emt_tme_resistance | external_zscore_to_internal   |        90 |         0.6      |        0.511111 |        0.688889 |      0.237799 |     0.215677 |     0.262432 |      0.611842 |     0.505926 |     0.73592  |      0.69175  |          nan |          nan |
+| GSE163882_TNBC_TPM | emt_tme_resistance | internal_percentile           |        90 |         0.633333 |        0.544167 |        0.744444 |      0.239377 |     0.206764 |     0.274177 |      0.610324 |     0.500038 |     0.737621 |      0.662025 |          nan |          nan |
+| GSE163882_TNBC_TPM | emt_tme_resistance | raw                           |        90 |         0.633333 |        0.544444 |        0.722222 |      0.229278 |     0.198205 |     0.256355 |      0.642713 |     0.53029  |     0.750787 |      0.707881 |          nan |          nan |
+
+## Interpretation
+
+- Intervals are nonparametric bootstrap intervals over external validation samples.
+- Wide intervals reflect limited external cohort size and should be reported with all AUROC/AUPRC values.

@@ -4,6 +4,7 @@ import argparse
 from pathlib import Path
 
 from .aliases import expand_gene_filter, read_aliases
+from .consensus import add_consensus_states
 from .io import orient_expression, read_expression, read_metadata
 from .metadata import attach_patient_metadata
 from .plots import write_atlas_plots
@@ -37,7 +38,7 @@ def main() -> None:
     expanded_genes = expand_gene_filter(known_genes, aliases)
     expr = orient_expression(read_expression(args.expression, gene_filter=expanded_genes), expanded_genes)
     metadata = read_metadata(args.metadata)
-    scores = add_state_flags(attach_patient_metadata(score_expression(expr, aliases=aliases), metadata))
+    scores = add_consensus_states(add_state_flags(attach_patient_metadata(score_expression(expr, aliases=aliases), metadata)))
 
     out = Path(args.out)
     out.parent.mkdir(parents=True, exist_ok=True)

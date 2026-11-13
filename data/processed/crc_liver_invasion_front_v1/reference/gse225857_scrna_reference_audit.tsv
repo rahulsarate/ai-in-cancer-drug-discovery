@@ -1,0 +1,6 @@
+source_file	cell_type	cells	genes_recovered	status
+GSM7058754_immune_meta.txt.gz	macrophage_myeloid	14180	135	study_matched_reference
+GSM7058755_non_immune_meta.txt.gz	activated_fibroblast	15093	135	study_matched_reference
+GSM7058755_non_immune_meta.txt.gz	endothelial	2845	135	study_matched_reference
+GSM7058755_non_immune_meta.txt.gz	malignant_crc	23954	135	study_matched_reference
+GSE225857 processed scRNA clusters	hepatocyte	0	135	absent_from_author_processed_clusters

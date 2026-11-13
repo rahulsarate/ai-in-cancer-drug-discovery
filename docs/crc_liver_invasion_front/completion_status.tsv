@@ -1,0 +1,11 @@
+work_package	v1_status	completion_percent	evidence_or_remaining_requirement
+Public data ingestion	complete	100	Six GSE225857 Visium sections and the open GeoMx count table are local and manifested.
+Spatial compartment scoring	complete	100	CRC malignant pEMT hepatocyte macrophage fibroblast endothelial ECM glycolysis and hypoxia outputs generated.
+Tumour-liver interface	complete_weak_label	100	Signed three-hop fronts generated for both liver sections; pathology reference labels remain future validation.
+Heterogeneous graph	complete	100	Spatial contact cross-interface LR ECM-gradient and glycolysis-gradient edges generated.
+Typed message-passing model	complete	100	Leave-section-out AUC 0.908 with 50-permutation P 0.0196.
+Study-matched scRNA reference	complete_with_known_gap	90	Four compartments from 56072 cells; hepatocytes absent from author-processed clusters.
+Pathology review	prepared_not_executed	25	Consensus review template is ready; a qualified pathologist must score HGP percentages.
+Independent spatial validation	planned_external	20	PRJEB71493 and the 26-sample ISS cohort require reusable processed matrices and annotations.
+Clinical validation	not_started	0	Requires patient-level outcomes prospective cohorts and regulatory-grade evaluation.
+GitHub-ready v1 engineering	complete	100	Code tests docs small outputs figures config and UI are reproducible; raw data remain ignored.

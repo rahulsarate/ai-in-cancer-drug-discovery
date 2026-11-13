@@ -17,6 +17,22 @@ RESOURCES = [
         "priority": "high",
     },
     {
+        "resource": "H-Optimus-0",
+        "hub_type": "model",
+        "repo_id": "bioptimus/H-optimus-0",
+        "why_needed": "Primary BioOptimus-aligned H&E foundation embedding backend.",
+        "license_or_gate": "Apache-2.0 model; gated contact-sharing acceptance is required for file access.",
+        "priority": "high",
+    },
+    {
+        "resource": "Phikon-v2",
+        "hub_type": "model",
+        "repo_id": "owkin/phikon-v2",
+        "why_needed": "Ungated pathology-foundation fallback for executable H&E embeddings.",
+        "license_or_gate": "Custom non-commercial model license; review before redistribution or commercial use.",
+        "priority": "high",
+    },
+    {
         "resource": "UNI2-h",
         "hub_type": "model",
         "repo_id": "MahmoodLab/UNI2-h",

@@ -1,0 +1,97 @@
+project:
+  name: pan_cancer_emt_state_atlas
+  version: 0.1.0
+  mode: research_use_only
+  description: >
+    Pan-cancer atlas of epithelial, hybrid EMT, mesenchymal, stromal-dominant,
+    immune-inflamed, hypoxic, and uncertain EMT states.
+
+paths:
+  raw_root: data/raw
+  processed_root: data/processed/pan_cancer_emt_state_atlas
+  report_dir: docs/pan_cancer_emt_state_atlas/reports
+  card_dir: data/processed/pan_cancer_emt_state_atlas/cards
+  plot_dir: data/processed/pan_cancer_emt_state_atlas/plots
+  manifest: docs/pan_cancer_emt_state_atlas/data_manifest_seed.tsv
+
+inputs:
+  bulk_expression: data/processed/tcga_xena_v1/signature_expression.tsv
+  bulk_metadata: data/raw/xena/Survival_SupplementalTable_S1_20171025_xena_sp
+  existing_emt_scores: data/processed/tcga_xena_v1/emt_scores.tsv
+  existing_target_ranking: data/processed/target_ranker_real_evidence_v1/target_ranking.tsv
+
+modules:
+  bulk_atlas: true
+  survival: true
+  consensus_emt: true
+  contamination_control: true
+  single_cell_validation: true
+  spatial_pathology_layer: true
+  therapeutic_evidence: true
+  user_facing_cards: true
+  streamlit_app: false
+
+state_thresholds:
+  epithelial_high_quantile: 0.67
+  mesenchymal_high_quantile: 0.67
+  hybrid_min_quantile: 0.50
+  stromal_warning_quantile: 0.75
+  immune_inflamed_quantile: 0.75
+  hypoxia_high_quantile: 0.75
+  minimum_signature_gene_coverage: 0.60
+  minimum_cancer_type_samples_for_survival: 30
+
+state_labels:
+  - epithelial
+  - hybrid_e_m
+  - mesenchymal
+  - stromal_dominant
+  - immune_inflamed_emt
+  - hypoxic_emt
+  - uncertain
+
+confidence_rules:
+  high:
+    minimum_method_agreement: 0.67
+    minimum_gene_coverage: 0.80
+    require_stromal_warning: false
+  medium:
+    minimum_method_agreement: 0.50
+    minimum_gene_coverage: 0.60
+  low:
+    reasons:
+      - low_gene_coverage
+      - method_disagreement
+      - stromal_dominant_signal
+      - small_cohort
+
+therapeutic_evidence:
+  target_families:
+    - axl_gas6_tam
+    - tgf_beta_smad
+    - integrin_fak_src
+    - yap_taz_tead
+    - jak_stat
+    - hypoxia_vegf
+    - ferroptosis_lipid_metabolism
+    - ecm_remodeling
+    - immune_checkpoints
+  sources:
+    depmap: data/raw/depmap
+    prism: data/raw/prism
+    lincs: data/raw/lincs
+    open_targets: data/raw/open_targets
+    chembl: data/raw/chembl
+    dgidb: data/raw/dgidb
+    hpa: data/raw/hpa
+    gtex: data/raw/gtex
+
+outputs:
+  emt_scores: data/processed/pan_cancer_emt_state_atlas/emt_scores.tsv
+  cancer_type_summary: data/processed/pan_cancer_emt_state_atlas/cancer_type_summary.tsv
+  survival_associations: data/processed/pan_cancer_emt_state_atlas/survival_associations.tsv
+  state_marker_summary: data/processed/pan_cancer_emt_state_atlas/state_marker_summary.tsv
+  report: docs/pan_cancer_emt_state_atlas/reports/pan_cancer_emt_state_atlas_report.md
+  sample_cards_json: data/processed/pan_cancer_emt_state_atlas/cards/sample_json
+  sample_cards_md: data/processed/pan_cancer_emt_state_atlas/cards/sample_md
+  target_cards_md: data/processed/pan_cancer_emt_state_atlas/cards/target_md
