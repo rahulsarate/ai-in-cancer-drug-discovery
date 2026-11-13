@@ -1,0 +1,57 @@
+{
+  "recorded_at_utc": "2026-11-13T09:48:30.911355+00:00",
+  "scope": "Local warm-cache CPU microbenchmark; existing PNG decode/resize/features and saved-feature 3-fold fit/predict only",
+  "hardware": {
+    "cpu": "Intel Core i5-9300H @ 2.40 GHz",
+    "physical_cores": 4,
+    "logical_processors": 8,
+    "installed_memory_bytes": 17013329920
+  },
+  "environment": {
+    "python": "3.14.3",
+    "os": "Windows",
+    "gpu_used_for_these_steps": false,
+    "BLAS_threads_model_timing": 1
+  },
+  "feature_extraction": {
+    "tiles_per_pass": 768,
+    "passes": 3,
+    "seconds_per_pass": [
+      7.869116999994731,
+      4.645073899999261,
+      4.603568099992117
+    ],
+    "median_seconds": 4.645073899999261,
+    "tiles_per_second_median": 165.33644384002636,
+    "median_ms_per_tile": 6.048273307290704
+  },
+  "three_site_fold_fit_predict": {
+    "patients": 24,
+    "features": 18,
+    "repeats": 50,
+    "median_ms": 5.114899991895072,
+    "p95_ms": 6.064769995282403,
+    "excludes_imports": true,
+    "same_MAE_reproduced": true
+  },
+  "storage": {
+    "source_slide_and_rna_bytes": 3549030405,
+    "retained_png_tiles_bytes": 108835490,
+    "tile_bytes_fraction_of_source_plus_rna": 0.030666260240168327,
+    "caution": "Different content sets and representations; not a lossless compression ratio. Source-plus-RNA includes data omitted by sampled tiles."
+  },
+  "not_measured": [
+    "Full WSI-to-report wall time",
+    "Download throughput",
+    "Peak RAM",
+    "Clinical turnaround time",
+    "Cost per clinical case",
+    "Energy consumption"
+  ],
+  "limitations": [
+    "Single workstation, three image passes and 50 tiny regression runs; not an independent performance benchmark.",
+    "Warm caches and background workload affect latency; throughput is not a production service guarantee.",
+    "Microbenchmark does not include native WSI reads, ICC conversion, annotation, RNA parsing, reports or human review."
+  ],
+  "code_sha256": "68f817b98af8eb5e3ca68192db9801ff337cce6f355e6c30adb526ffe23122a9"
+}

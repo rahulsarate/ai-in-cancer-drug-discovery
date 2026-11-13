@@ -1,0 +1,195 @@
+{
+  "protocol_version": "TCGA_PAAD_TECHNICAL_PILOT_v1",
+  "research_only": true,
+  "real_public_data": true,
+  "analysis_type": "retrospective technical feasibility with exploratory biological association",
+  "primary_endpoints": {
+    "selected_patients": 24,
+    "verified_raw_files": 48,
+    "verified_raw_bytes": 3549030405,
+    "evaluable_patients": 24,
+    "exclusions": [],
+    "retained_tiles": 768,
+    "same_patient_RNA_linkage": 24,
+    "same_block_spatial_match_established": false,
+    "expert_tumor_review_performed": false
+  },
+  "technical_gates": {
+    "all_raw_files_verified": true,
+    "at_least_22_evaluable_patients": true,
+    "all_patients_have_at_least_8_tiles": true,
+    "cross_patient_exact_tile_duplicates": 0
+  },
+  "sites": {
+    "HZ": 16,
+    "HV": 2,
+    "FB": 6
+  },
+  "stage_counts_exact": {
+    "Stage IIB": 19,
+    "Stage IIA": 2,
+    "Stage III": 1,
+    "Stage IB": 2
+  },
+  "stage_counts_broad": {
+    "II": 21,
+    "III": 1,
+    "I": 2
+  },
+  "staging_editions": {
+    "7th": 24
+  },
+  "stage_model": {
+    "status": "NOT_TRAINED",
+    "reason": "Four-stage minimum gate not satisfied"
+  },
+  "exploratory_emt": {
+    "definition": "mean(log2(TPM+1), mesenchymal genes) - mean(log2(TPM+1), epithelial genes)",
+    "not_validated_EMT_assay": true,
+    "progression_assessed": false,
+    "n": 24,
+    "model": "StandardScaler + Ridge(alpha=10); fixed configuration",
+    "evaluation": "Leave-one-contributing-site-out; held-out sites remain part of TCGA, not independent external validation",
+    "model_mae": 1.2077753271591531,
+    "baseline_mae": 1.3833281813263048,
+    "mae_improvement_over_baseline": 0.1755528541671516,
+    "model_rmse": 1.408703762145177,
+    "model_r2": 0.1261648857398926,
+    "spearman_r": 0.0826086956521739,
+    "folds": [
+      {
+        "held_out_site": "FB",
+        "train_patients": [
+          "TCGA-HZ-7926",
+          "TCGA-HZ-7924",
+          "TCGA-HV-A5A5",
+          "TCGA-HZ-8001",
+          "TCGA-HZ-8003",
+          "TCGA-HZ-A49H",
+          "TCGA-HZ-A4BH",
+          "TCGA-HZ-A8P0",
+          "TCGA-HZ-7919",
+          "TCGA-HZ-7925",
+          "TCGA-HZ-8002",
+          "TCGA-HZ-A8P1",
+          "TCGA-HZ-7918",
+          "TCGA-HZ-8005",
+          "TCGA-HZ-A49G",
+          "TCGA-HZ-7920",
+          "TCGA-HZ-7923",
+          "TCGA-HV-A5A6"
+        ],
+        "test_patients": [
+          "TCGA-FB-AAPS",
+          "TCGA-FB-AAPY",
+          "TCGA-FB-AAQ3",
+          "TCGA-FB-AAPZ",
+          "TCGA-FB-AAPP",
+          "TCGA-FB-AAPQ"
+        ],
+        "model_mae": 1.4283105421899018,
+        "baseline_mae": 1.7438454760574007
+      },
+      {
+        "held_out_site": "HV",
+        "train_patients": [
+          "TCGA-HZ-7926",
+          "TCGA-HZ-7924",
+          "TCGA-FB-AAPS",
+          "TCGA-HZ-8001",
+          "TCGA-HZ-8003",
+          "TCGA-FB-AAPY",
+          "TCGA-HZ-A49H",
+          "TCGA-HZ-A4BH",
+          "TCGA-HZ-A8P0",
+          "TCGA-HZ-7919",
+          "TCGA-FB-AAQ3",
+          "TCGA-HZ-7925",
+          "TCGA-HZ-8002",
+          "TCGA-HZ-A8P1",
+          "TCGA-FB-AAPZ",
+          "TCGA-HZ-7918",
+          "TCGA-HZ-8005",
+          "TCGA-HZ-A49G",
+          "TCGA-FB-AAPP",
+          "TCGA-FB-AAPQ",
+          "TCGA-HZ-7920",
+          "TCGA-HZ-7923"
+        ],
+        "test_patients": [
+          "TCGA-HV-A5A5",
+          "TCGA-HV-A5A6"
+        ],
+        "model_mae": 0.7749166726288359,
+        "baseline_mae": 0.31385288415308654
+      },
+      {
+        "held_out_site": "HZ",
+        "train_patients": [
+          "TCGA-HV-A5A5",
+          "TCGA-FB-AAPS",
+          "TCGA-FB-AAPY",
+          "TCGA-FB-AAQ3",
+          "TCGA-FB-AAPZ",
+          "TCGA-FB-AAPP",
+          "TCGA-FB-AAPQ",
+          "TCGA-HV-A5A6"
+        ],
+        "test_patients": [
+          "TCGA-HZ-7926",
+          "TCGA-HZ-7924",
+          "TCGA-HZ-8001",
+          "TCGA-HZ-8003",
+          "TCGA-HZ-A49H",
+          "TCGA-HZ-A4BH",
+          "TCGA-HZ-A8P0",
+          "TCGA-HZ-7919",
+          "TCGA-HZ-7925",
+          "TCGA-HZ-8002",
+          "TCGA-HZ-A8P1",
+          "TCGA-HZ-7918",
+          "TCGA-HZ-8005",
+          "TCGA-HZ-A49G",
+          "TCGA-HZ-7920",
+          "TCGA-HZ-7923"
+        ],
+        "model_mae": 1.179181953338912,
+        "baseline_mae": 1.381818607948796
+      }
+    ],
+    "model_mae_percentile_95": [
+      0.9368743849791856,
+      1.495945879220544
+    ],
+    "mae_improvement_over_mean_percentile_95": [
+      -0.13473089520778447,
+      0.4756352645367818
+    ],
+    "method": "Descriptive patient bootstrap of fixed out-of-fold predictions; not nested refitting; ignores site-cluster uncertainty",
+    "replicates": 2000
+  },
+  "provenance": {
+    "cohort_plan_sha256": "6a4167d04412a96df7ac18afece4eea1f8d1b8ca9ccf505a4c9cd11402d815d4",
+    "analysis_code_sha256": "329ec2c1cd75ca1e8f417f3714e392d68f3469df097110a869777f9baf9edda4",
+    "python": "3.14.3",
+    "package_versions": {
+      "numpy": "2.4.6",
+      "Pillow": "12.2.0",
+      "scikit-learn": "1.9.0",
+      "scipy": "1.17.1",
+      "openslide-python": "1.4.7",
+      "openslide-bin": "4.0.1.2",
+      "requests": "2.34.2",
+      "matplotlib": "3.10.9"
+    },
+    "acknowledgement": "Results are based on data generated by the TCGA Research Network: https://www.cancer.gov/tcga"
+  },
+  "limitations": [
+    "Convenience selection by file size; not a representative clinical cohort.",
+    "Unreviewed tissue tiles; no pathologist-confirmed tumor regions.",
+    "Bulk RNA composite can reflect stromal contamination; not a clinical EMT endpoint.",
+    "RNA and WSI matched by patient, not verified same block; no longitudinal progression.",
+    "Tiny site groups and internal source; no external clinical validation.",
+    "No cancer diagnosis, clinical stage inference, drug response or treatment recommendation."
+  ]
+}

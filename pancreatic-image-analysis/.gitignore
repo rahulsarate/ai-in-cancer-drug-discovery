@@ -1,0 +1,11 @@
+.venv/
+__pycache__/
+.pytest_cache/
+data/demo/
+data/real_pilot/*
+!data/real_pilot/cohort_plan.json
+!data/real_pilot/download_receipts.json
+!data/real_pilot/gdc_inventory.json
+outputs/*
+!outputs/real_pilot/
+*.joblib

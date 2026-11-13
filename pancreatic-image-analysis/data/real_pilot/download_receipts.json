@@ -1,0 +1,485 @@
+{
+  "receipts": [
+    {
+      "file_id": "6adf699d-16b8-436b-add5-93045cdf9b1b",
+      "relative_path": "rna\\37fee99c-5651-4d5c-ae20-6cf661b96f68.rna_seq.augmented_star_gene_counts.tsv",
+      "bytes": 4260822,
+      "md5_verified": true,
+      "url": "https://api.gdc.cancer.gov/data/6adf699d-16b8-436b-add5-93045cdf9b1b",
+      "cached": false,
+      "patient_id": "TCGA-HZ-7924",
+      "kind": "rna"
+    },
+    {
+      "file_id": "8044f5b4-6b45-408c-b0fe-059e773e401e",
+      "relative_path": "rna\\6e7fb389-a285-4c22-8d7a-a1fc10190c53.rna_seq.augmented_star_gene_counts.tsv",
+      "bytes": 4253726,
+      "md5_verified": true,
+      "url": "https://api.gdc.cancer.gov/data/8044f5b4-6b45-408c-b0fe-059e773e401e",
+      "cached": false,
+      "patient_id": "TCGA-HZ-7926",
+      "kind": "rna"
+    },
+    {
+      "file_id": "9acf5e5d-4397-49bd-9a24-bdda7d6b944e",
+      "relative_path": "rna\\ab02c8e2-e810-476a-a11c-ca95f7877b29.rna_seq.augmented_star_gene_counts.tsv",
+      "bytes": 4235730,
+      "md5_verified": true,
+      "url": "https://api.gdc.cancer.gov/data/9acf5e5d-4397-49bd-9a24-bdda7d6b944e",
+      "cached": false,
+      "patient_id": "TCGA-HV-A5A5",
+      "kind": "rna"
+    },
+    {
+      "file_id": "ac8a196a-0cfb-463b-bc31-f6356de2078d",
+      "relative_path": "slides\\TCGA-HZ-7926-01Z-00-DX1.b3bf02d3-bad0-4451-9c39-b0593f19154c.svs",
+      "bytes": 25776223,
+      "md5_verified": true,
+      "url": "https://api.gdc.cancer.gov/data/ac8a196a-0cfb-463b-bc31-f6356de2078d",
+      "cached": false,
+      "patient_id": "TCGA-HZ-7926",
+      "kind": "slide"
+    },
+    {
+      "file_id": "1bccd28f-ef99-486b-b191-e07c17185d57",
+      "relative_path": "rna\\b296880d-cf96-4783-9b5c-849bf412ca44.rna_seq.augmented_star_gene_counts.tsv",
+      "bytes": 4231809,
+      "md5_verified": true,
+      "url": "https://api.gdc.cancer.gov/data/1bccd28f-ef99-486b-b191-e07c17185d57",
+      "cached": false,
+      "patient_id": "TCGA-FB-AAPS",
+      "kind": "rna"
+    },
+    {
+      "file_id": "0b4b695b-b7e5-40ce-b2a7-d17fdf540522",
+      "relative_path": "slides\\TCGA-HZ-7924-01Z-00-DX1.d73d1606-bda1-441b-ab00-69645fae6553.svs",
+      "bytes": 61940573,
+      "md5_verified": true,
+      "url": "https://api.gdc.cancer.gov/data/0b4b695b-b7e5-40ce-b2a7-d17fdf540522",
+      "cached": false,
+      "patient_id": "TCGA-HZ-7924",
+      "kind": "slide"
+    },
+    {
+      "file_id": "2542cead-e252-4c01-bd34-8cf170d49f4f",
+      "relative_path": "rna\\0b01cc4f-cc4d-4971-8956-1fe5325555df.rna_seq.augmented_star_gene_counts.tsv",
+      "bytes": 4247835,
+      "md5_verified": true,
+      "url": "https://api.gdc.cancer.gov/data/2542cead-e252-4c01-bd34-8cf170d49f4f",
+      "cached": false,
+      "patient_id": "TCGA-HZ-8001",
+      "kind": "rna"
+    },
+    {
+      "file_id": "65422b41-01e6-477b-a657-cf2b554e8e62",
+      "relative_path": "slides\\TCGA-HV-A5A5-01Z-00-DX1.75AA1FD0-C43D-4C5A-8CD1-DC06B71BB2A8.svs",
+      "bytes": 79339345,
+      "md5_verified": true,
+      "url": "https://api.gdc.cancer.gov/data/65422b41-01e6-477b-a657-cf2b554e8e62",
+      "cached": false,
+      "patient_id": "TCGA-HV-A5A5",
+      "kind": "slide"
+    },
+    {
+      "file_id": "c0da3ec8-9575-4b2b-b6ef-e0b2c7670e91",
+      "relative_path": "rna\\ab9fdb67-d8e1-4725-8728-8532b8bdbda9.rna_seq.augmented_star_gene_counts.tsv",
+      "bytes": 4235176,
+      "md5_verified": true,
+      "url": "https://api.gdc.cancer.gov/data/c0da3ec8-9575-4b2b-b6ef-e0b2c7670e91",
+      "cached": false,
+      "patient_id": "TCGA-HZ-8003",
+      "kind": "rna"
+    },
+    {
+      "file_id": "c673de35-2153-4fd0-916a-8a15e5f34054",
+      "relative_path": "slides\\TCGA-FB-AAPS-01Z-00-DX1.BD33EF8C-A9ED-486C-A8A7-A91E5CD7FB8C.svs",
+      "bytes": 99759953,
+      "md5_verified": true,
+      "url": "https://api.gdc.cancer.gov/data/c673de35-2153-4fd0-916a-8a15e5f34054",
+      "cached": false,
+      "patient_id": "TCGA-FB-AAPS",
+      "kind": "slide"
+    },
+    {
+      "file_id": "0c098157-254b-492b-ad08-54cf813814d9",
+      "relative_path": "rna\\0c7c39b2-e01c-4df4-bfce-abae7985ef79.rna_seq.augmented_star_gene_counts.tsv",
+      "bytes": 4238500,
+      "md5_verified": true,
+      "url": "https://api.gdc.cancer.gov/data/0c098157-254b-492b-ad08-54cf813814d9",
+      "cached": false,
+      "patient_id": "TCGA-FB-AAPY",
+      "kind": "rna"
+    },
+    {
+      "file_id": "14ce39a4-5a20-4156-98de-08eb4d35bb8e",
+      "relative_path": "slides\\TCGA-HZ-8001-01Z-00-DX1.03aae6b5-520b-4bcb-bb43-f58520ab08f4.svs",
+      "bytes": 104029111,
+      "md5_verified": true,
+      "url": "https://api.gdc.cancer.gov/data/14ce39a4-5a20-4156-98de-08eb4d35bb8e",
+      "cached": false,
+      "patient_id": "TCGA-HZ-8001",
+      "kind": "slide"
+    },
+    {
+      "file_id": "9e839f31-9cfb-42b7-a279-32ea4445903b",
+      "relative_path": "rna\\cb3be2e6-3f8a-4918-8c04-8b4af2e55616.rna_seq.augmented_star_gene_counts.tsv",
+      "bytes": 4236934,
+      "md5_verified": true,
+      "url": "https://api.gdc.cancer.gov/data/9e839f31-9cfb-42b7-a279-32ea4445903b",
+      "cached": false,
+      "patient_id": "TCGA-HZ-A49H",
+      "kind": "rna"
+    },
+    {
+      "file_id": "6f5ed1f9-7d45-4643-b6a1-aff0c7986e38",
+      "relative_path": "slides\\TCGA-HZ-8003-01Z-00-DX1.066fd925-db75-4d92-8ea6-5d4c3249fd5f.svs",
+      "bytes": 117215977,
+      "md5_verified": true,
+      "url": "https://api.gdc.cancer.gov/data/6f5ed1f9-7d45-4643-b6a1-aff0c7986e38",
+      "cached": false,
+      "patient_id": "TCGA-HZ-8003",
+      "kind": "slide"
+    },
+    {
+      "file_id": "439c7ab0-445d-42e7-8be5-144db4245626",
+      "relative_path": "rna\\a81c54cd-5668-4e4c-b4c8-2322076cba16.rna_seq.augmented_star_gene_counts.tsv",
+      "bytes": 4243288,
+      "md5_verified": true,
+      "url": "https://api.gdc.cancer.gov/data/439c7ab0-445d-42e7-8be5-144db4245626",
+      "cached": false,
+      "patient_id": "TCGA-HZ-A4BH",
+      "kind": "rna"
+    },
+    {
+      "file_id": "08274df1-26ad-42ba-ac34-854989feb177",
+      "relative_path": "slides\\TCGA-FB-AAPY-01Z-00-DX1.06F4ED05-E333-48E1-91B9-345ACA41A4DF.svs",
+      "bytes": 121950097,
+      "md5_verified": true,
+      "url": "https://api.gdc.cancer.gov/data/08274df1-26ad-42ba-ac34-854989feb177",
+      "cached": false,
+      "patient_id": "TCGA-FB-AAPY",
+      "kind": "slide"
+    },
+    {
+      "file_id": "245632c2-f70b-4b31-b4b4-81ff6a860bc4",
+      "relative_path": "rna\\90fe6068-0176-4cf8-9fd0-a5eb8d2cc090.rna_seq.augmented_star_gene_counts.tsv",
+      "bytes": 4229323,
+      "md5_verified": true,
+      "url": "https://api.gdc.cancer.gov/data/245632c2-f70b-4b31-b4b4-81ff6a860bc4",
+      "cached": false,
+      "patient_id": "TCGA-HZ-A8P0",
+      "kind": "rna"
+    },
+    {
+      "file_id": "a359bc2c-9e10-4d5b-a11c-3be5384479b9",
+      "relative_path": "slides\\TCGA-HZ-A49H-01Z-00-DX1.CFFAEF74-33FB-4896-A644-EAF3E10DA19B.svs",
+      "bytes": 134098668,
+      "md5_verified": true,
+      "url": "https://api.gdc.cancer.gov/data/a359bc2c-9e10-4d5b-a11c-3be5384479b9",
+      "cached": false,
+      "patient_id": "TCGA-HZ-A49H",
+      "kind": "slide"
+    },
+    {
+      "file_id": "f624a728-7487-4621-8453-ee758398b506",
+      "relative_path": "rna\\6dfb777e-74f0-419c-9af3-ec7bbb9047c5.rna_seq.augmented_star_gene_counts.tsv",
+      "bytes": 4245052,
+      "md5_verified": true,
+      "url": "https://api.gdc.cancer.gov/data/f624a728-7487-4621-8453-ee758398b506",
+      "cached": false,
+      "patient_id": "TCGA-HZ-7919",
+      "kind": "rna"
+    },
+    {
+      "file_id": "811eeb94-36b4-4099-973e-1eb001282daa",
+      "relative_path": "slides\\TCGA-HZ-A8P0-01Z-00-DX1.83C0A19C-153E-4AB3-8814-1E6053652EB2.svs",
+      "bytes": 143246424,
+      "md5_verified": true,
+      "url": "https://api.gdc.cancer.gov/data/811eeb94-36b4-4099-973e-1eb001282daa",
+      "cached": false,
+      "patient_id": "TCGA-HZ-A8P0",
+      "kind": "slide"
+    },
+    {
+      "file_id": "41a4dd56-4959-485d-b8d9-4d4923a335bf",
+      "relative_path": "slides\\TCGA-HZ-A4BH-01Z-00-DX1.5B272E81-F1AD-415E-A54B-41ACD44F279E.svs",
+      "bytes": 137775592,
+      "md5_verified": true,
+      "url": "https://api.gdc.cancer.gov/data/41a4dd56-4959-485d-b8d9-4d4923a335bf",
+      "cached": false,
+      "patient_id": "TCGA-HZ-A4BH",
+      "kind": "slide"
+    },
+    {
+      "file_id": "eb9da5b9-3fec-473d-9cc3-01f8b897dfae",
+      "relative_path": "rna\\602423c5-313b-45ea-9c4b-40a5b20b170b.rna_seq.augmented_star_gene_counts.tsv",
+      "bytes": 4221470,
+      "md5_verified": true,
+      "url": "https://api.gdc.cancer.gov/data/eb9da5b9-3fec-473d-9cc3-01f8b897dfae",
+      "cached": false,
+      "patient_id": "TCGA-FB-AAQ3",
+      "kind": "rna"
+    },
+    {
+      "file_id": "739472cc-a30d-4e46-93cc-5ae08eb39f0a",
+      "relative_path": "rna\\afa6c687-a940-4482-8c76-4683dc9b3a6d.rna_seq.augmented_star_gene_counts.tsv",
+      "bytes": 4249694,
+      "md5_verified": true,
+      "url": "https://api.gdc.cancer.gov/data/739472cc-a30d-4e46-93cc-5ae08eb39f0a",
+      "cached": false,
+      "patient_id": "TCGA-HZ-7925",
+      "kind": "rna"
+    },
+    {
+      "file_id": "8216f427-b582-4829-9a2f-0ae08cf02d4f",
+      "relative_path": "slides\\TCGA-HZ-7919-01Z-00-DX1.c415aa59-6474-47f7-81c3-797e8faa28f0.svs",
+      "bytes": 146028715,
+      "md5_verified": true,
+      "url": "https://api.gdc.cancer.gov/data/8216f427-b582-4829-9a2f-0ae08cf02d4f",
+      "cached": false,
+      "patient_id": "TCGA-HZ-7919",
+      "kind": "slide"
+    },
+    {
+      "file_id": "2a5c9ae3-efaa-49c9-a545-8451795ff000",
+      "relative_path": "slides\\TCGA-FB-AAQ3-01Z-00-DX1.024C4077-EF21-4DA5-B309-C09C45FBA7E7.svs",
+      "bytes": 149057043,
+      "md5_verified": true,
+      "url": "https://api.gdc.cancer.gov/data/2a5c9ae3-efaa-49c9-a545-8451795ff000",
+      "cached": false,
+      "patient_id": "TCGA-FB-AAQ3",
+      "kind": "slide"
+    },
+    {
+      "file_id": "0110e743-ac32-4b78-8eed-6e6cb8b75849",
+      "relative_path": "rna\\79924ccb-c0e0-4b16-8b06-c1037cd55d61.rna_seq.augmented_star_gene_counts.tsv",
+      "bytes": 4252547,
+      "md5_verified": true,
+      "url": "https://api.gdc.cancer.gov/data/0110e743-ac32-4b78-8eed-6e6cb8b75849",
+      "cached": false,
+      "patient_id": "TCGA-HZ-8002",
+      "kind": "rna"
+    },
+    {
+      "file_id": "ef502468-0656-4c82-ad4c-bbbba43986be",
+      "relative_path": "rna\\10b614d3-7608-48fb-a20a-aad19292598a.rna_seq.augmented_star_gene_counts.tsv",
+      "bytes": 4228367,
+      "md5_verified": true,
+      "url": "https://api.gdc.cancer.gov/data/ef502468-0656-4c82-ad4c-bbbba43986be",
+      "cached": false,
+      "patient_id": "TCGA-HZ-A8P1",
+      "kind": "rna"
+    },
+    {
+      "file_id": "792ba93e-3721-4da5-958f-3b3539f368bc",
+      "relative_path": "slides\\TCGA-HZ-7925-01Z-00-DX1.9b981453-e606-4396-8f9d-98a6d6abcb33.svs",
+      "bytes": 150460981,
+      "md5_verified": true,
+      "url": "https://api.gdc.cancer.gov/data/792ba93e-3721-4da5-958f-3b3539f368bc",
+      "cached": false,
+      "patient_id": "TCGA-HZ-7925",
+      "kind": "slide"
+    },
+    {
+      "file_id": "ce1b2f4c-4a19-4529-9a05-4212ac140ebb",
+      "relative_path": "rna\\7d5d4419-5c0d-4f23-9463-04df885a4c52.rna_seq.augmented_star_gene_counts.tsv",
+      "bytes": 4226044,
+      "md5_verified": true,
+      "url": "https://api.gdc.cancer.gov/data/ce1b2f4c-4a19-4529-9a05-4212ac140ebb",
+      "cached": false,
+      "patient_id": "TCGA-FB-AAPZ",
+      "kind": "rna"
+    },
+    {
+      "file_id": "4da65174-397e-4c65-b418-434095c9b3ed",
+      "relative_path": "slides\\TCGA-HZ-8002-01Z-00-DX1.c4d50eb1-08a3-4c01-b508-b477b7026cb2.svs",
+      "bytes": 155966493,
+      "md5_verified": true,
+      "url": "https://api.gdc.cancer.gov/data/4da65174-397e-4c65-b418-434095c9b3ed",
+      "cached": false,
+      "patient_id": "TCGA-HZ-8002",
+      "kind": "slide"
+    },
+    {
+      "file_id": "649f4d81-a634-4734-ba31-bdeb0877312a",
+      "relative_path": "rna\\6813be8f-c90b-4505-9293-ed370e771ccf.rna_seq.augmented_star_gene_counts.tsv",
+      "bytes": 4241169,
+      "md5_verified": true,
+      "url": "https://api.gdc.cancer.gov/data/649f4d81-a634-4734-ba31-bdeb0877312a",
+      "cached": false,
+      "patient_id": "TCGA-HZ-7918",
+      "kind": "rna"
+    },
+    {
+      "file_id": "5b60d9c7-76dc-465d-b03b-5258d968d227",
+      "relative_path": "slides\\TCGA-HZ-A8P1-01Z-00-DX1.22B7AE4A-DA67-4B50-899A-1BC3F736061B.svs",
+      "bytes": 157205580,
+      "md5_verified": true,
+      "url": "https://api.gdc.cancer.gov/data/5b60d9c7-76dc-465d-b03b-5258d968d227",
+      "cached": false,
+      "patient_id": "TCGA-HZ-A8P1",
+      "kind": "slide"
+    },
+    {
+      "file_id": "9043ee18-45f4-483e-91c2-b8dd175ac703",
+      "relative_path": "rna\\940696cf-f20c-4aa9-ad5c-479141132692.rna_seq.augmented_star_gene_counts.tsv",
+      "bytes": 4233729,
+      "md5_verified": true,
+      "url": "https://api.gdc.cancer.gov/data/9043ee18-45f4-483e-91c2-b8dd175ac703",
+      "cached": false,
+      "patient_id": "TCGA-HZ-8005",
+      "kind": "rna"
+    },
+    {
+      "file_id": "56da4133-0feb-4945-8c05-ff166f8c6bae",
+      "relative_path": "slides\\TCGA-FB-AAPZ-01Z-00-DX1.CDD2A57A-202B-44C1-8DC8-E8CE091DB510.svs",
+      "bytes": 160909395,
+      "md5_verified": true,
+      "url": "https://api.gdc.cancer.gov/data/56da4133-0feb-4945-8c05-ff166f8c6bae",
+      "cached": false,
+      "patient_id": "TCGA-FB-AAPZ",
+      "kind": "slide"
+    },
+    {
+      "file_id": "89ba298b-7453-494f-a80f-3cb8b8bbfdd0",
+      "relative_path": "rna\\9328ab3a-5598-4d1d-8a48-d194b336c84e.rna_seq.augmented_star_gene_counts.tsv",
+      "bytes": 4239808,
+      "md5_verified": true,
+      "url": "https://api.gdc.cancer.gov/data/89ba298b-7453-494f-a80f-3cb8b8bbfdd0",
+      "cached": false,
+      "patient_id": "TCGA-HZ-A49G",
+      "kind": "rna"
+    },
+    {
+      "file_id": "3a4a0bdd-b0e8-4020-bc8c-3222e3b5359b",
+      "relative_path": "slides\\TCGA-HZ-7918-01Z-00-DX1.2503fea5-bd82-43ca-be7d-ee24968c7026.svs",
+      "bytes": 164715413,
+      "md5_verified": true,
+      "url": "https://api.gdc.cancer.gov/data/3a4a0bdd-b0e8-4020-bc8c-3222e3b5359b",
+      "cached": false,
+      "patient_id": "TCGA-HZ-7918",
+      "kind": "slide"
+    },
+    {
+      "file_id": "a7f202b7-4201-418b-8341-2b0580112c53",
+      "relative_path": "slides\\TCGA-HZ-8005-01Z-00-DX1.e49bbccf-eab2-4f2f-b882-406b90fb2020.svs",
+      "bytes": 168321289,
+      "md5_verified": true,
+      "url": "https://api.gdc.cancer.gov/data/a7f202b7-4201-418b-8341-2b0580112c53",
+      "cached": false,
+      "patient_id": "TCGA-HZ-8005",
+      "kind": "slide"
+    },
+    {
+      "file_id": "2b89b4e4-a150-44cb-b533-4d55272841d6",
+      "relative_path": "rna\\13dbd84c-b0da-45bc-8c6a-8e215672b157.rna_seq.augmented_star_gene_counts.tsv",
+      "bytes": 4214030,
+      "md5_verified": true,
+      "url": "https://api.gdc.cancer.gov/data/2b89b4e4-a150-44cb-b533-4d55272841d6",
+      "cached": false,
+      "patient_id": "TCGA-FB-AAPP",
+      "kind": "rna"
+    },
+    {
+      "file_id": "1a96328e-49a7-4655-abcd-d463138f457f",
+      "relative_path": "rna\\033fbcc1-7984-4946-ba49-cd58bb641b0b.rna_seq.augmented_star_gene_counts.tsv",
+      "bytes": 4215065,
+      "md5_verified": true,
+      "url": "https://api.gdc.cancer.gov/data/1a96328e-49a7-4655-abcd-d463138f457f",
+      "cached": false,
+      "patient_id": "TCGA-FB-AAPQ",
+      "kind": "rna"
+    },
+    {
+      "file_id": "ba07dd7f-9755-47cc-9b64-dccf061a288d",
+      "relative_path": "slides\\TCGA-HZ-A49G-01Z-00-DX1.864C2C1F-6BE7-4552-B8D2-69FA745F97EE.svs",
+      "bytes": 170562498,
+      "md5_verified": true,
+      "url": "https://api.gdc.cancer.gov/data/ba07dd7f-9755-47cc-9b64-dccf061a288d",
+      "cached": false,
+      "patient_id": "TCGA-HZ-A49G",
+      "kind": "slide"
+    },
+    {
+      "file_id": "6230d096-38d0-4945-ac66-3811160f11f6",
+      "relative_path": "rna\\1761b0c4-9fa5-4660-a9a4-0cb973e96f8d.rna_seq.augmented_star_gene_counts.tsv",
+      "bytes": 4256773,
+      "md5_verified": true,
+      "url": "https://api.gdc.cancer.gov/data/6230d096-38d0-4945-ac66-3811160f11f6",
+      "cached": false,
+      "patient_id": "TCGA-HZ-7920",
+      "kind": "rna"
+    },
+    {
+      "file_id": "6bd4b7f2-322d-41fe-85c3-b9a4bb7bd075",
+      "relative_path": "slides\\TCGA-FB-AAPP-01Z-00-DX1.CF68D027-E6FA-44E0-87AB-F9447977AA22.svs",
+      "bytes": 179369515,
+      "md5_verified": true,
+      "url": "https://api.gdc.cancer.gov/data/6bd4b7f2-322d-41fe-85c3-b9a4bb7bd075",
+      "cached": false,
+      "patient_id": "TCGA-FB-AAPP",
+      "kind": "slide"
+    },
+    {
+      "file_id": "9e459810-a982-4f7d-a6b3-ab1ac35bea62",
+      "relative_path": "rna\\af54f762-0442-45c9-ba86-840437323ba6.rna_seq.augmented_star_gene_counts.tsv",
+      "bytes": 4262687,
+      "md5_verified": true,
+      "url": "https://api.gdc.cancer.gov/data/9e459810-a982-4f7d-a6b3-ab1ac35bea62",
+      "cached": false,
+      "patient_id": "TCGA-HZ-7923",
+      "kind": "rna"
+    },
+    {
+      "file_id": "cadcbde8-af58-4d8a-aa41-070310aa1761",
+      "relative_path": "slides\\TCGA-FB-AAPQ-01Z-00-DX1.4D8B675F-3E8D-4442-A2E3-C2963901D7D3.svs",
+      "bytes": 184014613,
+      "md5_verified": true,
+      "url": "https://api.gdc.cancer.gov/data/cadcbde8-af58-4d8a-aa41-070310aa1761",
+      "cached": false,
+      "patient_id": "TCGA-FB-AAPQ",
+      "kind": "slide"
+    },
+    {
+      "file_id": "b9632740-926c-44ce-afc3-a312375440f2",
+      "relative_path": "rna\\a56d2aa1-72de-453e-9a7f-9c52dca0a991.rna_seq.augmented_star_gene_counts.tsv",
+      "bytes": 4233584,
+      "md5_verified": true,
+      "url": "https://api.gdc.cancer.gov/data/b9632740-926c-44ce-afc3-a312375440f2",
+      "cached": false,
+      "patient_id": "TCGA-HV-A5A6",
+      "kind": "rna"
+    },
+    {
+      "file_id": "6d86b628-8761-4df6-9640-4219aafd2bc1",
+      "relative_path": "slides\\TCGA-HZ-7920-01Z-00-DX1.1f7198f7-048d-4552-af8e-99dd76b8ba7b.svs",
+      "bytes": 203009691,
+      "md5_verified": true,
+      "url": "https://api.gdc.cancer.gov/data/6d86b628-8761-4df6-9640-4219aafd2bc1",
+      "cached": false,
+      "patient_id": "TCGA-HZ-7920",
+      "kind": "slide"
+    },
+    {
+      "file_id": "7d2f0b7c-44d3-4e67-969f-0c1da2accd48",
+      "relative_path": "slides\\TCGA-HZ-7923-01Z-00-DX1.e2011c5c-e379-4a49-bf45-5d749f9701ae.svs",
+      "bytes": 210544353,
+      "md5_verified": true,
+      "url": "https://api.gdc.cancer.gov/data/7d2f0b7c-44d3-4e67-969f-0c1da2accd48",
+      "cached": false,
+      "patient_id": "TCGA-HZ-7923",
+      "kind": "slide"
+    },
+    {
+      "file_id": "5cb80a7a-b348-4c11-a553-b2040a83aaef",
+      "relative_path": "slides\\TCGA-HV-A5A6-01Z-00-DX1.4F693947-9418-42BD-A455-E7F9EE336D4A.svs",
+      "bytes": 221999701,
+      "md5_verified": true,
+      "url": "https://api.gdc.cancer.gov/data/5cb80a7a-b348-4c11-a553-b2040a83aaef",
+      "cached": false,
+      "patient_id": "TCGA-HV-A5A6",
+      "kind": "slide"
+    }
+  ],
+  "errors": []
+}
